@@ -85,7 +85,8 @@
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Concession Table</h4>
 
                                     <div class="table-responsive">
-                                        <table class="table" id="adadmissiontable">
+                                        <!-- tablesaw table m-b-0 tablesaw-columntoggle table-bordered -->
+                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -139,6 +140,52 @@
                                                 </tr>
                                                 <tr >
                                                     <td>1</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>waleedasad</td>
+                                                    <td>8th</td>
+                                                    <td>EP1866051</td>
+                                                    <td>M.Asadullah</td>
+                                                    <td>M.ShahkirUllah</td>
+                                                    <td>Ullah</td>
+                                                    <td>Muslim</td>
+                                                    <td>42101-8383129-0</td>
+                                                    <td>03174721487</td>
+                                                    <td>supervisor</td>
+                                                    <td>50,000</td>
+                                                    <td>No</td>
+                                                    <td>Father</td>
+                                                    <td>F.B area, Karchi</td>
+                                                    <td>No</td>
+                                                    <td>6</td>
+                                                </tr>
+                                                <tr >
+                                                    <td>2</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>waleed asad</td>
+                                                    <td>8th</td>
+                                                    <td>EP1866051</td>
+                                                    <td>M.Asadullah</td>
+                                                    <td>M.ShahkirUllah</td>
+                                                    <td>Ullah</td>
+                                                    <td>Muslim</td>
+                                                    <td>42101-8383129-0</td>
+                                                    <td>03174721487</td>
+                                                    <td>supervisor</td>
+                                                    <td>50,000</td>
+                                                    <td>No</td>
+                                                    <td>Father</td>
+                                                    <td>F.B area, Karchi</td>
+                                                    <td>No</td>
+                                                    <td>6</td>
+                                                </tr>
+                                                <tr >
+                                                    <td>3</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>

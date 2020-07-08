@@ -87,39 +87,70 @@
                                     <h4 class="header-title m-t-0 m-b-30">Addmission Sheet</h4>
 
                                     <div class="table-responsive">
-                                        <table class="table" id="adadmissiontable">
+                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                             <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                                <th>Print</th>
-                                                <th>Clone</th>
-                                                <th>Class</th>
-                                                <th>G.R. No.</th>
-                                                <th>Name of Student</th>
-                                                <th>Father's Name</th>
-                                                <th>Surname</th>
-                                                <th>Guardian's Name</th>
-                                                <th>Relationship</th>
-                                                <th>Religion</th>
-                                                <th>Address</th>
-                                                <th>Phone</th>
-                                                <th>Cell</th>
-                                                <th>E-mail</th>
-                                                <th>ICE</th>
-                                                <th>Occupation of Father / Gaurdian</th>
-                                                <th>Monthly Income</th>
-                                                <th>CNIC No of Father / Guardian</th>
-                                                <th>Date of Birth(in figures)</th>
-                                                <th>Place of Birth</th>
-                                                <th>Date of Birth(In words)</th>
-                                                <th>Addmission saught for class</th>
-                                                <th>Addmission grantted for class</th>
-                                                <th>Last School & Class Attended</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                    <th>Print</th>
+                                                    <th>Clone</th>
+                                                    <th>Class</th>
+                                                    <th>G.R. No.</th>
+                                                    <th>Name of Student</th>
+                                                    <th>Father's Name</th>
+                                                    <th>Surname</th>
+                                                    <th>Guardian's Name</th>
+                                                    <th>Relationship</th>
+                                                    <th>Religion</th>
+                                                    <th>Address</th>
+                                                    <th>Phone</th>
+                                                    <th>Cell</th>
+                                                    <th>E-mail</th>
+                                                    <th>ICE</th>
+                                                    <th>Occupation of Father / Gaurdian</th>
+                                                    <th>Monthly Income</th>
+                                                    <th>CNIC No of Father / Guardian</th>
+                                                    <th>Date of Birth(in figures)</th>
+                                                    <th>Place of Birth</th>
+                                                    <th>Date of Birth(In words)</th>
+                                                    <th>Addmission saught for class</th>
+                                                    <th>Addmission grantted for class</th>
+                                                    <th>Last School & Class Attended</th>
+                                                </tr>
+
                                             </thead>
                                             <tbody id="addFrmPrint">
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+
+                                                </tr>
                                                 <tr >
                                                     <td>1</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
@@ -144,6 +175,63 @@
                                                     <td>4210178781244</td>
                                                     <td>12/25/1998</td>
                                                     <td>Karachi</td>
+                                                    <td>december twelve nineteen ninety-eight</td>
+                                                    <td>6th</td>
+                                                    <td>5th</td>
+                                                    <td>sun acadmey & 4th</td>
+                                                </tr>
+                                                <tr >
+                                                    <td>1</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td ><a href="print.php" class="zmdi zmdi-local-printshop"></a></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>5th</td>
+                                                    <td>0987645</td>
+                                                    <td>Fazal Khan</td>
+                                                    <td>Ali Khan</td>
+                                                    <td>Khan</td>
+                                                    <td>Ali Khan</td>
+                                                    <td>Father</td>
+                                                    <td>islam</td>
+                                                    <td>Gulshan Block 5</td>
+                                                    <td>02136866543</td>
+                                                    <td>03456789659</td>
+                                                    <td>fazalkahna@gmail.com</td>
+                                                    <td>03005678543</td>
+                                                    <td>Clerk</td>
+                                                    <td>50,000</td>
+                                                    <td>4210178781244</td>
+                                                    <td>12/25/1998</td>
+                                                    <td>Karachi</td>
+                                                    <td>december twelve nineteen ninety-eight</td>
+                                                    <td>6th</td>
+                                                    <td>5th</td>
+                                                    <td>sun acadmey & 4th</td>
+                                                </tr>
+                                                <tr >
+                                                    <td>1</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td ><a href="print.php" class="zmdi zmdi-local-printshop"></a></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>5th</td>
+                                                    <td>0987645</td>
+                                                    <td>Fazal Khan</td>
+                                                    <td>Ali Khan</td>
+                                                    <td>Khan</td>
+                                                    <td>Ali Khan</td>
+                                                    <td>Father</td>
+                                                    <td>islam</td>
+                                                    <td>Gulshan Block 5</td>
+                                                    <td>02136866543</td>
+                                                    <td>03456789659</td>
+                                                    <td>fazalkahna@gmail.com</td>
+                                                    <td>03005678543</td>
+                                                    <td>Clerk</td>
+                                                    <td>50,000</td>
+                                                    <td>4210178781244</td>
+                                                    <td>12/25/1998</td>
                                                     <td>Karachi</td>
                                                     <td>december twelve nineteen ninety-eight</td>
                                                     <td>6th</td>

@@ -29,6 +29,46 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
+        <style>
+            video {
+              width: 100%;
+              height: auto;
+            }
+            select,option{
+                border: none;
+            }
+            .ul1{
+                padding: 0px 0px 0px 0px;
+            }
+            .ul1>.li1{
+                cursor: pointer;
+                font-size:20px ;
+                color: hsla(0,0%,100%,.5);
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 1em;
+                font-weight: 400;
+                text-decoration: none;
+                border-bottom: 1px solid #98a6ad;
+            }
+            .ol1{
+                display: block;
+                margin-top: 10px;
+                text-decoration: none;
+                list-style-type:none;
+            }
+            .li2{
+                padding:10px;
+                border-bottom: 0.5px solid #98a6ad;
+                cursor: pointer;
+            }
+            .ol1n{
+                display: none;
+            }
+
+        </style>
 </head>
 <body class="fixed-left">
     <div id="wrapper" class="enlarged">
@@ -49,51 +89,62 @@
                     ?>
 
                     <!-- Sidebar -->
-                    <div class="content-page">
-                    <!-- Start content -->
-                        <div class="content">
-                            <div class="container">
-                                <div class="row" style="display: flex; height: 100vh">
-                                    <div class="card-box" style="padding-left: 3px" style="height: 100vh">
-                                        <ol>
-                                            <h5 style="border-bottom: 1px solid white; padding-bottom: 6px; width: 70%"><b>Lectures</b></h5>
-                                            <li style="margin-bottom: 20px"><b>Maths</b>
-                                                <ol class="list-unstyled">
-                                                <li>Chapter 1</li>
-                                                <li>Chapter 2</li>
-                                                <li>Chapter 3</li>
-                                                <li>Chapter 4</li>
-                                                </ol>
-                                            </li>
-                                            <li style="margin-bottom: 20px"><b>English</b>
-                                                <ol class="list-unstyled">
-                                                <li>Chapter 1</li>
-                                                <li>Chapter 2</li>
-                                                <li>Chapter 3</li>
-                                                <li>Chapter 4</li>
-                                                </ol>
-                                            </li>
-                                            <li style="margin-bottom: 20px"><b>Science</b>
-                                                <ol class="list-unstyled">
-                                                <li>Chapter 1</li>
-                                                <li>Chapter 2</li>
-                                                <li>Chapter 3</li>
-                                                <li>Chapter 4</li>
-                                                </ol>
-                                            </li>
-                                        </ol>                                  
-                                    </div>
-                                    <div style="margin: 20px">
-                                        <video width="900px" controls="">
-                                            
-                                        </video>
-                                        
-                                    </div>
+
+
+        <!-- content -->
+            <div class="content-page">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card-box" style="padding: 20px 0px;">
+                                    <h4 class="header-title m-t-0 m-b-30" style="padding-left: 20px">Lectures</h4>
+                                    <ul class="ul1">
+                                        <li class="li1" id="sci">Science</li>
+                                        <ul class="ol1" id="scinone">
+                                            <li class="li2">1. Chapter # 1</li>
+                                            <li class="li2">2. Chapter # 2</li>
+                                            <li class="li2">3. Chapter # 3</li>
+                                            <li class="li2">4. Chapter # 4</li>
+                                            <li class="li2">5. Chapter # 5</li>
+                                            <li class="li2">6. Chapter # 6</li>
+                                        </ul>
+                                    </ul>
+                                    <ul class="ul1">
+                                        <li class="li1" id="maths">Maths</li>
+                                        <ul class="ol1" id="mathsnone">
+                                            <li class="li2">1. Chapter # 1</li>
+                                            <li class="li2">2. Chapter # 2</li>
+                                            <li class="li2">3. Chapter # 3</li>
+                                            <li class="li2">4. Chapter # 4</li>
+                                            <li class="li2">5. Chapter # 5</li>
+                                            <li class="li2">6. Chapter # 6</li>
+                                        </ul>
+                                    </ul>
+                                    <ul class="ul1">
+                                        <li class="li1" id="eng">English</li>
+                                        <ul class="ol1" id="engnone">
+                                            <li class="li2">1. Chapter # 1</li>
+                                            <li class="li2">2. Chapter # 2</li>
+                                            <li class="li2">3. Chapter # 3</li>
+                                            <li class="li2">4. Chapter # 4</li>
+                                            <li class="li2">5. Chapter # 5</li>
+                                            <li class="li2">6. Chapter # 6</li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div>
+                                    <video controls></video>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
+                </div>
+            </div>
+
+
 
 
                         
@@ -131,5 +182,22 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
+        <script>
+            $("#sci").click(function(){
+            $("#scinone").toggleClass("ol1n");
+            })
+            $("#maths").click(function(){
+            $("#mathsnone").toggleClass("ol1n");
+            })
+            $("#eng").click(function(){
+            $("#engnone").toggleClass("ol1n");
+            })
+        </script>
+
 </body>
 </html>
+
+
+
+
+

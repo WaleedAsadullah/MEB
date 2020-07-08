@@ -72,6 +72,10 @@
                             <li>
                                 <a href="Admin-mod-student-teacher-ratio.php" class="waves-effect"><i class="zmdi zmdi-format-underlined"></i> <span> Student Teacher ratio </span> </a>
                             </li>
+
+                            <li>
+                                <a href="Admin-mod-school-leaving-certificate.php" class="waves-effect"><i class="zmdi zmdi-assignment-returned"></i> <span> School leaving certificate </span> </a>
+                            </li>
                         <div class="clearfix"></div>
                     </ul>
                 </div>

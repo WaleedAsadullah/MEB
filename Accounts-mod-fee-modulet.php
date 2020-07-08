@@ -86,7 +86,7 @@
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Table</h4>
 
                                     <div class="table-responsive">
-                                        <table class="table" id="adadmissiontable">
+                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -129,6 +129,42 @@
 
                                                 </tr>
                                                 <tr >
+                                                    <td>1</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>EP1866051</td>
+                                                    <td>waleed asad</td>
+                                                    <td>8th</td>
+                                                    <td>3000</td>
+                                                    <td>1500</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>4500</td>
+                                                    <td>7/3/2020</td>
+                                                    <td>Kashif</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>EP1866051</td>
+                                                    <td>waleed asad</td>
+                                                    <td>8th</td>
+                                                    <td>3000</td>
+                                                    <td>1500</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>4500</td>
+                                                    <td>7/3/2020</td>
+                                                    <td>Kashif</td>
+                                                </tr>
+                                                <tr>
                                                     <td>1</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>

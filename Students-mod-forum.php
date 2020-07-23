@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Students - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- App CSS -->
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -55,23 +56,13 @@
                     <div class="container">
                         <div class="row">
                             <div>
-                                <div class="card-box">
+                                <div class="col-lg-12">
                                     <div >
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
+                                    <br>
 
                                     <h4 class="header-title m-t-0 m-b-30" style="text-align: center; font-size: 22px"> Student's Form</h4>
+                                    <br>
 
                                     <form action="#" data-parsley-validate="" novalidate="">
 

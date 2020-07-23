@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <htm>
 <head>
-     <meta charset="utf-8">
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-                <!-- form Uploads -->
-        <link href="assets/plugins/fileuploads/css/dropify.min.css" rel="stylesheet" type="text/css" />
+          <title>The Brainic School</title>
 
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-        <title>Admin - The Brainic School</title>
-        <!-- App CSS -->
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php")
+                            include_once("Admin-mod-header.php");
+                            include_once("db_functions.php");
                     ?>
 
                     <!-- header -->
@@ -83,16 +84,18 @@
                                     </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> School leaving certificate </h4>
+                                    <br>
+                                    
 
                                     <div class="table-responsive">
                                         <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                             <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                                <th>Print</th>
-                                                <th>Clone</th>
+                                                <th>SNo.</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                                 <th>Serial no.</th>
                                                 <th>General register no.</th>
                                                 <th>Name of the pupil in full</th>
@@ -142,7 +145,7 @@
                                                     <td>1</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print.php" class="zmdi zmdi-local-printshop"></a></td>
+                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
                                                     <td><i class="zmdi zmdi-copy"></i></td>
                                                     <td>651</td>
                                                     <td>8976</td>
@@ -196,24 +199,40 @@
                                     </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> School leaving certificate Form </h4>
+                                    <?php
 
-                                    <form action="#" >
+
+                                        // echo "test";
+                                        if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            
+                                            $sql = 'INSERT INTO `ad_school_leaving_certificate` (`school_leaving_certificate_id`, `user_id`, `user_date`, `name`, `surname`, `place_birth`, `date_of_birth`, `birth_word`, `last_school`, `date_of_admission`, `progress`, `conduct`, `leaving_date`, `class_studing`, `since`, `reason`, `remarks`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['surname'].'\', \''.$_REQUEST['place_birth'].'\', \''.$_REQUEST['date_of_birth'].'\', \''.$_REQUEST['birth_word'].'\', \''.$_REQUEST['last_school'].'\', \''.$_REQUEST['date_of_admission'].'\', \''.$_REQUEST['progress'].'\', \''.$_REQUEST['conduct'].'\', \''.$_REQUEST['leaving_date'].'\', \''.$_REQUEST['class_studing'].'\', \''.$_REQUEST['since'].'\', \''.$_REQUEST['reason'].'\', \''.$_REQUEST['remarks'].'\')';
+                                            // echo $sql;
+
+                                        insert_query($sql);
+                                    }
+
+                                    ?>
+
+                                    <form action="Admin-mod-school-leaving-certificate.php" method="post" >
 
                                         <div class="form-group">
                                             <label for="lcName">1. Name of the pupil in full</label>
-                                            <input type="text" name="name" parsley-trigger="change" required
-                                                   placeholder="Enter name of the pupil in full" class="form-control" id="lcnName">
+                                            <input type="text" name="name" required placeholder="Enter name of the pupil in full" class="form-control" id="lcnName" parsley-trigger="change"
+                                            value="<?php if(isset($_REQUEST['name'])) echo$_REQUEST['name'] ?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="father'sname">2. Race and caste with surname</label>
-                                            <input type="text" name="father'sname" parsley-trigger="change" required
-                                                   placeholder="Enter father's name" class="form-control" id="adfathersname">
+                                            <input type="text" name="surname" required
+                                                   placeholder="Enter race and caste with surname" class="form-control" id="adfathersname" value="<?php if(isset($_REQUEST['surname'])) echo $_REQUEST['surname'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="lcPlaceOfBirth">3. Place of birth</label>
-                                            <input id="lcPlaceOfBirth" type="text" placeholder="Enter place of birth" required
-                                                   class="form-control">
+                                            <input id="lcPlaceOfBirth" type="text" name="place_birth" placeholder="Enter place of birth"
+                                                   class="form-control"  value="<?php if(isset($_REQUEST['place_birth'])) echo $_REQUEST['place_birth']  ?>" >
                                         </div>
 
 
@@ -221,44 +240,39 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcDateOfBirthF">4. Date of birth (in figures)</label>
-                                                    <input data-parsley-equalto="#pass1" type="date" required
-                                                           placeholder="Enter date of birth" class="form-control" id="lcDateOfBirthF">
+                                                    <input type="date" name="date_of_birth" required  placeholder="Enter date of birth" class="form-control" id="lcDateOfBirthF"
+                                                    value="<?php if(isset($_REQUEST['date_of_birth'])) echo $_REQUEST['date_of_birth'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcDateOfBirthW">Date of birth (in words)</label>
-                                                    <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter in words" class="form-control" id="lcDateOfBirthW">
+                                                    <input type="text" required name="birth_word" placeholder="Enter in words" class="form-control" id="lcDateOfBirthW"
+                                                           value="<?php if(isset($_REQUEST['birth_word'])) echo $_REQUEST['birth_word']  ?>">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="lcLastSchool">5.Last school attended</label>
-                                            <input  type="text" required
-                                                           placeholder="Enter last school attended " class="form-control" id="lcLastSchool">
+                                            <input  type="text" required name="last_school" placeholder="Enter last school attended " class="form-control" id="lcLastSchool" value="<?php if(isset($_REQUEST['last_school'])) echo $_REQUEST['last_school'] ?>">
                                         </div>
 
                                         <div class="form-group">
-                                                    <label for="lcDAteAdmission">6. Date of Admission</label>
-                                                    <input data-parsley-equalto="#pass1" type="date" required
-                                                           placeholder="Enter date of admission" class="form-control" id="lcDAteAdmission">
+                                            <label for="lcDAteAdmission">6. Date of Admission</label>
+                                            <input type="date" name="date_of_admission" required placeholder="Enter date of admission" class="form-control" id="lcDAteAdmission" value="<?php if(isset($_REQUEST['date_of_admission'])) echo $_REQUEST['date_of_admission']  ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="lcLastSchool">7.progress in studies</label>
-                                            <input  type="text" required
-                                                           placeholder="Enter progress in studies" class="form-control" id="lcLastSchool">
+                                            <input  type="text" name="progress" placeholder="Enter progress in studies" class="form-control" id="lcLastSchool" value="<?php if(isset($_REQUEST['progress'])) echo $_REQUEST['progress']  ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="lcConduct">8. Conduct</label>
-                                            <input  type="text" required
-                                                           placeholder="Enter conduct" class="form-control" id="lcConduct">
+                                            <input  type="text" name="conduct" placeholder="Enter conduct" class="form-control" id="lcConduct" value="<?php if(isset($_REQUEST['conduct'])) echo $_REQUEST['conduct'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="lcDateOfLeaving">9. Date of leaving school</label>
-                                            <input  type="date" required
-                                                           placeholder="Enter date of leaving school" class="form-control" id="lcConduct">
+                                            <input  type="date" name="leaving_date" required placeholder="Enter date of leaving school" class="form-control" id="lcConduct"   value="<?php if (isset($_REQUEST['leaving_date'])) echo $_REQUEST['leaving_date']; else echo (date("Y-m-d")); ?>">
                                         </div>
 
 
@@ -266,30 +280,28 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcClassInWhich">10. Class in which studying</label>
-                                                    <input data-parsley-equalto="#pass1" type="tel" required
-                                                           placeholder="Enter class in which studying" class="form-control" id="lcClassInWhich">
+                                                    <input type="text" name="class_studing" required placeholder="Enter class in which studying" class="form-control" id="lcClassInWhich" value="<?php if(isset($_REQUEST['class_studing'])) echo $_REQUEST['class_studing']  ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcWhen">and since when</label>
-                                                    <input data-parsley-equalto="#pass1" type="tel" required
-                                                           placeholder="Enter since when" class="form-control" id="lcWhen">
+                                                    <input type="text" name="since" required placeholder="Enter since when" class="form-control" id="lcWhen"
+                                                           value="<?php if(isset($_REQUEST['since'])) echo $_REQUEST['since'] ?>">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="lcReason">11. Reason of leaving school</label>
-                                            <input  type="text" required
-                                                           placeholder="Enter reason of leaving school" class="form-control" id="lcReason">
+                                            <input  type="text" name="reason" required placeholder="Enter reason of leaving school" class="form-control" id="lcReason" value="<?php if(isset($_REQUEST['reason'])) echo $_REQUEST['reason'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="lcRemarks">12. Remarks</label>
-                                            <textarea id="lcRemarks" class="form-control" rows="2" placeholder="Enter remarks ...."></textarea>
+                                            <textarea id="lcRemarks" name="remarks" class="form-control" rows="2" placeholder="Enter remarks ...."><?php if(isset($_REQUEST['remarks'])) echo $_REQUEST['remarks'] ?></textarea>
                                         </div>
 
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light"  id="adsubmit" onclick ="addmissionFormAdd()">
+                                            <button class="btn btn-primary waves-effect waves-light" type="submit"  name="submit">
                                                 Submit
                                             </button>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">

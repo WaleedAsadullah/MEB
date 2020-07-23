@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Students - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <link href="assets/plugins/tablesaw/dist/tablesaw.css" rel="stylesheet" type="text/css" />
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-        <!-- App CSS -->
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -32,6 +33,7 @@
 
         <script src="assets/js/modernizr.min.js"></script>
 
+         
     </head>
 <body class="fixed-left">
     <div id="wrapper" class="enlarged">
@@ -62,17 +64,18 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-
-                                    <h4 class="m-t-0 header-title"><b>Report card</b></h4>
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;">Report Card</h4>
+                                    <br>
                                     
-                                    <table class="tablesaw m-t-20 table m-b-0" data-tablesaw-mode="stack">
+                                    <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                         <thead>
                                         <tr>
-                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Subject</th>
-                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3">Marks</th>
-                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Total Marks</th>
-                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">Percentage</th>
-                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">Grade</th>
+                                            <th>Subject</th>
+                                            <th>Marks</th>
+                                            <th>Total Marks</th>
+                                            <th>Percentage</th>
+                                            <th>Grade</th>
+                                            
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -124,14 +127,14 @@
                                             <td>100</td>
                                             <td>76%</td>
                                             <td>A</td>
-                                        </tr>>
+                                        </tr>
                                         <tr>
                                             <td>Subject 1</td>
                                             <td>78</td>
                                             <td>100</td>
                                             <td>76%</td>
                                             <td>A</td>
-                                        </tr>>
+                                        </tr>
                                         <tr>
                                             <td>Subject 1</td>
                                             <td>78</td>
@@ -146,7 +149,7 @@
                                             <td>76%</td>
                                             <td>A</td>
                                         </tr>
-                                    </tbody>
+                                    </tbody>    
                                     </table>
                                 </div>
                             </div>

@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Admin - The Brainic School</title>
+          <title>The Brainic School</title>
+
 
         <!-- X-editable css -->
         <link type="text/css" href="assets/plugins/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
 
-        <!-- App CSS -->
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -32,7 +35,6 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-
     </head>
 <body class="fixed-left">
     <div id="wrapper" class="enlarged">
@@ -74,7 +76,8 @@
                                         </ul>
                                     </div>
 
-                                    <h4 class="header-title m-t-0 m-b-30">Attendance Sheet</h4>
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Time table </h4>
+                                    <br>
 
                                     <div class="table-responsive">
                                         <table class="table">

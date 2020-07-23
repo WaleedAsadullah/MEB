@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Account - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- App CSS -->
+
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -36,7 +47,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Accounts-mod-header.php")
+                            include_once("Accounts-mod-header.php");
+                            include_once("db_functions.php");
                     ?>
 
                     <!-- header -->
@@ -58,7 +70,451 @@
                 <div class="content">
                     <div class="container">
                         <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                     <div class="m-t-5 m-b-5" style="text-align: center" >
+                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Add</button></a>
+                                        <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card-box table-responsive">
+                                    <div class="dropdown pull-right">
+                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="zmdi zmdi-more-vert"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
 
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Chart Of Account </h4>
+
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Account</th>
+                                                <th>Account name</th>
+                                                <th>Type</th>
+                                                <th>Group</th>
+                                                <th>Report Date</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                              
+
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>1</td>
+                                                    <td>Assets</td>
+                                                    <td>Summary</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101</td>
+                                                    <td>FIXED ASSETS</td>
+                                                    <td>summary</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101001</td>
+                                                    <td>FIXED ASSETS</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101002</td>
+                                                    <td>FURNITURE & FIXT MIP-NO:1</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101003</td>
+                                                    <td>FURNITURE & FIXT MIP-NO.3</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101004</td>
+                                                    <td>FURNITURE & FIXT MGC(FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101005</td>
+                                                    <td>FURNITURE & FIXT MGC(FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101006</td>
+                                                    <td>FURNITURE & FIXT MSS(FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>9</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101007</td>
+                                                    <td>FURNITURE & FIXT MONT(FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>10</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101008</td>
+                                                    <td>FURNITURE & FIXT CIT(FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>11</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101009</td>
+                                                    <td>FURNITURE & FIXT MCC</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>12</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101010</td>
+                                                    <td>FURNITURE & FIXT MDBC_CLIFTON</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>13</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101011</td>
+                                                    <td>COMPUTER MIS-A</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>14</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101012</td>
+                                                    <td>COMPUTER MIS-B</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>15</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101013</td>
+                                                    <td>COMPUTER MIP NO.1</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>16</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101014</td>
+                                                    <td>COMPUTER MGC/MSS(FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>17</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101013</td>
+                                                    <td>COMPUTER MPS (FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>18</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101016</td>
+                                                    <td>COMPUTER C.I.T (FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>19</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101017</td>
+                                                    <td>COMPUTER MIS#03</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>20</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101018</td>
+                                                    <td>COMPUTER CLIFTON</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101019</td>
+                                                    <td>COMPUTER FURNITURE & FIXTURE MGDC, KHARADAR</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101019</td>
+                                                    <td>COMPUTER FURNITURE & FIXTURE MGDC, KHARADAR</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>22</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101020</td>
+                                                    <td>DECORATION GOODS(KHATIJA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>23</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101021</td>
+                                                    <td>DECORATION GOODS(FBALAWN)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>24</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101022</td>
+                                                    <td>BUILD CONST MIS-A/B</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>25</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101022</td>
+                                                    <td>BUILD CONST MIP NO.1</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>25</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101022</td>
+                                                    <td>BUILD CONST MIP NO.1</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>26</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101028</td>
+                                                    <td>BUILD CONST MGC (FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>27</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101029</td>
+                                                    <td>BUILD CONST MONT (FBA)</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>28</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101030</td>
+                                                    <td>LAWN CONST A>B>C LAWN FBA</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>29</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101031</td>
+                                                    <td>BUILD CONST CLIFTON PLOT (MBDC</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>30</td>
+                                                    <td><i class="zmdi zmdi-edit"></i></td>
+                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
+                                                    <td><i class="zmdi zmdi-copy"></i></td>
+                                                    <td>101032</td>
+                                                    <td>BUILDING CONST. MGDC</td>
+                                                    <td>Detail</td>
+                                                    <td>Asset</td>
+                                                    <td>24/05/2020</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,11 +523,106 @@
 
 
 
+            <!-- Form -->
+            <div class="content-page">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="zmdi zmdi-more-vert"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Chart Of Account </h4>
+
+                                    <?php 
+
+                                        if (isset($_REQUEST['submit'])) {
+                                            $sql = 'INSERT INTO `ac_receivable_chart_of_account` (`char_of_account`, `user_id`, `user_date`, `account`, `acount_name`, `type`, `detail`, `report_data`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['account'].'\', \''.$_REQUEST['acount_name'].'\', \''.$_REQUEST['type'].'\', \''.$_REQUEST['detail'].'\', \''.$_REQUEST['report_data'].'\')';
+                                            insert_query($sql);
+                                        }
+
+                                    ?>
+
+                                        <form action="Accounts-mod-receivable-and-payables-reporting.php" method="post">
+
+
+                                            <div class="form-group">
+                                                <label for="prID">Account</label>
+                                                <input type="text" name="account" required="" placeholder="Enter account number" class="form-control" id="prID" value="<?php if(isset($_REQUEST['account'])) echo $_REQUEST['account'] ?>" >
+                                            </div>
+                                        
+                                   
+                                            <div class="form-group">
+                                                <label for="prName">Account Name</label>
+                                                <input type="text" name="acount_name" required="" placeholder="Enter account name" class="form-control" id="prName" value="<?php if(isset($_REQUEST['acount_name'])) echo $_REQUEST['acount_name'] ?>" >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="prRegular">Type</label>
+                                                <select type="text" name="type" parsley-trigger="change" required="" class="form-control" id="zaPreviously">
+                                                    <option <?php if (isset($_REQUEST['type']) && $_REQUEST['type']== "Assets" ) echo "selected";  ?>  value="Assets">Assets</option>
+                                                    <option <?php if (isset($_REQUEST['type']) && $_REQUEST['type']== "Capital" ) echo "selected";  ?> value="Capital">Capital</option>
+                                                    <option <?php if (isset($_REQUEST['type']) && $_REQUEST['type']== "Revenue" ) echo "selected";  ?> value="Revenue">Revenue</option>
+                                                    <option <?php if (isset($_REQUEST['type']) && $_REQUEST['type']== "Expenses" ) echo "selected";  ?> value="Expenses">Expenses</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="prVacation">Group</label>
+                                                <select type="text" name="detail" parsley-trigger="change" required="" class="form-control" id="zaPreviously">
+                                                    <option <?php if (isset($_REQUEST['detail']) && $_REQUEST['detail']== "Detail" ) echo "selected";  ?> value="Detail">Detail</option>
+                                                    <option <?php if (isset($_REQUEST['detail']) && $_REQUEST['detail']== "Summary" ) echo "selected";  ?> value="Summary">Summary</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="prSick">Report Date</label>
+                                                <input type="date" name="report_data"  required="" placeholder="Enter report date" class="form-control" id="prSick" value="<?php if (isset($_REQUEST['report_data'])) echo $_REQUEST['report_data']; else echo (date("Y-m-d")); ?>" >
+                                            </div>
+
+                                            <div class="form-group text-right m-b-0">
+                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
+                                                    Submit
+                                                </button>
+                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Form end -->
+
+
+                <!-- footer -->
+                <?php 
+                    include_once("footer.php")
+                ?>
+                   
+
 
                                
     </div>
 
-      <script>
+        <script>
             var resizefunc = [];
         </script>
 
@@ -84,25 +635,41 @@
         <script src="assets/js/jquery.blockUI.js"></script>
         <script src="assets/js/waves.js"></script>
         <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
 
-        <!-- KNOB JS -->
-        <!--[if IE]>
-        <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
-        <![endif]-->
-        <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+        <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
 
-        <!--Morris Chart-->
-        <script src="assets/plugins/morris/morris.min.js"></script>
-        <script src="assets/plugins/raphael/raphael-min.js"></script>
-
-        <!-- Dashboard init -->
-        <script src="assets/pages/jquery.dashboard.js"></script>
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
 
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
 </body>
 </html>

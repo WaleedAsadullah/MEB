@@ -76,6 +76,10 @@
                             <li>
                                 <a href="Admin-mod-school-leaving-certificate.php" class="waves-effect"><i class="zmdi zmdi-assignment-returned"></i> <span> School leaving certificate </span> </a>
                             </li>
+
+                            <li>
+                                <a href="Admin-mod-add-user.php" class="waves-effect"><i class="zmdi zmdi-account-add"></i> <span> Add User</span> </a>
+                            </li>
                         <div class="clearfix"></div>
                     </ul>
                 </div>

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+
+
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Parents - The Brainic School</title>
+        <title>The Brainic School</title>
+
 
         <!-- App CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -29,6 +31,9 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
+
+    </head>
+
 </head>
 <body class="fixed-left">
     <div id="wrapper" class="enlarged">
@@ -57,7 +62,7 @@
                     <div class="container">
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-lg-12">
                                 <h3>Home Work</h3>
                                 <div class="timeline">
                                     <article class="timeline-item alt">
@@ -259,5 +264,6 @@
 
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+
 </body>
 </html>

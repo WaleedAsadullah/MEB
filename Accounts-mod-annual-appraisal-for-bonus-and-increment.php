@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Account - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- DataTables -->
-        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-        <!-- App CSS -->
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -36,7 +30,6 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-
     </head>
 <body class="smallscreen fixed-left-void">
     <div id="wrapper" class="enlarged">
@@ -44,7 +37,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Accounts-mod-header.php")
+                            include_once("Accounts-mod-header.php");
+                            include_once("db_functions.php")
                     ?>
 
                     <!-- header -->
@@ -60,16 +54,51 @@
 
 
 
+            <!--  -->
+            <!--  -->
+            <div class="content-page">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                     <div class="m-t-5 m-b-5" style="text-align: center" >
+                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Add</button></a>
+                                        <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <?php
+
+                                    if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){  echo $sql = 'DELETE FROM `ac_annual_appraisal` WHERE `ac_annual_appraisal`.`increment_form_id` = '.$_REQUEST['deleteid'];
+
+                                        insert_query($sql);
+                                        // echo "done deleting";
+                                        }
+                                   $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                     // echo $sql = 'SELECT `increment_form_id` "ID" , `user_id` "user inputted", `user_date` "Date of increment", `gr_number`, `salary_increment`, `new_salary`, `comment` FROM `ac_annual_appraisal`' ;
+                                    display_query($sql);
+
+                                ?>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
              <div class="content-page">
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                            <div>
+                            <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div >
-                                 <div>
                                     <div class="dropdown pull-right">
                                         <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
                                             <i class="zmdi zmdi-more-vert"></i>
@@ -84,45 +113,60 @@
                                     </div>
 
                                     <h4 class="header-title m-t-0 m-b-30" style="text-align: center; font-size: 22px; padding: 10px">Increment Form</h4>
+                                    <br>
+                                    <?php
 
-                                    <form action="#" data-parsley-validate="" novalidate="">
+                                        // echo "test";
+                                        if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ac_annual_appraisal` (`increment_form_id`, `user_id`, `user_date`, `gr_number`, `salary_increment`, `new_salary`, `comment`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['gr_number'].'\', \''.$_REQUEST['salary_increment'].'\', \''.$_REQUEST['new_salary'].'\', \''.$_REQUEST['comment'].'\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                        }
+                                    ?>
+
+                                    <form action="Accounts-mod-annual-appraisal-for-bonus-and-increment.php" method="post">
 
                                         <div class="form-group">
-                                            <label for="userName">Teacher Name *</label>
-                                            <input type="text" name="nick" parsley-trigger="change" required="" placeholder="Enter teacher name" class="form-control" id="userName" data-parsley-id="4">
+                                            <label for="emailAddress">Employee ID *</label>
+                                            <input type="text" name="gr_number"  required="" placeholder="Enter teacher ID" class="form-control" value="<?php if(isset($_REQUEST['gr_number'])) echo $_REQUEST['gr_number']?>">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="emailAddress">Teacher ID *</label>
-                                            <input type="text" name="number" parsley-trigger="change" required="" placeholder="Enter teacher ID" class="form-control" id="emailAddress" data-parsley-id="6">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="userName">Teacher old salary*</label>
-                                            <input type="text" name="nick" parsley-trigger="change" required="" placeholder="Enter tacher old salary" class="form-control" >
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="pass1">Salary increment *</label>
-                                            <input id="pass1" type="text" placeholder="Enter salary increment" required="" class="form-control" data-parsley-id="8">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="pass1">Teacher new salary *</label>
-                                            <input id="pass1" type="text" placeholder="Enter teacher new salary" required="" class="form-control" data-parsley-id="8">
+                                            <label for="userName">Employee Name</label>
+                                            <input type="text" name="name"  required="" placeholder="Enter employee name" class="form-control" id="userName" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
                                         </div>
 
                                         
 
                                         <div class="form-group">
-                                            <label for="passWord2">Comments</label>
+                                            <label for="userName">old salary*</label>
+                                            <input type="number" name="old_salary"required="" placeholder="Enter tacher old salary" class="form-control" value="<?php if(isset($_REQUEST['old_salary'])) echo $_REQUEST['old_salary']?>">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label >Salary increment *</label>
+                                            <input type="number" name="salary_increment" placeholder="Enter salary increment" required="" class="form-control" value="<?php if(isset($_REQUEST['salary_increment'])) echo $_REQUEST['salary_increment']?>" >
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label >New salary *</label>
+                                            <input type="number"  name="new_salary" placeholder="Enter teacher new salary" required="" class="form-control" value="<?php if(isset($_REQUEST['new_salary'])) echo $_REQUEST['new_salary']?>">
+                                        </div>
+
+                                        
+
+                                        <div class="form-group">
+                                            <label for="">Comments</label>
                                             <div >
-                                                <textarea class="form-control" rows="3" placeholder="feedback area ....."></textarea>
+                                                <textarea class="form-control" rows="3" name="comment" placeholder="feedback area ....."><?php if(isset($_REQUEST['comment'])) echo $_REQUEST['comment']?></textarea>
                                             </div>
                                         </div>
                                        
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                            <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
                                                 Submit
                                             </button>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
@@ -136,106 +180,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                                <div class="card-box table-responsive">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <h4 class="header-title m-t-0 m-b-30">Increment data</h4>
-
-                                    <table id="datatable-buttons" class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Teacher Name</th>
-                                                <th>Teacher ID</th>
-                                                <th>Teacher old salary</th>
-                                                <th>Salary increment</th>
-                                                <th>Teacher new salary</th>
-                                                <th>Approved by</th>
-                                                <th>Comments</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td>Sir Aslam</td>
-                                                <td>009</td>
-                                                <td>20000</td>
-                                                <td>5000</td>
-                                                <td>25000</td>
-                                                <td>Irfan Ahmed</td>
-                                                <td>for good work</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sir Aslam</td>
-                                                <td>009</td>
-                                                <td>20000</td>
-                                                <td>5000</td>
-                                                <td>25000</td>
-                                                <td>Irfan Ahmed</td>
-                                                <td>for good work</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sir Aslam</td>
-                                                <td>009</td>
-                                                <td>20000</td>
-                                                <td>5000</td>
-                                                <td>25000</td>
-                                                <td>Irfan Ahmed</td>
-                                                <td>for good work</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sir Aslam</td>
-                                                <td>009</td>
-                                                <td>20000</td>
-                                                <td>5000</td>
-                                                <td>25000</td>
-                                                <td>Irfan Ahmed</td>
-                                                <td>for good work</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sir Aslam</td>
-                                                <td>009</td>
-                                                <td>20000</td>
-                                                <td>5000</td>
-                                                <td>25000</td>
-                                                <td>Irfan Ahmed</td>
-                                                <td>for good work</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sir Aslam</td>
-                                                <td>009</td>
-                                                <td>20000</td>
-                                                <td>5000</td>
-                                                <td>25000</td>
-                                                <td>Irfan Ahmed</td>
-                                                <td>for good work</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sir Aslam</td>
-                                                <td>009</td>
-                                                <td>20000</td>
-                                                <td>5000</td>
-                                                <td>25000</td>
-                                                <td>Irfan Ahmed</td>
-                                                <td>for good work</td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
             </div>
-        </div>
+             <!-- footer -->
+            <?php 
+                include_once("footer.php")
+            ?>
+
     </div>
+            
 
 
         <script>

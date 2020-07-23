@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
@@ -31,8 +32,12 @@
 
         <script src="assets/js/modernizr.min.js"></script>
 
-    </head>
-
+        <style>
+            th,td{
+                text-align: center;
+            }
+        </style>
+</head>
 <body class="smallscreen fixed-left-void">
     <div id="wrapper" class="enlarged">
 
@@ -40,7 +45,7 @@
                     <!--- header -->
                     <?php 
                             include_once("Accounts-mod-header.php");
-                            include_once("db_functions.php");
+                            include_once("db_functions.php")
                     ?>
 
                     <!-- header -->
@@ -53,8 +58,6 @@
                     ?>
 
                     <!-- Sidebar -->
-
-
 
 
 
@@ -85,7 +88,8 @@
                                         </ul>
                                     </div>
 
-                                    <h4 class="header-title m-t-0 m-b-30">Payroll Calculation</h4>
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Hall booking </h4>
+                                    <br>
 
                                     <div class="table-responsive">
                                         <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered">
@@ -96,21 +100,18 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
-                                                <th>Employee code</th>
-                                                <th>Employee name</th>
-                                                <th>Designation</th>
-                                                <th>Attendance</th>
-                                                <th>Basic salary</th>
-                                                <th>House R/A</th>
-                                                <th>Utility</th>
-                                                <th>Convey allow</th>
-                                                <th>Gross salary</th>
-                                                <th>Loan</th>
-                                                <th>I.T</th>
-                                                <th>S.W.F</th>
-                                                <th>Advance</th>
-                                                <th>Leave W/O pay</th>
-                                                <th>Net pay</th>
+                                                <th>Name</th>
+                                                <th>Address</th>
+                                                <th>Phone</th>
+                                                <th>Date of booking</th>
+                                                <th>Rent amount</th>
+                                                <th>Advance paid</th>
+                                                <th>Location</th>
+                                                <th>Date of the event</th>
+                                                <th>Number of guests</th>
+                                                <th>Waiters are required?</th>
+                                                <th>If female waiters are required?</th>
+                                                <th>Advance that can given</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -132,10 +133,7 @@
                                                     <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
                                                     <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
                                                     <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-
+                                                    
 
                                                 </tr>
                                                 <tr>
@@ -144,88 +142,77 @@
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
                                                     <td>Mr.Fasial Rasheed</td>
-                                                    <td>Office Assistant</td>
-                                                    <td>30</td>
-                                                    <td>25,148</td>
-                                                    <td>11,317</td>
-                                                    <td>2,515</td>
-                                                    <td>300</td>
-                                                    <td>39,280</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>39,280</td>
+                                                    <td>Gulsahn-e-Iqbal</td>
+                                                    <td>0324-7896543</td>
+                                                    <td>7/16/2020</td>
+                                                    <td>7,000</td>
+                                                    <td>2,200</td>
+                                                    <td>xyz location</td>
+                                                    <td>8/14/2020</td>
+                                                    <td>50</td>
+                                                    <td>yes</td>
+                                                    <td>no</td>
+                                                    <td>yes</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>2</td>
+                                                    <td>1</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
                                                     <td>Mr.Fasial Rasheed</td>
-                                                    <td>Office Assistant</td>
-                                                    <td>30</td>
-                                                    <td>25,148</td>
-                                                    <td>11,317</td>
-                                                    <td>2,515</td>
-                                                    <td>300</td>
-                                                    <td>39,280</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>39,280</td>
+                                                    <td>Gulsahn-e-Iqbal</td>
+                                                    <td>0324-7896543</td>
+                                                    <td>7/16/2020</td>
+                                                    <td>7,000</td>
+                                                    <td>2,200</td>
+                                                    <td>xyz location</td>
+                                                    <td>8/14/2020</td>
+                                                    <td>50</td>
+                                                    <td>yes</td>
+                                                    <td>no</td>
+                                                    <td>yes</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>3</td>
+                                                    <td>1</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
                                                     <td>Mr.Fasial Rasheed</td>
-                                                    <td>Office Assistant</td>
-                                                    <td>30</td>
-                                                    <td>25,148</td>
-                                                    <td>11,317</td>
-                                                    <td>2,515</td>
-                                                    <td>300</td>
-                                                    <td>39,280</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>39,280</td>
+                                                    <td>Gulsahn-e-Iqbal</td>
+                                                    <td>0324-7896543</td>
+                                                    <td>7/16/2020</td>
+                                                    <td>7,000</td>
+                                                    <td>2,200</td>
+                                                    <td>xyz location</td>
+                                                    <td>8/14/2020</td>
+                                                    <td>50</td>
+                                                    <td>yes</td>
+                                                    <td>no</td>
+                                                    <td>yes</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>4</td>
+                                                    <td>1</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
                                                     <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
                                                     <td>Mr.Fasial Rasheed</td>
-                                                    <td>Office Assistant</td>
-                                                    <td>30</td>
-                                                    <td>25,148</td>
-                                                    <td>11,317</td>
-                                                    <td>2,515</td>
-                                                    <td>300</td>
-                                                    <td>39,280</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>39,280</td>
+                                                    <td>Gulsahn-e-Iqbal</td>
+                                                    <td>0324-7896543</td>
+                                                    <td>7/16/2020</td>
+                                                    <td>7,000</td>
+                                                    <td>2,200</td>
+                                                    <td>xyz location</td>
+                                                    <td>8/14/2020</td>
+                                                    <td>50</td>
+                                                    <td>yes</td>
+                                                    <td>no</td>
+                                                    <td>yes</td>
                                                 </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -256,111 +243,93 @@
                                         </ul>
                                     </div>
 
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Payroll calculation form </h4>
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Hall booking form </h4>
+                                    <br>
 
                                     <?php
 
-                                    if (isset($_REQUEST['submit'])) {
-                                        $sql = 'INSERT INTO `ac_payroll_calculation` (`payroll_id`, `user_id`, `user_date`, `gr_number`, `house_ra`, `utility`, `convey_allow`, `gross_salary`, `loan`, `i_t`, `s_w_f`, `advance`, `leave_pay`) VALUES (NULL,\'';
-                                        $sql .= get_curr_user();
-                                        $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['gr_number'].'\', \''.$_REQUEST['house_ra'].'\', \''.$_REQUEST['utility'].'\', \''.$_REQUEST['convey_allow'].'\', \''.$_REQUEST['gross_salary'].'\', \''.$_REQUEST['loan'].'\', \''.$_REQUEST['i_t'].'\', \''.$_REQUEST['s_w_f'].'\', \''.$_REQUEST['advance'].'\', \''.$_REQUEST['leave_pay'].'\')';
-                                        insert_query($sql);
-                                    }
-                                    ?>
+                                            // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                                // print_r($_REQUEST);
+                                                $sql = 'INSERT INTO `ac_hall_booking` (`hall_booking`, `user_id`, `user_date`, `name`, `address`, `phone`, `date_booking`, `rent`, `advance`, `location`, `date_event`, `guest`, `waiter`, `female_waiter`, `is_adv_given`) VALUES (NULL,\'';
+                                                $sql .= get_curr_user();
+                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['phone'].'\', \''.$_REQUEST['date_booking'].'\', \''.$_REQUEST['rent'].'\', \''.$_REQUEST['advance'].'\', \''.$_REQUEST['location'].'\', \''.$_REQUEST['date_event'].'\', \''.$_REQUEST['guest'].'\', \''.$_REQUEST['waiter'].'\', \''.$_REQUEST['female_waiter'].'\', \''.$_REQUEST['is_adv_given'].'\')';
+                                                // echo $sql;
+                                                insert_query($sql);
+                                            }
+                                        ?>
 
-                                        <form action="Accounts-mod-payoll-calculation.php" method="post">
+                                        <form action="Accounts-mod-hall-booking.php" method="post">
 
 
                                             <div class="form-group">
-                                                <label for="prID">Employee code  </label>
-                                                <input type="text" name="gr_number" required="" placeholder="Enter employee code" class="form-control" id="prID" value="<?php if(isset($_REQUEST['gr_number'])) echo $_REQUEST['gr_number'] ?>">
+                                                <label for="hbName">Name</label>
+                                                <input type="text" name="name" required="" placeholder="Enter name" class="form-control" id="hbName" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
                                             </div>
                                         
                                    
                                             <div class="form-group">
-                                                <label for="prName">Employee Name </label>
-                                                <input type="text" name="name" parsley-trigger="change" required="" placeholder="Enter employee name" class="form-control" id="prName" data-parsley-id="6" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name'] ?>">
+                                                <label for="hbAddress">Address</label>
+                                                <input type="text" name="address" required="" placeholder="Enter address" class="form-control" id="prName" value="<?php if(isset($_REQUEST['address'])) echo $_REQUEST['address']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prRegular">Designation</label>
-                                                <input type="number" name="designation" required="" placeholder="Enter designation" class="form-control" id="prRegular" value="<?php if(isset($_REQUEST['designation'])) echo $_REQUEST['designation'] ?>">
+                                                <label for="hbPhone">Phone</label>
+                                                <input type="tel" name="phone" required="" placeholder="Enter phone" class="form-control" id="prRegular" value="<?php if(isset($_REQUEST['phone'])) echo $_REQUEST['phone']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prVacation">Attendance</label>
-                                                <input type="number" name="attendance" parsley-trigger="change" required="" placeholder="Enter attendance" class="form-control" id="prVacation" data-parsley-id="6" value="<?php if(isset($_REQUEST['attendance'])) echo $_REQUEST['attendance'] ?>">
+                                                <label for="hbDateOfBooking">Date of booking</label>
+                                                <input type="date" name="date_booking" required=""  class="form-control" id="prVacation" value="<?php if (isset($_REQUEST['date_booking'])) echo $_REQUEST['date_booking']; else echo (date("Y-m-d")); ?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prSick">Basic salary</label>
-                                                <input type="number" name="basic_salary" required="" placeholder="Enter basic salary" class="form-control" id="prSick" value="<?php if(isset($_REQUEST['basic_salary'])) echo $_REQUEST['basic_salary'] ?>">
+                                                <label for="hbRentAmount">Rent amount</label>
+                                                <input type="number" name="rent" required="" placeholder="Enter rent amount" class="form-control" id="hbRentAmount"value="<?php if(isset($_REQUEST['rent'])) echo $_REQUEST['rent']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="zaClass">House R/A </label>
-                                                <input type="number" name="house_ra" required="" placeholder="Enter house R/A" class="form-control" id="prOvertime"  value="<?php if(isset($_REQUEST['house_ra'])) echo $_REQUEST['house_ra'] ?>">
+                                                <label for="hbAdvance">Advance paid</label>
+                                                <input type="number" name="advance"required="" placeholder="Enter advance paid" class="form-control" id="hbAdvance" value="<?php if(isset($_REQUEST['advance'])) echo $_REQUEST['advance']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prGross">Utility</label>
-                                                <input type="number" name="utility" required="" placeholder="Enter utility" class="form-control" id="prGross" value="<?php if(isset($_REQUEST['utility'])) echo $_REQUEST['utility'] ?>">
+                                                <label for="hbLocation">Location</label>
+                                                <input type="text" name="location" required="" placeholder="Enter location" class="form-control" id="hbLocation" value="<?php if(isset($_REQUEST['location'])) echo $_REQUEST['location']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prTaxes">Convey Allow </label>
-                                                <input type="number" name="convey_allow" required="" placeholder="Enter convey allow" class="form-control" id="prTaxes" value="<?php if(isset($_REQUEST['convey_allow'])) echo $_REQUEST['convey_allow'] ?>">
+                                                <label for="hbDateOfEvent">Date of event</label>
+                                                <input type="date" name="date_event" required="" placeholder="Enter location" class="form-control" id="hbDateOfEvent" value="<?php if(isset($_REQUEST['date_event'])) echo $_REQUEST['date_event']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prTaxes">Gross Salary</label>
-                                                <input type="number" name="gross_salary" required="" placeholder="Enter gross salay" class="form-control" id="prTaxes" value="<?php if(isset($_REQUEST['gross_salary'])) echo $_REQUEST['gross_salary'] ?>">
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-5"></div>
-                                                <div class="col-lg-2">
-                                                    <label>Deductions</label>
-                                                </div>
-                                                <div class="col-lg-5"></div>   
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label for="prTaxes">Loan</label>
-                                                        <input type="number" name="loan" required="" placeholder="Enter loan" class="form-control" id="prTaxes" value="<?php if(isset($_REQUEST['loan'])) echo $_REQUEST['loan'] ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label for="prTaxes">I.T</label>
-                                                        <input type="number" name="i_t" required="" placeholder="Enter I.T" class="form-control" id="prTaxes" value="<?php if(isset($_REQUEST['i_t'])) echo $_REQUEST['i_t'] ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label for="prTaxes">S.W.F</label>
-                                                        <input type="number" name="s_w_f" required="" placeholder="Enter S.W.F" class="form-control" id="prTaxes" value="<?php if(isset($_REQUEST['s_w_f'])) echo $_REQUEST['s_w_f'] ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label for="prTaxes">Advance</label>
-                                                        <input type="number" name="advance"  required="" placeholder="Enter advance" class="form-control" id="prTaxes"  value="<?php if(isset($_REQUEST['advance'])) echo $_REQUEST['advance'] ?>">
-                                                    </div>
-                                                </div>
+                                                <label for="hbNumberOfGuest">Number of guest</label>
+                                                <input type="text" name="guest" required="" placeholder="Enter date of event" class="form-control" id="hbDateOfEvent" value="<?php if(isset($_REQUEST['guest'])) echo $_REQUEST['guest']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prTaxes">Leave W/O pay</label>
-                                                <input type="number" name="leave_pay" required="" placeholder="Enter leave W/O pay" class="form-control" id="prTaxes" value="<?php if(isset($_REQUEST['leave_pay'])) echo $_REQUEST['leave_pay'] ?>">
+                                                <label for="hbWaiter">Waiter are required ?</label>
+                                                <select class="form-control" id="hbWaiter" name="waiter">
+                                                    <option value="yes"<?php if(isset($_REQUEST['waiter']) && $_REQUEST['waiter'] == 'yes') echo "selected" ?>>Yes</option>
+                                                    <option value="no" <?php if(isset($_REQUEST['waiter']) && $_REQUEST['waiter'] == 'no') echo "selected" ?> >No</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="prTaxes">Net pay</label>
-                                                <input type="number" name="net_pay" required="" placeholder="Enter net pay" class="form-control" id="prTaxes" value="<?php if(isset($_REQUEST['net_pay'])) echo $_REQUEST['net_pay'] ?>">
+                                                <label for="hbFemaleWaiter">If female waiter required ?</label>
+                                                <select class="form-control" id="hbFemaleWaiter" name="female_waiter">
+                                                    <option value="yes" <?php if(isset($_REQUEST['female_waiter']) && $_REQUEST['female_waiter'] == 'yes') echo "selected" ?>>Yes</option>
+                                                    <option value="no" <?php if(isset($_REQUEST['female_waiter']) && $_REQUEST['female_waiter'] == 'no') echo "selected" ?> >No</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="hbFemaleWaiter">Advance that can given</label>
+                                                <select class="form-control" id="hbFemaleWaiter" name="is_adv_given">
+                                                    <option value="yes" <?php if(isset($_REQUEST['is_adv_given']) && $_REQUEST['is_adv_given'] == 'yes') echo "selected" ?> >Yes</option>
+                                                    <option value="no" <?php if(isset($_REQUEST['is_adv_given']) && $_REQUEST['is_adv_given'] == 'no') echo "selected" ?> >No</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group text-right m-b-0">
@@ -390,7 +359,8 @@
 
 
     </div>
-        <script>
+
+      <script>
             var resizefunc = [];
         </script>
 
@@ -422,5 +392,6 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+
 </body>
 </html>

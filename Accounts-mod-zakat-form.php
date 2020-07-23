@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Account - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- App CSS -->
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -36,7 +37,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Accounts-mod-header.php")
+                            include_once("Accounts-mod-header.php");
+                            include_once("db_functions.php");
                     ?>
 
                     <!-- header -->
@@ -56,7 +58,7 @@
                             <div class="col-lg-12">
                                 <div class="card-box">
                                      <div class="m-t-5 m-b-5" style="text-align: center" >
-                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Addmission</button></a>
+                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Add</button></a>
                                         <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
                                     </div>
                                 </div>
@@ -89,11 +91,11 @@
                                         <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                             <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                                <th>Print</th>
-                                                <th>Clone</th>
+                                                <th>S <span>No.</span></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                                 <th>Student's Name</th>
                                                 <th>Class</th>
                                                 <th>G.R. No.</th>
@@ -247,25 +249,38 @@
 
                                         <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Concession Form </h4>
 
-                                        <form action="#" novalidate="">
+                                        <?php
+
+                                            // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                                // print_r($_REQUEST);
+                                                $sql = 'INSERT INTO `ac_zakat_form` (`zakat_form_id`, `user_id`, `user_date`, `gr_num`, `grand_father`, `community_name`, `grandian_cnic`, `contact`, `grandian_occupation`, `grandian_salary`, `eligible`, `relationship`, `address`, `free_ship`, `dependents`) VALUES (NULL,\'';
+                                                $sql .= get_curr_user();
+                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['grand_father'].'\', \''.$_REQUEST['community_name'].'\', \''.$_REQUEST['grandian_cnic'].'\', \''.$_REQUEST['contact'].'\', \''.$_REQUEST['grandian_occupation'].'\', \''.$_REQUEST['grandian_salary'].'\', \''.$_REQUEST['eligible'].'\', \''.$_REQUEST['relationship'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['free_ship'].'\', \''.$_REQUEST['dependents'].'\')';
+                                                // echo $sql;
+                                                insert_query($sql);
+                                            }
+                                        ?>
+
+                                        <form action="Accounts-mod-zakat-form.php" method="post">
 
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaStudentsName">Student's Name </label>
-                                                        <input type="text"  parsley-trigger="change" required="" placeholder="Enter student's name" class="form-control" id="zaStudentsName" data-parsley-id="4">
+                                                        <input type="text" name="name" placeholder="Enter student's name" class="form-control" id="zaStudentsName" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="form-group">
                                                         <label for="zaClass">Class </label>
-                                                        <input type="text" name="number" parsley-trigger="change" required="" placeholder="Enter your class" class="form-control" id="emailAddress" data-parsley-id="6">
+                                                        <input type="text" name="class" required="" placeholder="Enter your class" class="form-control" id="emailAddress" value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="form-group">
                                                         <label for="userName">GR #</label>
-                                                        <input type="text" name="nick" parsley-trigger="change" required="" placeholder="Enter GR#" class="form-control" >
+                                                        <input type="text" name="gr_num" required="" placeholder="Enter GR#" class="form-control" value="<?php if(isset($_REQUEST['gr_num'])) echo $_REQUEST['gr_num']?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -274,13 +289,13 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaFathersName">Father's Name</label>
-                                                        <input id="zaFathersName" type="text" placeholder="Enter father's name" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaFathersName" name="father_name" type="text" placeholder="Enter father's name" required="" class="form-control" value="<?php if(isset($_REQUEST['father_name'])) echo $_REQUEST['father_name']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">  
                                                     <div class="form-group">
                                                         <label for="zaGrandFathersName">Grand Father's Name</label>
-                                                        <input id="zaGrandFathersName" type="text" placeholder="Enter grand father's name" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaGrandFathersName" name="grand_father" type="text" placeholder="Enter grand father's name" class="form-control" value="<?php if(isset($_REQUEST['grand_father'])) echo $_REQUEST['grand_father']?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -289,13 +304,13 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaSurname">Surname</label>
-                                                        <input id="zaSurname" type="text" placeholder="Enter surname" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaSurname" name="surname" type="text" placeholder="Enter surname"  class="form-control" data-parsley-id="8" value="<?php if(isset($_REQUEST['surname'])) echo $_REQUEST['surname']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaCommunityName">Community Name</label>
-                                                        <input id="zaCommunityName" type="text" placeholder="Enter grand father's name" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaCommunityName" name="community_name" type="text" placeholder="Enter grand father's name" class="form-control" value="<?php if(isset($_REQUEST['community_name'])) echo $_REQUEST['community_name']?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -304,13 +319,13 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaGrandiansCnic">Grandian's CNIC</label>
-                                                        <input id="zaGrandiansCnic" type="text" placeholder="Enter grandian CNIC" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaGrandiansCnic" name="grandian_cnic" type="text" placeholder="Enter grandian CNIC" required="" class="form-control" value="<?php if(isset($_REQUEST['grandian_cnic'])) echo $_REQUEST['grandian_cnic']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaContactPhoneNumber">Contact / Phone Number</label>
-                                                        <input id="zaContactPhoneNumber" type="tel" placeholder="Enter contact number" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaContactPhoneNumber" name="contact" type="tel" placeholder="Enter contact number" required="" class="form-control" value="<?php if(isset($_REQUEST['contact'])) echo $_REQUEST['contact']?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,13 +334,13 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaGrandiansCnic">Grandian's Occupation</label>
-                                                        <input id="zaGrandiansOccupation" type="text" placeholder="Enter grandian's occupation" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaGrandiansOccupation" name="grandian_occupation" type="text" placeholder="Enter grandian's occupation" required="" class="form-control" value="<?php if(isset($_REQUEST['grandian_occupation'])) echo $_REQUEST['grandian_occupation']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaMonthlyIncome">Monthly Income</label>
-                                                        <input id="zaMonthlyIncome" type="number" placeholder="Enter monthly income" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaMonthlyIncome" name="grandian_salary" type="number" placeholder="Enter monthly income" required="" class="form-control" value="<?php if(isset($_REQUEST['grandian_salary'])) echo $_REQUEST['grandian_salary']?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,45 +349,45 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaEligible">Is the Student Eligible For Zakat ?</label>
-                                                        <select type="text" name="nick" parsley-trigger="change" required="" placeholder="Eligible or not" class="form-control" id="zaEligible">
-                                                                        <option value="yes">Yes</option>
-                                                                        <option value="no">No</option>
+                                                        <select type="text" name="eligible" required="" placeholder="Eligible or not" class="form-control" id="zaEligible">
+                                                            <option value="yes" <?php if(isset($_REQUEST['eligible']) && $_REQUEST['eligible'] == 'yes') echo "selected" ?>>Yes</option>
+                                                            <option value="no" <?php if (isset($_REQUEST['eligible']) && $_REQUEST['eligible']== "no" ) echo "selected";  ?>>No</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaGradiansNameAndRelationship">Gradian's Name and Relationship</label>
-                                                        <input id="zaGradiansNameAndRelationship" type="text" placeholder="Enter grandian's name and relationship" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaGradiansNameAndRelationship" name="relationship"  type="text" placeholder="Enter grandian's name and relationship" required="" class="form-control" value="<?php if(isset($_REQUEST['relationship'])) echo $_REQUEST['relationship']?>">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="zaAddressOfGuardian">Residential Address of Guardian</label>
-                                                <input id="zaAddressOfGuardian" type="text" placeholder="Enter residential address of guardian" required="" class="form-control" data-parsley-id="8">
+                                                <input id="zaAddressOfGuardian" name="address" type="text" placeholder="Enter residential address of guardian" class="form-control" value="<?php if(isset($_REQUEST['address'])) echo $_REQUEST['address']?>">
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaPreviously">Previously granted free ship ?</label>
-                                                        <select type="text" name="nick" parsley-trigger="change" required="" placeholder="Eligible or not" class="form-control" id="zaPreviously">
-                                                                        <option value="yes">Yes</option>
-                                                                        <option value="no">No</option>
+                                                        <select type="text" name="free_ship" parsley-trigger="change" required="" placeholder="Eligible or not" class="form-control" id="zaPreviously">
+                                                            <option value="yes" <?php if (isset($_REQUEST['free_ship']) && $_REQUEST['free_ship']== "yes" ) echo "selected";  ?> >Yes</option>
+                                                            <option value="no" <?php if (isset($_REQUEST['free_ship']) && $_REQUEST['free_ship']== "no" ) echo "selected";  ?>>No</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="zaNumberOfDependents">Number of Dependents </label>
-                                                        <input id="zaNumberOfDependents" type="number" placeholder="Enter Monthly Income" required="" class="form-control" data-parsley-id="8">
+                                                        <input id="zaNumberOfDependents" name="dependents" type="number" placeholder="Enter Monthly Income" class="form-control" value="<?php if(isset($_REQUEST['dependents'])) echo $_REQUEST['dependents']?>">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group text-right m-b-0">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
                                                     Submit
                                                 </button>
                                                 <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
@@ -390,7 +405,11 @@
         </div>
     </div>
     
-
+                <!-- footer -->
+                <?php 
+                    include_once("footer.php")
+                ?>
+                   
                                
     </div>
         <script>

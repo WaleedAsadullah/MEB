@@ -6,13 +6,14 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Admin - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- App CSS -->
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -29,7 +30,6 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-
     </head>
 
 <body class="fixed-left">
@@ -54,13 +54,11 @@
 
 
             <!-- Form teacher -->
-             <div class="content-page">
+            <div class="content-page">
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                            <div>
-                                <div class="card-box">
-                                    <div >
+                            <div class="col-lg-12">
                                 <div class="card-box">
                                     <div class="dropdown pull-right">
                                         <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -136,10 +134,16 @@
                                     </form>
                                 </div>
                             </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                                 <!-- se form-->
-                                <div class="card-box">
-                                    <div >
+            <div class="content-page">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <div class="card-box">
                                     <div class="dropdown pull-right">
                                         <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -207,25 +211,15 @@
                                                 Cancel
                                             </button>
                                         </div>
-
                                     </form>
                                 </div>
-                            </div>
-                                </div>
-                                <!-- se form -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
-
-
+    </div>
         <script>
             var resizefunc = [];
         </script>

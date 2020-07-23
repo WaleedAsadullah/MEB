@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Students - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <link rel="stylesheet" href="assets/plugins/magnific-popup/dist/magnific-popup.css"/>
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-        <!-- App CSS -->
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -125,6 +124,10 @@
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row port m-b-20">
+                            <div class="portfolioContainer">
 
                                 <div class="col-sm-6 col-lg-3 col-md-4 creative photography">
                                     <div class="gal-detail thumb">
@@ -178,6 +181,10 @@
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row port m-b-20">
+                            <div class="portfolioContainer">
 
                                 <div class="col-sm-6 col-lg-3 col-md-4 natural personal">
                                     <div class="gal-detail thumb">
@@ -239,9 +246,10 @@
 
                 </div> <!-- content -->
 
-                <footer class="footer">
-                    2016 - 2017 © Adminto.
-                </footer>
+               <!-- footer -->
+                <?php 
+                            include_once("footer.php")
+                    ?>
 
             </div>
 

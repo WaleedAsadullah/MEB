@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <htm>
 <head>
-     <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-                <!-- form Uploads -->
+          <title>The Brainic School</title>
+
+        <!-- form Uploads -->
         <link href="assets/plugins/fileuploads/css/dropify.min.css" rel="stylesheet" type="text/css" />
 
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-        <title>Admin - The Brainic School</title>
-        <!-- App CSS -->
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -38,7 +40,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php")
+                            include_once("Admin-mod-header.php");
+                            include_once("db_functions.php");
                     ?>
 
                     <!-- header -->
@@ -90,11 +93,11 @@
                                         <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Edit</th>
-                                                    <th>Delete</th>
-                                                    <th>Print</th>
-                                                    <th>Clone</th>
+                                                    <th>S No.</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
                                                     <th>Class</th>
                                                     <th>G.R. No.</th>
                                                     <th>Name of Student</th>
@@ -275,8 +278,20 @@
                                     </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Admission Form </h4>
+                                    
+                                    <?php
 
-                                    <form action="#" >
+                                        // echo "test";
+                                        if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ad_admission` (`addmission_id`, `user_id`, `user_time`, `class`, `GR_No`, `name_of_student`, `father_name`, `surname`, `guardian_name`, `relationship`, `religion`, `address`, `phone`, `cell_no`, `e_mail`, `ice_no`, `occupation_of_father`, `monthly_income`, `cnic_guradian`, `date_of_birth`, `place_of_birth`, `date_of_birth_words`, `admission_saught`, `admission_granted`, `last_school_class`) VALUES (NULL,\'';
+                                            $sql .= get_current_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class']. '\',\''.$_REQUEST['GR_No'].'\', \''.$_REQUEST['name_of_student']. '\', \''.$_REQUEST['father_name']. '\', \''.$_REQUEST['surname']. '\', \''.$_REQUEST['guardian_name']. '\', \''.$_REQUEST['relationship']. '\', \''.$_REQUEST['religion']. '\', \''.$_REQUEST['address']. '\', \''.$_REQUEST['phone']. '\', \''.$_REQUEST['cell_no']. '\', \''.$_REQUEST['e_mail']. '\', \''.$_REQUEST['ice_no']. '\', \''.$_REQUEST['occupation_of_father']. '\', \''.$_REQUEST['monthly_income']. '\', \''.$_REQUEST['cnic_guradian']. '\', \''.$_REQUEST['date_of_birth']. '\', \''.$_REQUEST['place_of_birth']. '\', \''.$_REQUEST['date_of_birth_words']. '\', \''.$_REQUEST['admission_saught']. '\', \''.$_REQUEST['admission_granted']. '\', \''.$_REQUEST['last_school_class']. '\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                        }
+                                    ?>
+                                    <form action="Admin-mod-admission-management.php" method="post" >
 
                                         <div class="row ">
                                             <div class="col-md-8" style="padding-top: 6%;">
@@ -285,15 +300,16 @@
                                                         <div>
                                                             <div class="form-group">
                                                                 <label for="class">Class</label>
-                                                                <input type="text" name="nick" parsley-trigger="change" required
-                                                                       placeholder="Enter class" class="form-control" id="adclass">
+                                                                <input type="text" name="class" required placeholder="Enter class" class="form-control" id="adclass"
+                                                                value="<?php if (isset($_REQUEST['class'])) echo $_REQUEST['class'];  ?>">
                                                             </div>
                                                         </div>
                                                         <div>
                                                             <div class="form-group">
                                                                 <label for="G.RNo">G.R No.</label>
-                                                                <input type="email" name="number" parsley-trigger="change" required
-                                                                       placeholder="Enter G.R No." class="form-control" id="adG.RNo">
+                                                                <input type="text" name="GR_No" required
+                                                                       placeholder="Enter G.R No." class="form-control" id="adG.RNo"
+                                                                       value="<?php if (isset($_REQUEST['GR_No'])) echo $_REQUEST['GR_No'];  ?>">
                                                             </div>
                                                         </div>
                                                         
@@ -340,23 +356,25 @@
                                         </div> -->
                                         <div class="form-group">
                                             <label for="nameofthestudent">Name of the Student</label>
-                                            <input type="text" name="name" parsley-trigger="change" required
-                                                   placeholder="Enter name" class="form-control" id="adnameofthestudent">
+                                            <input type="text" name="name_of_student" required
+                                                   placeholder="Enter name" class="form-control" id="adnameofthestudent"
+                                                   value="<?php if (isset($_REQUEST['name_of_student'])) echo $_REQUEST['name_of_student'];  ?>">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="father'sname">Father's Name</label>
-                                                    <input type="text" name="father'sname" parsley-trigger="change" required
-                                                           placeholder="Enter father's name" class="form-control" id="adfathersname">
+                                                    <label for="father_name">Father's Name</label>
+                                                    <input type="text" name="father_name" required
+                                                           placeholder="Enter father's name" class="form-control" id="adfathersname"
+                                                           value="<?php if (isset($_REQUEST['father_name'])) echo $_REQUEST['father_name'];  ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="surname">Surname</label>
-                                                    <input id="adsurname" type="text" placeholder="Enter surname" required
-                                                           class="form-control">
+                                                    <input type="text" name="surname" placeholder="Enter surname" class="form-control"
+                                                    value="<?php if (isset($_REQUEST['surname'])) echo $_REQUEST['surname'];  ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -365,44 +383,42 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="guardian'sname">Guardian's Name</label>
-                                                    <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter guardian's name" class="form-control" id="adguardiansname">
+                                                    <input type="text" name="guardian_name" required placeholder="Enter guardian's name" class="form-control"
+                                                    value="<?php if (isset($_REQUEST['guardian_name'])) echo $_REQUEST['guardian_name'];  ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="guardian'sname">Relationship</label>
-                                                    <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter relationship" class="form-control" id="adrelationship">
+                                                    <input type="text" name="relationship" required placeholder="Enter relationship" class="form-control"
+                                                    value="<?php if (isset($_REQUEST['relationship'])) echo $_REQUEST['relationship'];  ?>" >
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                                    <label for="religion">Religion</label>
-                                                    <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter religion" class="form-control" id="adreligion">
+                                            <label for="religion">Religion</label>
+                                            <input type="text" name="religion" required placeholder="Enter religion" class="form-control" id="adreligion" value="<?php if (isset($_REQUEST['religion'])) echo $_REQUEST['religion'];  ?>" >
                                         </div>
 
                                         <div class="form-group">
-                                                    <label for="address">Address</label>
-                                                    <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter religion" class="form-control" id="adaddress">
+                                            <label for="address">Address</label>
+                                            <input  type="text" name="address" required placeholder="Enter religion" class="form-control" id="adaddress"
+                                            value="<?php if (isset($_REQUEST['religion'])) echo $_REQUEST['religion'];  ?>">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="phone">Phone(Res.)</label>
-                                                    <input data-parsley-equalto="#pass1" type="tel" required
-                                                           placeholder="Enter phone" class="form-control" id="adphone">
+                                                    <input type="tel" name="phone" required placeholder="Enter phone" class="form-control" id="adphone"
+                                                    value="<?php if(isset($_REQUEST['phone'])) echo $_REQUEST['phone'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="cellno">Cell No.</label>
-                                                    <input data-parsley-equalto="#pass1" type="tel" required
-                                                           placeholder="Enter cell no." class="form-control" id="adcellno">
+                                                    <input type="tel" name="cell_no" required placeholder="Enter cell no." class="form-control" id="adcellno" value="<?php if(isset($_REQUEST['cell_no'])) echo $_REQUEST['cell_no'] ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -411,15 +427,15 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="e-mail">E-mail</label>
-                                                    <input data-parsley-equalto="#pass1" type="email" required
-                                                           placeholder="Enter e-mail" class="form-control" id="ademail">
+                                                    <input type="email" name="e_mail" placeholder="Enter e-mail" class="form-control"
+                                                     value="<?php if(isset($_REQUEST['e_mail'])) echo $_REQUEST['e_mail'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="ice">ICE (In case Emergency) No.</label>
-                                                    <input data-parsley-equalto="#pass1" type="tel" required
-                                                           placeholder="Enter ICE." class="form-control" id="adice">
+                                                    <input type="tel" name="ice_no" required placeholder="Enter ICE." class="form-control" id="adice"
+                                                     value="<?php if(isset($_REQUEST['ice_no'])) echo $_REQUEST['ice_no'] ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -428,68 +444,66 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="Occupation">Occupation of Father/Guardian</label>
-                                                    <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter occupation" class="form-control" id="adoccupation">
+                                                    <input type="text" name="occupation_of_father" placeholder="Enter occupation" class="form-control" id="adoccupation"  value="<?php if(isset($_REQUEST['occupation_of_father'])) echo $_REQUEST['occupation_of_father'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="income">Monthly Income Rs.</label>
-                                                    <input data-parsley-equalto="#pass1" type="number" required
-                                                           placeholder="Enter income." class="form-control" id="adincome">
+                                                    <input type="number" name="monthly_income" placeholder="Enter income." class="form-control" id="adincome" value="<?php if(isset($_REQUEST['monthly_income'])) echo $_REQUEST['monthly_income'] ?>" >
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                                     <label for="cnic">CNIC No. of Father / Guradian</label>
-                                                    <input data-parsley-equalto="#pass1" type="number" required
-                                                           placeholder="Enter CNIC" class="form-control" id="adcnic">
+                                                    <input type="number" name="cnic_guradian" required placeholder="Enter CNIC" class="form-control" id="adcnic"
+                                                     value="<?php if(isset($_REQUEST['cnic_guradian'])) echo $_REQUEST['cnic_guradian'] ?>">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="dateofbirth">Date of Birth (In figures)</label>
-                                                    <input data-parsley-equalto="#pass1" type="date" required
-                                                           placeholder="Enter occupation" class="form-control" id="addateofbirth">
+                                                    <input type="date" name="date_of_birth" required placeholder="Enter date of birth" class="form-control" id="addateofbirth"
+                                                    value="<?php if(isset($_REQUEST['date_of_birth'])) echo $_REQUEST['date_of_birth'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="placofbirth">Place of Birth</label>
-                                                    <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter income." class="form-control" id="adplaceofbirth">
+                                                    <input type="text" name="place_of_birth" placeholder="Enter place of birth" class="form-control" id="adplaceofbirth"
+                                                    value="<?php if(isset($_REQUEST['place_of_birth'])) echo $_REQUEST['place_of_birth'] ?>">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="dateofbirthwords">Date of Birth (In words)</label>
-                                            <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter occupation" class="form-control" id="addateofbirthwords">
+                                            <input type="text" name="date_of_birth_words" required placeholder="Enter occupation" class="form-control" id="addateofbirthwords"
+                                            value="<?php if(isset($_REQUEST['date_of_birth_words'])) echo $_REQUEST['date_of_birth_words']?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="addmissionsaught">Addmission saught for class</label>
-                                            <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter occupation" class="form-control" id="adaddmissionsaught">
+                                            <input type="text" name="admission_saught" required placeholder="Enter saught for class" class="form-control" id="adaddmissionsaught"
+                                            value="<?php if(isset($_REQUEST['admission_saught'])) echo $_REQUEST['admission_saught']?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="addmissiongranted">Addmission granted for class</label>
-                                            <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter occupation" class="form-control" id="adaddmissiongranted">
+                                            <input type="text" name="admission_granted" required placeholder="Enter admission granted for class" class="form-control" id="adaddmissiongranted"
+                                            value="<?php if(isset($_REQUEST['admission_granted'])) echo $_REQUEST['admission_granted']?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="lastclass">Last School & Class Attended</label>
-                                            <input data-parsley-equalto="#pass1" type="text" required
-                                                           placeholder="Enter occupation" class="form-control" id="adlastclass">
+                                            <input type="text" name="last_school_class" required placeholder="Enter occupation" class="form-control" id="adlastclass"
+                                            value="<?php if(isset($_REQUEST['last_school_class'])) echo $_REQUEST['last_school_class']?>">
                                         </div>
 
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light"  id="adsubmit" onclick ="addmissionFormAdd()">
+                                            <button class="btn btn-primary waves-effect waves-light"  id="adsubmit" name="submit">
                                                 Submit
                                             </button>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Parents - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- App CSS -->
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -60,7 +62,7 @@
 
                         <div class="row">
                             <!-- graph -->
-                            <div class="col-lg-6" style="width: 100%">
+                            <div class="col-lg-12">
                                 <div class="card-box">
                                     <div class="dropdown pull-right">
                                         <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
@@ -82,12 +84,20 @@
 
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                             <!-- graph end -->
 
 
                             <!-- report -->
-                                                    <div class="row">
-                            <div class="col-sm-12">
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <div class="card-box">
 
                                     <h4 class="m-t-0 header-title"><b>Report card</b></h4>
@@ -151,14 +161,14 @@
                                             <td>100</td>
                                             <td>76%</td>
                                             <td>A</td>
-                                        </tr>>
+                                        </tr>
                                         <tr>
                                             <td>Subject 1</td>
                                             <td>78</td>
                                             <td>100</td>
                                             <td>76%</td>
                                             <td>A</td>
-                                        </tr>>
+                                        </tr>
                                         <tr>
                                             <td>Subject 1</td>
                                             <td>78</td>
@@ -184,6 +194,7 @@
                 </div>
             </div>
         </div>
+    </div>
            
     </div>
         <script>

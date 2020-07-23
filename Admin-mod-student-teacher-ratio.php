@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
@@ -8,20 +10,19 @@
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <title>Admin - The Brainic School</title>
+          <title>The Brainic School</title>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
-        <link rel="stylesheet" href="assets/plugins/chartist/dist/chartist.min.css">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +59,7 @@
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                                <div>
+                                <div class="col-lg-12">
                                     <!-- form -->
                                     <div class="card-box">
                                         <div class="form-group">
@@ -157,28 +158,7 @@
                                 </div>
                             </div>
                             </div>
-                            <!-- graph -->
-                            <div class="row">
-                            <div >
-                                <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <h4 class="header-title m-t-0 m-b-30">Ratio graph</h4>
-
-                                    <div id="distributed-series" class="ct-chart ct-golden-section"></div>
-                                </div>
-                            </div><!-- end graph-->
+         
                        
                         
                             

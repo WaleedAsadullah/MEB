@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Account - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- App CSS -->
-        <link rel="stylesheet" href="assets/plugins/chartist/dist/chartist.min.css">
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-        <!-- App CSS -->
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -32,6 +31,13 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
+
+
+        <style>
+            th,td {
+                text-align: center;
+            }
+        </style>
 
     </head>
     <style>
@@ -68,7 +74,332 @@
                             <div class="col-lg-12">
                                 <div class="card-box">
                                      <div class="m-t-5 m-b-5" style="text-align: center" >
-                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Addmission</button></a>
+                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Add </button></a>
+                                        <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="zmdi zmdi-more-vert"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <h4 class="header-title m-t-0 m-b-30">Income Statement (Detailed)</h4>
+
+                                    <div class="table-responsive">
+                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="3">Revenue </th>
+                                                <th>July</th>
+                                                <th>August</th>
+                                                <th>September</th>
+                                                <th>October</th>
+                                                <th>November</th>
+                                                <th>December</th>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <tr>
+                                                    <td colspan="2"></td>
+                                                    <td colspan="5" style="text-align: center;"><span style="margin: 0px 20px 0px"><i class="zmdi zmdi-edit"></i></span><span style="margin: 0px 20px 0px">
+                                                    <i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></span>
+                                                    <a href="print-income.php">
+                                                    <span style="margin: 0px 20px 0px"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></span></a>
+                                                    <span style="margin: 0px 20px 0px"><i class="zmdi zmdi-copy"></i></span></td>
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                <tr>
+                                                    
+                                                    <th rowspan="4">Fees Collection</th>
+                                                    <th colspan="2">Fees(Montessori)</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Fees(Boys Section)</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Fees(Girls Section)</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Fees(Girls College)</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th rowspan="18">Other Income</th>
+                                                    <th rowspan="4">Addmission Form</th>
+                                                    <td>Addmission Form (Montessori)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Addmission Form (Boys Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Addmission Form (Girls Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Addmission Form (Girls College)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th rowspan="4">Annual Charges</th>
+                                                    <td>Annual Charges (Montessori)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Annual Charges (Boys Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Annual Charges (Girls Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Annual Charges (Girls College)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th rowspan="4">Addmission Fees</th>
+                                                    <td>Addmission Fees (Montessori)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Addmission Fees (Boys Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Addmission Fees (Girls Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Addmission Fees (Girls College)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th rowspan="2">Canteen Rent</th>
+                                                    <td>Canteen Rent(Boys Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Canteen Rent(Girls Sec.)</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Scrap Sales</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Mont . Course Sales</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Mont . ID card</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Duplicate Voucher Charges</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th rowspan="3">Funding</th>
+                                                    <th colspan="2">Head Office Kharadar for Petty Cash</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Head Office Kharadar Zakat Fund</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Fees Adjustment By Mr.Ashraf</th>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                    <td>12,340</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3">Total Revenue</th>
+                                                    <th>78,9087</th>
+                                                    <th>78,9087</th>
+                                                    <th>78,9087</th>
+                                                    <th>78,9087</th>
+                                                    <th>78,9087</th>
+                                                    <th>78,9087</th>
+                                                </tr>
+
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+<!-- income details -->
+            <!-- Income form -->
+            <div class="content-page">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                     <div class="m-t-5 m-b-5" style="text-align: center" >
+                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Add</button></a>
                                         <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
                                     </div>
                                 </div>
@@ -114,7 +445,8 @@
                                                     <td colspan="3"></td>
                                                     <td colspan="3" style="text-align: center;"><span style="margin: 0px 20px 0px"><i class="zmdi zmdi-edit"></i></span><span style="margin: 0px 20px 0px">
                                                     <i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></span>
-                                                    <span style="margin: 0px 20px 0px"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></span>
+                                                    <a href="print-income.php">
+                                                    <span style="margin: 0px 20px 0px"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></span></a>
                                                     <span style="margin: 0px 20px 0px"><i class="zmdi zmdi-copy"></i></span></td>
                                                     <td colspan="3"></td>
                                                 </tr>
@@ -154,6 +486,7 @@
                     </div>
                 </div>
             </div>
+
 
 
 
@@ -213,7 +546,7 @@
                                                     <td colspan="3"></td>
                                                     <td colspan="3" style="text-align: center;"><span style="margin: 0px 20px 0px"><i class="zmdi zmdi-edit"></i></span><span style="margin: 0px 20px 0px">
                                                     <i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></span>
-                                                    <span style="margin: 0px 20px 0px"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></span>
+                                                    <a href="print-expenditure.php"><span  style="margin: 0px 20px 0px"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></span></a>
                                                     <span style="margin: 0px 20px 0px"><i class="zmdi zmdi-copy"></i></span></td>
                                                     <td colspan="3"></td>
                                                 </tr>
@@ -1779,7 +2112,11 @@
 
 
 
-
+                <!-- footer -->
+                <?php 
+                    include_once("footer.php")
+                ?>
+                   
 
 
                                

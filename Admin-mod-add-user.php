@@ -31,16 +31,14 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-
     </head>
-<body class="fixed-left">
-    <div id="wrapper" class="enlarged">
+    <body class="fixed-left">
+        <div id="wrapper" class="enlarged">
 
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php");
-                            include_once("db_functions.php");
+                            include_once("Admin-mod-header.php")
                     ?>
 
                     <!-- header -->
@@ -53,7 +51,8 @@
                     ?>
 
                     <!-- Sidebar -->
-    <!-- table -->
+
+            <!-- content -->
             <div class="content-page">
                 <div class="content">
                     <div class="container">
@@ -83,8 +82,7 @@
                                         </ul>
                                     </div>
 
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;"> Course planning </h4>
-                                    <br>
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> User </h4>
 
                                     <div class="table-responsive">
                                         <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
@@ -95,11 +93,12 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
+                                                <th>User name</th>
+                                                <th>E-mail</th>
                                                 <th>Class</th>
-                                                <th>Subject</th>
-                                                <th>Date</th>
-                                                <th>Title</th>
-                                                <th>Details</th>
+                                                <th>GR#</th>
+                                                <th>Account</th>
+                                                <th>Password</th>
                                             </tr>
                                             </thead>
                                             <tbody id="addFrmPrint">
@@ -114,43 +113,19 @@
                                                     <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
                                                     <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
                                                     <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-
-                                                </tr>
+                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
                                                 <tr >
                                                     <td>1</td>
                                                     <td><i class="zmdi zmdi-edit"></i></td>
                                                     <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
                                                     <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
                                                     <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>Maths</td>
-                                                    <td>8/9/2020</td>
-                                                    <td>Title</td>
-                                                    <td>Details...........</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>Maths</td>
-                                                    <td>8/9/2020</td>
-                                                    <td>Title</td>
-                                                    <td>Details...........</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>Maths</td>
-                                                    <td>8/9/2020</td>
-                                                    <td>Title</td>
-                                                    <td>Details...........</td>
+                                                    <td>waleed asad</td>
+                                                    <td>waleedasad27@gmail.com</td>
+                                                    <td>7th</td>
+                                                    <td>00987</td>
+                                                    <td>Student</td>
+                                                    <td>hu865j74</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -162,15 +137,14 @@
                     </div>
                 </div>
             </div>
-    <!-- table end -->
-
 
             <!-- table -->
              <div class="content-page">
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
                                 <div class="card-box">
                                     <div class="dropdown pull-right">
                                         <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -185,56 +159,59 @@
                                         </ul>
                                     </div>
 
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;">Course planning</h4>
-                                    <?php
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> Add user</h4>
 
-                                        //echo "test";
-                                        if(isset($_REQUEST['submit'])){
-                                            //print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ad_course_planning` (`course_planning_id`, `user_id`, `user_date`, `class`, `subject`, `date`, `title`, `details`) VALUES (NULL,\'';
-                                            $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class'].'\', \''.$_REQUEST['subject'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['title'].'\', \''.$_REQUEST['details'].'\')';
-                                            // echo $sql;
-                                            insert_query($sql);
-                                        }
-                                    ?>
-
-                                    <form action="Admin-mod-course-planning.php" method="post">
+                                    <form action="#" >
 
                                         <div class="form-group">
-                                            <label for="cpClass">Class</label>
-                                            <input type="text" name="class" required placeholder="Enter class" class="form-control" id="cpClass"
-                                            value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
+                                            <label for="lcName">User Name</label>
+                                            <input type="text" name="name" parsley-trigger="change" required
+                                                   placeholder="Enter user name" class="form-control" id="lcnName">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="cpSubject">Subject</label>
-                                            <input type="text" name="subject" required
-                                                   placeholder="Enter subject" class="form-control" id="cpSubject"
-                                                   value="<?php if(isset($_REQUEST['subject'])) echo $_REQUEST['subject']?>">
+                                            <label for="father'sname">E-mail</label>
+                                            <input type="email"  parsley-trigger="change" required
+                                                   placeholder="Enter e-mail" class="form-control" id="adfathersname">
                                         </div>
                                         <div class="form-group">
-                                            <label for="cpDate">Date</label>
-                                            <input id="cpDate" type="date" name="date" placeholder="Enter date" required
-                                                   class="form-control"
-                                                   value="<?php if (isset($_REQUEST['date'])) echo $_REQUEST['date']; else echo (date("Y-m-d")); ?>">
+                                            <label for="lcPlaceOfBirth">Class</label>
+                                            <input id="lcPlaceOfBirth" type="text" placeholder="Enter class" required
+                                                   class="form-control">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="cpTitle">Title</label>
-                                            <input type="text" name="title" 
-                                                   placeholder="Enter title" class="form-control" id="cpTitle"
-                                                   value="<?php if(isset($_REQUEST['title'])) echo $_REQUEST['title']?>">
+                                            <label for="lcDateOfBirthF">GR#</label>
+                                            <input data-parsley-equalto="#pass1" type="number" required
+                                                   placeholder="Enter GR number" class="form-control" id="lcDateOfBirthF">
                                         </div>
-                                          
                                         <div class="form-group">
-                                            <label for="lcDateOfBirthW">Details</label>
-                                            <textarea type="textarea" name="details" row = "2"placeholder="Enter details" 
-                                            class="form-control" id="lcDateOfBirthW"
-                                            ><?php if(isset($_REQUEST['details'])) echo $_REQUEST['details']?></textarea>
+                                            <label>Account</label>
+                                            <select class="form-control">
+                                                <option value="Student">Student</option>
+                                                <option value="Parent">Parent</option>
+                                            </select>
+                                            
                                         </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="lcDateOfBirthW">Password</label>
+                                                    <input data-parsley-equalto="#pass1" type="password" required
+                                                           placeholder="Enter password" class="form-control" id="lcDateOfBirthW">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="lcLastSchool">Confirm password</label>
+                                                    <input  type="password" required
+                                                                   placeholder="Confirm password " class="form-control" id="lcLastSchool">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light" name="submit">
+                                            <button class="btn btn-primary waves-effect waves-light"  id="adsubmit" onclick ="addmissionFormAdd()">
                                                 Submit
                                             </button>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
@@ -245,15 +222,16 @@
                                     </form>
                                 </div>
                             </div><!-- end col -->
+                            <div class="col-lg-3"></div>
                         </div>
 
                     </div>
                 </div>
             <!-- table end -->
 
+            <!-- content end -->
 
-
-    </div>
+        </div>
       <script>
             var resizefunc = [];
         </script>
@@ -286,6 +264,7 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
-
-</body>
+    
+        
+    </body>
 </html>

@@ -68,6 +68,9 @@
                             <li>
                                 <a href="Accounts-mod-annual-appraisal-for-bonus-and-increment.php" class="waves-effect"><i class="fa fa-calendar-check-o"></i> <span> Annual Appraisal for bonus and increment </span> </a>
                             </li>
+                            <li>
+                                <a href="Accounts-mod-hall-booking.php" class="waves-effect"><i class="zmdi zmdi-assignment"></i> <span> Hall booking </span> </a>
+                            </li>
 
 
                         </ul>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Parents - The Brainic School</title>
+          <title>The Brainic School</title>
 
+        <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
         <!-- App css -->
@@ -60,7 +60,7 @@
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                                <div class="">
+                                <div class="col-lg-12">
                                 <div class="card-box">
                                     <div class="dropdown pull-right">
                                         <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">

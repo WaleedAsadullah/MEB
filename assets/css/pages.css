@@ -1108,7 +1108,7 @@ div.mce-edit-area {
 .timeline .time-show a {
   color: #ffffff;
 }
-/*.timeline:before {
+.timeline:before {
   background-color: rgba(152, 166, 173, 0.3);
   bottom: 0px;
   content: "";
@@ -1118,7 +1118,7 @@ div.mce-edit-area {
   width: 1px;
   z-index: 0;
 }
-*/.timeline .timeline-icon {
+.timeline .timeline-icon {
   -webkit-border-radius: 50%;
   background: #98a6ad;
   border-radius: 50%;

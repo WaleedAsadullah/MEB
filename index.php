@@ -6,13 +6,14 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <!-- App title -->
-        <title>Admin - The Brainic School</title>
+          <title>The Brainic School</title>
 
-        <!-- App CSS -->
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+        <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -29,6 +30,8 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
+
+         
         <style>
             .click{
                 color: lightblue;
@@ -47,7 +50,7 @@
         <div class="wrapper-page">
             <div class="text-center">
                 <div><img src="assets/images/favicon2.png"></div>
-                <a href="index.html" class="logo"><span>The Branic<span>School</span></span></a>
+                <a href="index.php" class="logo"><span>The Branic<span>School</span></span></a>
                 <!-- <h5 class="text-muted m-t-0 font-600">Responsive Admin Dashboard</h5> -->
             </div>
         	<div class="m-t-40 card-box">
@@ -63,7 +66,7 @@
 
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal m-t-20" action="index.html">
+                    <form class="form-horizontal m-t-20" action="index.php">
 
                         <div class="form-group ">
                             <div class="col-xs-12">
@@ -97,7 +100,7 @@
 
                         <div class="form-group m-t-30 m-b-0">
                             <div class="col-sm-12">
-                                <a href="page-recoverpw.html" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                                <a href="page-recoverpw.php" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
                             </div>
                         </div>
                     </form>
@@ -108,7 +111,7 @@
 
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <p class="text-muted">Don't have an account? <a href="page-register.html" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+                    <p class="text-muted">Don't have an account? <a href="page-register.php" class="text-primary m-l-5"><b>Sign Up</b></a></p>
                 </div>
             </div>
             

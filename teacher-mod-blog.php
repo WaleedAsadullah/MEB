@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
@@ -12,6 +13,12 @@
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -30,15 +37,15 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-
-    </head>
+</head>
 <body class="fixed-left">
     <div id="wrapper" class="enlarged">
 
 
                     <!--- header -->
                     <?php 
-                            include_once("Students-mod-header.php")
+                            include_once("Students-mod-header.php");
+                            include_once("db_functions.php")
                     ?>
 
                     <!-- header -->
@@ -53,91 +60,108 @@
                     <!-- Sidebar -->
 
 
-               <!-- footer -->
-                <?php 
-                            include_once("footer.php")
-                    ?>
+        <!-- content -->
+            <div class="content-page">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                     <div class="m-t-5 m-b-5" style="text-align: center" >
+                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Add</button></a>
+                                        <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px">Blogs</h4>
+                                    <br>
 
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
+
+                                                if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `th_blog` WHERE `th_blog`.`th_blog_id` = '.$_REQUEST['deleteid'];
+
+                                                    insert_query($sql);
+                                                    // echo "done deleting";
+                                                    }
+                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                                $sql = 'SELECT `th_blog_id` "ID",  `user_date` "Date", `title`"Title", `img_link`"Image link", `description` "Description" FROM `th_blog`';
+                                                display_query($sql);
+
+                                            ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Form -->
+            <div class="content-page">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px">Blog upload</h4>
+                                    <br>
 
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
+                                    <?php
+
+                                            // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                                // print_r($_REQUEST);
+                                                $sql = 'INSERT INTO `th_blog`(`th_blog_id`, `user_id`, `user_date`, `title`, `img_link`, `description`) VALUES (NULL,\'';
+                                                $sql .= get_curr_user();
+                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['title'].'\', \''.$_REQUEST['img_link'].'\', \''.$_REQUEST['description'].'\')';
+                                                // echo $sql;
+                                                insert_query($sql);
+                                            }
+                                        ?>
+
+                                        <form action="teacher-mod-blog.php" method="post">
 
 
-            <!-- Right Sidebar -->
- <!--            <div class="side-bar right-bar">
-                <a href="javascript:void(0);" class="right-bar-toggle">
-                    <i class="zmdi zmdi-close-circle-o"></i>
-                </a>
-                <h4 class="">Notifications</h4>
-                <div class="notification-list nicescroll">
-                    <ul class="list-group list-no-border user-list">
-                        <li class="list-group-item">
-                            <a href="#" class="user-list-item">
-                                <div class="avatar">
-                                    <img src="assets/images/users/avatar-2.jpg" alt="">
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">Michael Zenaty</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">2 hours ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="user-list-item">
-                                <div class="icon bg-info">
-                                    <i class="zmdi zmdi-account"></i>
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">New Signup</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">5 hours ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="user-list-item">
-                                <div class="icon bg-pink">
-                                    <i class="zmdi zmdi-comment"></i>
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">New Message received</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">1 day ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item active">
-                            <a href="#" class="user-list-item">
-                                <div class="avatar">
-                                    <img src="assets/images/users/avatar-3.jpg" alt="">
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">James Anderson</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">2 days ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item active">
-                            <a href="#" class="user-list-item">
-                                <div class="icon bg-warning">
-                                    <i class="zmdi zmdi-settings"></i>
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">Settings</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">1 day ago</span>
-                                </div>
-                            </a>
-                        </li>
+                                            <div class="form-group">
+                                                <label for="hbName">Title</label>
+                                                <input type="text" name="title" required="" placeholder="Enter name" class="form-control" id="hbName" value="<?php if(isset($_REQUEST['title'])) echo $_REQUEST['title']?>">
+                                            </div>
+                                        
+                                   
+                                            <div class="form-group">
+                                                <label for="hbAddress">Image link</label>
+                                                <input type="text" name="img_link" required="" placeholder="Enter address" class="form-control" id="prName" value="<?php if(isset($_REQUEST['img_link'])) echo $_REQUEST['img_link']?>">
+                                            </div>
 
-                    </ul>
+                                            <div class="form-group">
+                                                <label for="hbPhone">Description</label>
+                                                <input type="tel" name="description" required="" placeholder="Enter phone" class="form-control" id="prRegular" value="<?php if(isset($_REQUEST['description'])) echo $_REQUEST['description']?>">
+                                            </div>
+
+                                           
+
+                                            <div class="form-group text-right m-b-0">
+                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
+                                                    Submit
+                                                </button>
+                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> -->
+            </div>                
     </div>
       <script>
             var resizefunc = [];
@@ -172,5 +196,56 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
+        <script>
+            $("#sci").click(function(){
+            $("#scinone").toggleClass("ol1n");
+            })
+            $("#maths").click(function(){
+            $("#mathsnone").toggleClass("ol1n");
+            })
+            $("#eng").click(function(){
+            $("#engnone").toggleClass("ol1n");
+            })
+        </script>
+           <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
+
 </body>
 </html>
+
+
+
+
+

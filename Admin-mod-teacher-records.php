@@ -14,6 +14,13 @@
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
+                <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -70,114 +77,44 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Teacher Records </h4>
-
+                                <div class="card-box" >
+                                    <h4 class="header-title m-t-0 m-b-30" style="text-align: center; font-size: 22px; padding: 10px">Teacher Records</h4>
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>S.No</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Name</th>
-                                                <th>CNIC</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered " id="adadmissiontable">
+                                            <?php
 
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                            //-----------------------
+                                            //echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            //print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ad_teacher_records` (`Teacher_records_id`, `user_id`, `user_date`, `name`, `cnic`, `position`, `office`, `age`, `start`, `salary`, `phone_number`, `address`, `comment`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['cnic'].'\', \''.$_REQUEST['position'].'\', \''.$_REQUEST['office'].'\', \''.$_REQUEST['age'].'\', \''.$_REQUEST['start'].'\', \''.$_REQUEST['salary'].'\', \''.$_REQUEST['phone_number'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['comment'].'\')';
+                                                // echo $sql;
+                                            insert_query($sql);
+                                                }
+                                            // ------------------------
 
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
-                                                    <td>Sir Aslam</td>
-                                                    <td>Teacher</td>
-                                                    <td>Class</td>
-                                                    <td>29</td>
-                                                    <td>23/5/2020</td>
-                                                    <td>2,515</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
-                                                    <td>Sir Aslam</td>
-                                                    <td>Teacher</td>
-                                                    <td>Class</td>
-                                                    <td>29</td>
-                                                    <td>23/5/2020</td>
-                                                    <td>2,515</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
-                                                    <td>Sir Aslam</td>
-                                                    <td>Teacher</td>
-                                                    <td>Class</td>
-                                                    <td>29</td>
-                                                    <td>23/5/2020</td>
-                                                    <td>2,515</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>00001</td>
-                                                    <td>Sir Aslam</td>
-                                                    <td>Teacher</td>
-                                                    <td>Class</td>
-                                                    <td>29</td>
-                                                    <td>23/5/2020</td>
-                                                    <td>2,515</td>
-                                                </tr>
-                                            </tbody>
+                                            ///edit code
+                                            check_edit("ad_teacher_records","teacher_records_id");
+                                            edit_display("ad_teacher_records","teacher_records_id");
+                                            //end of edit code -shift view below delete
+
+                                            // ------------------------
+
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_teacher_records` WHERE `ad_teacher_records`.`teacher_records_id` = '.$_REQUEST['deleteid'];
+
+                                            insert_query($sql);
+                                                    // echo "done deleting";
+                                                }
+                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                            $sql = 'SELECT  `teacher_records_id` "ID",`name`"Name", `cnic` "CNIC", `position`"Position", `office`"Office", `age`"Age", `start`, `salary`"Salary", `phone_number`"Phone", `address` "Address", `comment` "Comment" FROM `ad_teacher_records`';
+                                            display_query($sql);
+
+                                            // --------------------------
+
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
@@ -194,32 +131,11 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Teacher Records </h4>
 
                                         <?php
 
-                                            //echo "test";
-                                            if(isset($_REQUEST['submit'])){
-                                                //print_r($_REQUEST);
-                                                $sql = 'INSERT INTO `teacher_records` (`Teacher_records_id`, `user_id`, `user_date`, `name`, `cnic`, `Position`, `Office`, `Age`, `start`, `salary`, `phone_number`, `address`, `comments`) VALUES (NULL,\'';
-                                                $sql .= get_curr_user();
-                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['cnic'].'\', \''.$_REQUEST['position'].'\', \''.$_REQUEST['office'].'\', \''.$_REQUEST['age'].'\', \''.$_REQUEST['start'].'\', \''.$_REQUEST['salary'].'\', \''.$_REQUEST['phone_number'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['comment'].'\')';
-                                                // echo $sql;
-                                                insert_query($sql);
-                                            }
+                                            
                                         ?>
 
                                         <form action="Admin-mod-teacher-records.php" method="post">
@@ -252,7 +168,7 @@
 
                                             <div class="form-group">
                                                 <label for="office">Office</label>
-                                                <input type="number" name="office" placeholder="Enter office" class="form-control" id="prVacation"
+                                                <input type="text" name="office" placeholder="Enter office" class="form-control" id="prVacation"
                                                 value="<?php if(isset($_REQUEST['office'])) echo $_REQUEST['office']?>">
                                             </div>
 
@@ -282,13 +198,13 @@
 
                                             <div class="form-group">
                                                 <label for="comment">Comment</label>
-                                                <textarea name="comment" rows="4" placeholder="comments........." class="form-control"data-parsley-id="6" value="<?php if(isset($_REQUEST['comment'])) echo $_REQUEST['comment']?>"></textarea>
+                                                <input type="text"  name="comment" rows="4" placeholder="comments........." class="form-control" value="<?php if(isset($_REQUEST['comment'])) echo $_REQUEST['comment']?>">
                                             </div>
 
                                             <div class="form-group text-right m-b-0">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
-                                                    Submit
-                                                </button>
+                                                <?php 
+                                                code_submit();
+                                                ?>
                                                 <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                     Cancel
                                                 </button>

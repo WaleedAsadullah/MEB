@@ -38,7 +38,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php")
+                            include_once("Admin-mod-header.php");
+                            include_once("db_functions.php")
                     ?>
 
                     <!-- header -->
@@ -68,20 +69,6 @@
                             <!-- form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> User </h4>
 
                                     <div class="table-responsive">
@@ -146,22 +133,39 @@
                             <div class="col-lg-3"></div>
                             <div class="col-lg-6">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> Add user</h4>
+                                    <?php
 
-                                    <form action="#" >
+                                    if (isset($_POST['submit'])){
+                                        $user = mysqli_real_escape_string(connect_db(), $_POST['name']);
+                                        $e_mail = mysqli_real_escape_string(connect_db(), $_POST['e_mail']);
+                                        $class = mysqli_real_escape_string(connect_db(), $_POST['class']);
+                                        $account = mysqli_real_escape_string(connect_db(), $_POST['account']);
+                                        $pass = mysqli_real_escape_string(connect_db(), $_POST['pass']);
+                                         $cpass = mysqli_real_escape_string(connect_db(), $_POST['cpass']);
+
+                                        $pas = password_hash($pass, PASSWORD_BCRYPT);
+                                        $cpas = password_hash($cpass, PASSWORD_BCRYPT);
+
+                                        $e_mailquary = " select * from ad_add_user where e_mail='$e_mail'";
+                                        $query = mysqli_query(connect_db(),$e_mailquary);
+                                        $e_mailcount = mysqli_num_rows($query);
+                                        if($e_mailcount>0){
+                                            echo 'already';
+                                        }else{
+                                            if( $pass ==  $pass){
+                                                $insetquery = $sql = 'INSERT INTO `ad_course_planning` (`course_planning_id`, `user_id`, `user_date`, `class`, `subject`, `date`, `title`, `details`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class'].'\', \''.$_REQUEST['subject'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['title'].'\', \''.$_REQUEST['details'].'\')';
+                                                $iquery = insert_query($sql);
+                                            }else{
+                                                echo 'not same';
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <form action="Admin-mod-add-user.php" method="post" >
 
                                         <div class="form-group">
                                             <label for="lcName">User Name</label>
@@ -171,12 +175,12 @@
 
                                         <div class="form-group">
                                             <label for="father'sname">E-mail</label>
-                                            <input type="email"  parsley-trigger="change" required
+                                            <input type="email" required name="e_mail" 
                                                    placeholder="Enter e-mail" class="form-control" id="adfathersname">
                                         </div>
                                         <div class="form-group">
                                             <label for="lcPlaceOfBirth">Class</label>
-                                            <input id="lcPlaceOfBirth" type="text" placeholder="Enter class" required
+                                            <input id="lcPlaceOfBirth" name="class" type="text" placeholder="Enter class" required
                                                    class="form-control">
                                         </div>
 
@@ -187,7 +191,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Account</label>
-                                            <select class="form-control">
+                                            <select name="account" class="form-control">
                                                 <option value="Student">Student</option>
                                                 <option value="Parent">Parent</option>
                                             </select>
@@ -197,21 +201,21 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcDateOfBirthW">Password</label>
-                                                    <input data-parsley-equalto="#pass1" type="password" required
+                                                    <input type="password" required name="pass" 
                                                            placeholder="Enter password" class="form-control" id="lcDateOfBirthW">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcLastSchool">Confirm password</label>
-                                                    <input  type="password" required
+                                                    <input  type="password" required name="cpass" 
                                                                    placeholder="Confirm password " class="form-control" id="lcLastSchool">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light"  id="adsubmit" onclick ="addmissionFormAdd()">
+                                            <button class="btn btn-primary waves-effect waves-light"  type="submit" name="submit">
                                                 Submit
                                             </button>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">

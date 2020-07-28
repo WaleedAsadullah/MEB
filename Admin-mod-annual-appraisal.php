@@ -13,6 +13,13 @@
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -67,104 +74,42 @@
                             <!-- form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;"> Annual appraisal </h4>
                                     <br>
 
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
-                                            <thead>
-                                            <tr>
-                                                <th>SNo.</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Empolyee Name</th>
-                                                <th>Employee ID</th>
-                                                <th>Position Held</th>
-                                                <th>Work to full potential</th>
-                                                <th>Honesty</th>
-                                                <th>Productivity</th>
-                                                <th>Attendance</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="addFrmPrint">
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
+                                            // --------------------
+                                            // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ad_annual_appraisal` (`annual_appraisal`, `user_id`, `user_date`, `id_num`,`name`, `position`, `potential`, `honesty`, `productivity`, `atendance`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['position'].'\', \''.$_REQUEST['potential'].'\', \''.$_REQUEST['honesty'].'\', \''.$_REQUEST['productivity'].'\', \''.$_REQUEST['atendance'].'\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                            }
+                                            // --------------------
 
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>Fazal</td>
-                                                    <td>00983</td>
-                                                    <td>Admin</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
+                                            ///edit code
+                                            check_edit("ad_annual_appraisal","annual_appraisal");
+                                            edit_display("ad_annual_appraisal","annual_appraisal");
+                                            //end of edit code -shift view below delete
 
-                                                </tr>
-                                                <tr >
-                                                    <td>2</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>Fazal</td>
-                                                    <td>00983</td>
-                                                    <td>Admin</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
+                                            // --------------------
 
-                                                </tr>
-                                                <tr >
-                                                    <td>3</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>Fazal</td>
-                                                    <td>00983</td>
-                                                    <td>Admin</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
-                                                    <td>Excellent</td>
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_annual_appraisal` WHERE `ad_annual_appraisal`.`annual_appraisal` = '.$_REQUEST['deleteid'];
 
-                                                </tr>
-                                               
-                                            </tbody>
+                                            insert_query($sql);
+                                            // echo "done deleting";
+                                                }
+                                            // $sql = "SELECT * FROM `ac_annual_appraisal`";
+                                            $sql = 'SELECT `annual_appraisal`"ID",`id_num`"Employee ID", `name` "Employee Name", `position` "Position Held", `potential` "Works to full potential", `honesty`"Honesty", `productivity` "Productivity", `atendance`"Attendance" FROM `ad_annual_appraisal';
+                                            display_query($sql);
+
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
@@ -183,31 +128,10 @@
                                 <div class="card-box">
                                     <div >
                                         <div>
-                                        <div class="dropdown pull-right">
-                                            <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-
                                         <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Annual appraisal form</h4>
                                         <?php
 
-                                            // echo "test";
-                                            if(isset($_REQUEST['submit'])){
-                                                // print_r($_REQUEST);
-                                                $sql = 'INSERT INTO `ad_annual_appraisal` (`annual_appraisal`, `user_id`, `user_date`, `id_num`, `position`, `potential`, `honesty`, `productivity`, `atendance`) VALUES (NULL,\'';
-                                                $sql .= get_curr_user();
-                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['position'].'\', \''.$_REQUEST['potential'].'\', \''.$_REQUEST['honesty'].'\', \''.$_REQUEST['productivity'].'\', \''.$_REQUEST['attendance'].'\')';
-                                                // echo $sql;
-                                                insert_query($sql);
-                                            }
+    
                                         ?>
                                         <br>
 
@@ -304,23 +228,23 @@
                                                 <label>Attendance</label>
                                             </div>
                                             <div class="radio radio-inline radio-danger">
-                                                <input type="radio" id="inlineRadio41" value="Unsatisfactory" name="attendance"
-                                                <?php if (isset($_REQUEST['attendance']) && $_REQUEST['attendance']== "Unsatisfactory" ) echo "checked";  ?>>
+                                                <input type="radio" id="inlineRadio41" value="Unsatisfactory" name="atendance"
+                                                <?php if (isset($_REQUEST['atendance']) && $_REQUEST['atendance']== "Unsatisfactory" ) echo "checked";  ?>>
                                                 <label for="inlineRadio41"> Unsatisfactory </label>
                                             </div>
                                             <div class="radio radio-inline">
-                                                <input type="radio" id="inlineRadio42" value="Satisfactory" name="attendance"
-                                                <?php if (isset($_REQUEST['attendance']) && $_REQUEST['attendance']== "Satisfactory" ) echo "checked";  ?>>
+                                                <input type="radio" id="inlineRadio42" value="Satisfactory" name="atendance"
+                                                <?php if (isset($_REQUEST['atendance']) && $_REQUEST['atendance']== "Satisfactory" ) echo "checked";  ?>>
                                                 <label for="inlineRadio42"> Satisfactory </label>
                                             </div>
                                             <div class="radio radio-inline radio-pink">
-                                                <input type="radio" id="inlineRadio43" value="Good" name="attendance"
-                                                <?php if (isset($_REQUEST['attendance']) && $_REQUEST['attendance']== "Good" ) echo "checked";  ?>>
+                                                <input type="radio" id="inlineRadio43" value="Good" name="atendance"
+                                                <?php if (isset($_REQUEST['atendance']) && $_REQUEST['atendance']== "Good" ) echo "checked";  ?>>
                                                 <label for="inlineRadio43"> Good </label>
                                             </div>
                                             <div class="radio radio-inline radio-success">
-                                                <input type="radio" id="inlineRadio44" value="Excellent" name="attendance"
-                                                <?php if (isset($_REQUEST['attendance']) && $_REQUEST['attendance']== "Excellent" ) echo "checked";  ?>>
+                                                <input type="radio" id="inlineRadio44" value="Excellent" name="atendance"
+                                                <?php if (isset($_REQUEST['atendance']) && $_REQUEST['atendance']== "Excellent" ) echo "checked";  ?>>
                                                 <label for="inlineRadio44"> Excellent </label>
                                             </div>
                                         </div>
@@ -329,9 +253,9 @@
                                         <!-- radoio button end -->
 
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
-                                                Submit
-                                            </button>
+                                            <?php 
+                                            code_submit();
+                                            ?>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                 Cancel
                                             </button>
@@ -366,14 +290,44 @@
         <!-- Validation js (Parsleyjs) -->
         <script type="text/javascript" src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('form').parsley();
+            });
+        </script>
+        <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
-                $('form').parsley();
-            });
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
         </script>
    
 

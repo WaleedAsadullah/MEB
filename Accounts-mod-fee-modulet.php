@@ -14,6 +14,13 @@
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -72,125 +79,25 @@
                             <!-- input form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Table</h4>
 
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
-                                            <thead>
-                                            <tr>
-                                                <th>SNo.</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Roll No.</th>
-                                                <th>Name of Student</th>
-                                                <th>Class</th>
-                                                <th>Fees for the Month</th>
-                                                <th>Admission Fee</th>
-                                                <th>Exam & other Activities</th>
-                                                <th>Fine</th>
-                                                <th>Mics</th>
-                                                <th>Total</th>
-                                                <th>Date</th>
-                                                <th>Cashier</th>
-                                            </tr>
-                                            </thead>
+                                        <!-- tablesaw table m-b-0 tablesaw-columntoggle table-bordered -->
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
 
-                                            <tbody id="addFrmPrint">
-                                                <tr>
-                                                    <th colspan="6" style="text-align: center;"> <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > <i class="zmdi zmdi-arrow-left"></i></button></a></th>
-                                                    <th colspan="7" style="text-align: center;"><span style="margin-top: ">Boys</span></th>
-                                                    <th colspan="3" style="text-align: center;"> <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > <i class="zmdi zmdi-arrow-right"></i></button></a></th>
-                                                </tr>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                                if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_fee_module` WHERE `ac_fee_module`.`fee_id` = '.$_REQUEST['deleteid'];
 
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><a href="print-fee.php"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>EP1866051</td>
-                                                    <td>waleed asad</td>
-                                                    <td>8th</td>
-                                                    <td>3000</td>
-                                                    <td>1500</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>4500</td>
-                                                    <td>7/3/2020</td>
-                                                    <td>Kashif</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><a href="print-fee.php"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>EP1866051</td>
-                                                    <td>waleed asad</td>
-                                                    <td>8th</td>
-                                                    <td>3000</td>
-                                                    <td>1500</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>4500</td>
-                                                    <td>7/3/2020</td>
-                                                    <td>Kashif</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><a href="print-fee.php"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>EP1866051</td>
-                                                    <td>waleed asad</td>
-                                                    <td>8th</td>
-                                                    <td>3000</td>
-                                                    <td>1500</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>4500</td>
-                                                    <td>7/3/2020</td>
-                                                    <td>Kashif</td>
-                                                </tr>
-                                            </tbody>
+                                                    insert_query($sql);
+                                                    // echo "done deleting";
+                                                    }
+                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                                $sql = 'SELECT `fee_id`"ID", `category` "Category", `name`"name", `class`"Class", `gr_num`"Gr No.", `fees_month`"Fees for the Month", `admission_fee`"Admission Fee", `exam`"Exams and Other Activities", `fine`"Fine", `mics`"Mics", `total`"Total", `date`"Date", `cashier`"Cashier" FROM `ac_fee_module`';
+                                                display_query($sql);
+
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
@@ -215,18 +122,6 @@
                                 <div class="card-box">
                                     <div >
                                         <div>
-                                        <div class="dropdown pull-right">
-                                            <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
 
                                         <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fee Form </h4>
                                         <br>
@@ -235,9 +130,9 @@
                                             // echo "test";
                                             if(isset($_REQUEST['submit'])){
                                                 // print_r($_REQUEST);
-                                                $sql = 'INSERT INTO `ac_fee_module` (`fee_id`, `user_id`, `user_date`, `category`, `s_no`, `gr_num`, `fees_month`, `admission_fee`, `exam`, `fine`, `mics`, `total`, `date`, `cashier`) VALUES (NULL,\'';
+                                                $sql = 'INSERT INTO `ac_fee_module` (`fee_id`, `user_id`, `user_date`, `category`, `s_no`,`name`,`class`, `gr_num`, `fees_month`, `admission_fee`, `exam`, `fine`, `mics`, `total`, `date`, `cashier`) VALUES (NULL,\'';
                                                 $sql .= get_curr_user();
-                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['category'].'\', \''.$_REQUEST['s_no'].'\', \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['fees_month'].'\', \''.$_REQUEST['admission_fee'].'\', \''.$_REQUEST['exam'].'\', \''.$_REQUEST['fine'].'\', \''.$_REQUEST['mics'].'\', \''.$_REQUEST['total'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['cashier'].'\')';
+                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['category'].'\', \''.$_REQUEST['s_no'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['fees_month'].'\', \''.$_REQUEST['admission_fee'].'\', \''.$_REQUEST['exam'].'\', \''.$_REQUEST['fine'].'\', \''.$_REQUEST['mics'].'\', \''.$_REQUEST['total'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['cashier'].'\')';
                                                 // echo $sql;
                                                 insert_query($sql);
                                             }
@@ -976,116 +871,29 @@
                             <!-- input form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Card Table</h4>
 
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
-                                            <thead>
-                                            <tr>
-                                                <th>SNo.</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>From year</th>
-                                                <th>Til year</th>
-                                                <th>Student's Name</th>
-                                                <th>Father's Name</th>
-                                                <th>Class</th>
-                                                <th>Section</th>
-                                                <th>Address</th>
-                                                <th>Phone No.</th>
-                                                <th>Cell</th>
-                                            </tr>
-                                            </thead>
+                                        <table id="datatable2" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
 
-                                            <tbody id="addFrmPrint">
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><a href="print-fee-card.php"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>2020</td>
-                                                    <td>2021</td>
-                                                    <td>waleed asad</td>
-                                                    <td>M.AsadUllah</td>
-                                                    <td>8th</td>
-                                                    <td>B</td>
-                                                    <td>Block 5, Gulsahn-e-qbal , Karachi</td>
-                                                    <td>02136376698</td>
-                                                    <td>03002197568</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><a href="print-fee-card.php"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>2020</td>
-                                                    <td>2021</td>
-                                                    <td>waleed asad</td>
-                                                    <td>M.AsadUllah</td>
-                                                    <td>8th</td>
-                                                    <td>B</td>
-                                                    <td>Block 5, Gulsahn-e-qbal , Karachi</td>
-                                                    <td>02136376698</td>
-                                                    <td>03002197568</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><a href="print-fee-card.php"><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>2020</td>
-                                                    <td>2021</td>
-                                                    <td>waleed asad</td>
-                                                    <td>M.AsadUllah</td>
-                                                    <td>8th</td>
-                                                    <td>B</td>
-                                                    <td>Block 5, Gulsahn-e-qbal , Karachi</td>
-                                                    <td>02136376698</td>
-                                                    <td>03002197568</td>
-                                                </tr>
-                                            </tbody>
+                                                if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_fee_card` WHERE `ac_fee_card`.`fee_card_id` = '.$_REQUEST['deleteid'];
+
+                                                    insert_query($sql);
+                                                    // echo "done deleting";
+                                                    }
+                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                                $sql = 'SELECT `fee_card_id`"ID", `from_year`"From year", `till_year`"Till year", `name`"Student\'s Name", `father_name`"Father\'s Name", `class`"Class", `section`"Section", `address`"Address", `phone`"Phone", `cell`"Cell" FROM `ac_fee_card';
+                                                display_query($sql);
+
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                            
+                    </div>                          
                     </div>
                 </div>
             </dir>
@@ -1100,26 +908,14 @@
                                 <div class="card-box">
                                     <div>
                                         <div>
-                                        <div class="dropdown pull-right">
-                                            <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
 
                                         <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fee card Form </h4>
                                         <br>
                                         <?php
 
-                                            echo "test";
+                                            // echo "test";
                                             if(isset($_REQUEST['submit3'])){
-                                                print_r($_REQUEST);
+                                                // print_r($_REQUEST);
                                                 $sql3 = 'INSERT INTO `ac_fee_card` (`fee_card_id`, `user_id`, `user_date`, `from_year`, `till_year`, `name`, `father_name`, `class`, `section`, `address`, `phone`, `cell`) VALUES (NULL,\'';
                                                 $sql3 .= get_curr_user();
                                                 $sql3 .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['from_year'].'\', \''.$_REQUEST['till_year'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['father_name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['section'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['phone'].'\', \''.$_REQUEST['cell'].'\')';
@@ -1241,6 +1037,51 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+           <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
+                <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable2').dataTable();
+                $('#datatable2-keytable').DataTable( { keys: true } );
+                $('#datatable2-responsive').DataTable();
+                $('#datatable2-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatabl2e-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
 
 
 

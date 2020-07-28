@@ -15,6 +15,12 @@
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+                <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -73,175 +79,39 @@
                             <!-- input form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <h4 class="header-title m-t-0 m-b-30">Addmission Sheet</h4>
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;"> Addmission Sheet </h4>
+                                    <br>
 
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
-                                            <thead>
-                                                <tr>
-                                                    <th>S No.</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th>Class</th>
-                                                    <th>G.R. No.</th>
-                                                    <th>Name of Student</th>
-                                                    <th>Father's Name</th>
-                                                    <th>Surname</th>
-                                                    <th>Guardian's Name</th>
-                                                    <th>Relationship</th>
-                                                    <th>Religion</th>
-                                                    <th>Address</th>
-                                                    <th>Phone</th>
-                                                    <th>Cell</th>
-                                                    <th>E-mail</th>
-                                                    <th>ICE</th>
-                                                    <th>Occupation of Father / Gaurdian</th>
-                                                    <th>Monthly Income</th>
-                                                    <th>CNIC No of Father / Guardian</th>
-                                                    <th>Date of Birth(in figures)</th>
-                                                    <th>Place of Birth</th>
-                                                    <th>Date of Birth(In words)</th>
-                                                    <th>Addmission saught for class</th>
-                                                    <th>Addmission grantted for class</th>
-                                                    <th>Last School & Class Attended</th>
-                                                </tr>
+                                         <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered " id="adadmissiontable">
+                                            <?php
+                                            // -------------------------
+                                            // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ad_admission` (`addmission_id`, `user_id`, `user_time`, `class`, `GR_No`, `name_of_student`, `father_name`, `surname`, `guardian_name`, `relationship`, `religion`, `address`, `phone`, `cell_no`, `e_mail`, `ice_no`, `occupation_of_father`, `monthly_income`, `cnic_guradian`, `date_of_birth`, `place_of_birth`, `date_of_birth_words`, `admission_saught`, `admission_granted`, `last_school_class`) VALUES (NULL,\'';
+                                            $sql .= get_current_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class']. '\',\''.$_REQUEST['GR_No'].'\', \''.$_REQUEST['name_of_student']. '\', \''.$_REQUEST['father_name']. '\', \''.$_REQUEST['surname']. '\', \''.$_REQUEST['guardian_name']. '\', \''.$_REQUEST['relationship']. '\', \''.$_REQUEST['religion']. '\', \''.$_REQUEST['address']. '\', \''.$_REQUEST['phone']. '\', \''.$_REQUEST['cell_no']. '\', \''.$_REQUEST['e_mail']. '\', \''.$_REQUEST['ice_no']. '\', \''.$_REQUEST['occupation_of_father']. '\', \''.$_REQUEST['monthly_income']. '\', \''.$_REQUEST['cnic_guradian']. '\', \''.$_REQUEST['date_of_birth']. '\', \''.$_REQUEST['place_of_birth']. '\', \''.$_REQUEST['date_of_birth_words']. '\', \''.$_REQUEST['admission_saught']. '\', \''.$_REQUEST['admission_granted']. '\', \''.$_REQUEST['last_school_class']. '\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                        }
+                                            // -------------------------
+                                            ///edit code
+                                            check_edit("ad_admission","addmission_id");
+                                            edit_display("ad_admission","addmission_id");
+                                            //end of edit code -shift view below delete
 
-                                            </thead>
-                                            <tbody id="addFrmPrint">
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                            // --------------------------
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_admission` WHERE `ad_admission`.`addmission_id` = '.$_REQUEST['deleteid'];
 
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>0987645</td>
-                                                    <td>Fazal Khan</td>
-                                                    <td>Ali Khan</td>
-                                                    <td>Khan</td>
-                                                    <td>Ali Khan</td>
-                                                    <td>Father</td>
-                                                    <td>islam</td>
-                                                    <td>Gulshan Block 5</td>
-                                                    <td>02136866543</td>
-                                                    <td>03456789659</td>
-                                                    <td>fazalkahna@gmail.com</td>
-                                                    <td>03005678543</td>
-                                                    <td>Clerk</td>
-                                                    <td>50,000</td>
-                                                    <td>4210178781244</td>
-                                                    <td>12/25/1998</td>
-                                                    <td>Karachi</td>
-                                                    <td>december twelve nineteen ninety-eight</td>
-                                                    <td>6th</td>
-                                                    <td>5th</td>
-                                                    <td>sun acadmey & 4th</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>0987645</td>
-                                                    <td>Fazal Khan</td>
-                                                    <td>Ali Khan</td>
-                                                    <td>Khan</td>
-                                                    <td>Ali Khan</td>
-                                                    <td>Father</td>
-                                                    <td>islam</td>
-                                                    <td>Gulshan Block 5</td>
-                                                    <td>02136866543</td>
-                                                    <td>03456789659</td>
-                                                    <td>fazalkahna@gmail.com</td>
-                                                    <td>03005678543</td>
-                                                    <td>Clerk</td>
-                                                    <td>50,000</td>
-                                                    <td>4210178781244</td>
-                                                    <td>12/25/1998</td>
-                                                    <td>Karachi</td>
-                                                    <td>december twelve nineteen ninety-eight</td>
-                                                    <td>6th</td>
-                                                    <td>5th</td>
-                                                    <td>sun acadmey & 4th</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>0987645</td>
-                                                    <td>Fazal Khan</td>
-                                                    <td>Ali Khan</td>
-                                                    <td>Khan</td>
-                                                    <td>Ali Khan</td>
-                                                    <td>Father</td>
-                                                    <td>islam</td>
-                                                    <td>Gulshan Block 5</td>
-                                                    <td>02136866543</td>
-                                                    <td>03456789659</td>
-                                                    <td>fazalkahna@gmail.com</td>
-                                                    <td>03005678543</td>
-                                                    <td>Clerk</td>
-                                                    <td>50,000</td>
-                                                    <td>4210178781244</td>
-                                                    <td>12/25/1998</td>
-                                                    <td>Karachi</td>
-                                                    <td>december twelve nineteen ninety-eight</td>
-                                                    <td>6th</td>
-                                                    <td>5th</td>
-                                                    <td>sun acadmey & 4th</td>
-                                                </tr>
-                                            </tbody>
+                                            insert_query($sql);
+                                            // echo "done deleting";
+                                                }
+
+                                            $sql = 'SELECT `addmission_id`"ID", `class` "Class", `GR_No` "Gr No.", `name_of_student`"Name Of Student", `father_name`"Father\'s Name", `surname`"Surname", `guardian_name`"Guardian Name", `relationship` "Relationship", `religion` "Religion", `address`"Address", `phone`"Phone", `cell_no`"Cell No.", `e_mail` "E-mail", `ice_no`"In case of Emergency", `occupation_of_father` "Occupation of Father", `monthly_income` "Monthly Income", `cnic_guradian`"CNIC Guardian", `date_of_birth`"Date of Birth", `place_of_birth`"Place of Birth", `date_of_birth_words` "Date of Birth (in words)", `admission_saught` "Admission saught for class", `admission_granted` "Admission granted for class", `last_school_class` "Last School and Class Attended " FROM `ad_admission`';
+                                            display_query($sql);
+                                            // ------------------------------
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
@@ -264,32 +134,12 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Admission Form </h4>
                                     
                                     <?php
 
-                                        // echo "test";
-                                        if(isset($_REQUEST['submit'])){
-                                            // print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ad_admission` (`addmission_id`, `user_id`, `user_time`, `class`, `GR_No`, `name_of_student`, `father_name`, `surname`, `guardian_name`, `relationship`, `religion`, `address`, `phone`, `cell_no`, `e_mail`, `ice_no`, `occupation_of_father`, `monthly_income`, `cnic_guradian`, `date_of_birth`, `place_of_birth`, `date_of_birth_words`, `admission_saught`, `admission_granted`, `last_school_class`) VALUES (NULL,\'';
-                                            $sql .= get_current_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class']. '\',\''.$_REQUEST['GR_No'].'\', \''.$_REQUEST['name_of_student']. '\', \''.$_REQUEST['father_name']. '\', \''.$_REQUEST['surname']. '\', \''.$_REQUEST['guardian_name']. '\', \''.$_REQUEST['relationship']. '\', \''.$_REQUEST['religion']. '\', \''.$_REQUEST['address']. '\', \''.$_REQUEST['phone']. '\', \''.$_REQUEST['cell_no']. '\', \''.$_REQUEST['e_mail']. '\', \''.$_REQUEST['ice_no']. '\', \''.$_REQUEST['occupation_of_father']. '\', \''.$_REQUEST['monthly_income']. '\', \''.$_REQUEST['cnic_guradian']. '\', \''.$_REQUEST['date_of_birth']. '\', \''.$_REQUEST['place_of_birth']. '\', \''.$_REQUEST['date_of_birth_words']. '\', \''.$_REQUEST['admission_saught']. '\', \''.$_REQUEST['admission_granted']. '\', \''.$_REQUEST['last_school_class']. '\')';
-                                            // echo $sql;
-                                            insert_query($sql);
-                                        }
+                                        
                                     ?>
                                     <form action="Admin-mod-admission-management.php" method="post" >
 
@@ -503,9 +353,9 @@
                                         </div>
 
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light"  id="adsubmit" name="submit">
-                                                Submit
-                                            </button>
+                                            <?php 
+                                            code_submit();
+                                            ?>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                 Cancel
                                             </button>
@@ -650,6 +500,40 @@
         <script src="assets/js/jquery.nicescroll.js"></script>
         <script src="assets/js/jquery.slimscroll.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
+                <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
 
         <!-- KNOB JS -->
         <!--[if IE]>

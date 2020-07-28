@@ -95,11 +95,37 @@
                                             insert_query($sql);
                                         }
                                         ///edit code
-                                       
-                                        check_edit("ac_annual_appraisal","increment_form_id");
+                                         if(isset($_REQUEST['edit']) && $_REQUEST['editid'] && is_numeric($_REQUEST['editid']) ){
+                                           
+$arr_key = array_keys($_REQUEST);
+for($i=0;$i<count($arr_key);$i++)
+    {
+        $ak = $arr_key[$i];
+        if($ak == "edit" || $ak== "editid" ) continue;
+         $sql = "UPDATE `ac_annual_appraisal` SET `";
+        
+                                            $sql .= $ak."` = '".$_REQUEST[$ak]."' WHERE `ac_annual_appraisal`.`increment_form_id` = ".$_REQUEST['editid'];
+                                            
+                                            insert_query($sql);
+}
 
-                                        edit_display("ac_annual_appraisal","increment_form_id");
-                                     
+
+                                         }
+
+                                         if(isset($_REQUEST['editid']) && is_numeric($_REQUEST['editid']) && !(isset($_REQUEST['edit'] ))){ 
+
+
+//$_REQUEST['editid']
+
+
+ $sql_edit = 'SELECT `increment_form_id` ,`user_date` , `gr_number` ,`name` ,`old_salary`, `salary_increment` ,`aproved_by`, `new_salary` , `comment` FROM `ac_annual_appraisal` where `increment_form_id` ='.$_REQUEST['editid'] ;
+
+transform_edit(query_to_array($sql_edit));
+
+
+
+
+}
 //end of edit code -shift view below delete
                                     
 
@@ -198,7 +224,14 @@
                                         <div class="form-group text-right m-b-0">
                                            
 <?php 
-code_submit();
+if(isset($_REQUEST['editid']) && is_numeric($_REQUEST['editid'])){ 
+
+echo '<input type="hidden"  name="editid"   value="'.$_REQUEST['editid'].'">';
+
+
+echo ' <button class="btn btn-primary waves-effect waves-light" type="submit" ';
+    echo "name=\"edit\">Edit";}
+else {echo ' <button class="btn btn-primary waves-effect waves-light" type="submit" '; echo "name=\"submit\">Submit";}
 ?>
                                            </button>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">

@@ -80,23 +80,41 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="card-box table-responsive">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Chart Of Account </h4>
 
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-striped table-bordered">
+                                        <!-- tablesaw table m-b-0 tablesaw-columntoggle table-bordered -->
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
+                                            // ---------------
+                                            if (isset($_REQUEST['submit'])) {
+                                            $sql = 'INSERT INTO `ac_receivable_chart_of_account` (`char_of_account_id`, `user_id`, `user_date`, `account`, `acount_name`, `type`, `detail`, `report_data`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['account'].'\', \''.$_REQUEST['acount_name'].'\', \''.$_REQUEST['type'].'\', \''.$_REQUEST['detail'].'\', \''.$_REQUEST['report_data'].'\')';
+                                            insert_query($sql);
+                                                }
+                                            // -------------------
+
+                                            ///edit code
+                                            check_edit("ac_receivable_chart_of_account","char_of_account_id");
+                                            edit_display("ac_receivable_chart_of_account","char_of_account_id");
+                                            //end of edit code -shift view below delete
+
+                                            // -------------------
+
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_receivable_chart_of_account` WHERE `ac_receivable_chart_of_account`.`char_of_account_id` = '.$_REQUEST['deleteid'];
+
+                                            insert_query($sql);
+                                            // echo "done deleting";
+                                                }
+                                            // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                            $sql = 'SELECT `char_of_account_id`"ID", `account`"Account", `acount_name` "Account name", `type` "Type", `detail`"Detail", `report_data`"Report date" FROM `ac_receivable_chart_of_account` ';
+                                            display_query($sql);
+
+                                            ?>
+                                        </table>
+<!--                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
                                             <tr>
                                                 <th>S.No</th>
@@ -511,7 +529,7 @@
                                                     <td>24/05/2020</td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table> -->
                                     </div>
                                 </div>
                             </div>
@@ -530,31 +548,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Chart Of Account </h4>
-
-                                    <?php 
-
-                                        if (isset($_REQUEST['submit'])) {
-                                            $sql = 'INSERT INTO `ac_receivable_chart_of_account` (`char_of_account`, `user_id`, `user_date`, `account`, `acount_name`, `type`, `detail`, `report_data`) VALUES (NULL,\'';
-                                            $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['account'].'\', \''.$_REQUEST['acount_name'].'\', \''.$_REQUEST['type'].'\', \''.$_REQUEST['detail'].'\', \''.$_REQUEST['report_data'].'\')';
-                                            insert_query($sql);
-                                        }
-
-                                    ?>
 
                                         <form action="Accounts-mod-receivable-and-payables-reporting.php" method="post">
 
@@ -594,9 +588,9 @@
                                             </div>
 
                                             <div class="form-group text-right m-b-0">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
-                                                    Submit
-                                                </button>
+                                                <?php 
+                                                code_submit();
+                                                ?>
                                                 <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                     Cancel
                                                 </button>

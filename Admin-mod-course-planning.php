@@ -11,6 +11,15 @@
 
           <title>The Brainic School</title>
 
+
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
@@ -69,90 +78,42 @@
                             <!-- form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;"> Course planning </h4>
                                     <br>
 
+                                    
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
-                                            <thead>
-                                            <tr>
-                                                <th>SNo.</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Class</th>
-                                                <th>Subject</th>
-                                                <th>Date</th>
-                                                <th>Title</th>
-                                                <th>Details</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="addFrmPrint">
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
+                                            // -------------------
+                                            //echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            //print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ad_course_planning` (`course_planning_id`, `user_id`, `user_date`, `class`, `subject`, `date`, `title`, `details`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class'].'\', \''.$_REQUEST['subject'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['title'].'\', \''.$_REQUEST['details'].'\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                            }
+                                            // --------------------------
+                                            ///edit code
+                                            check_edit("ad_course_planning","course_planning_id");
+                                            edit_display("ad_course_planning","course_planning_id");
+                                            //end of edit code -shift view below delete
+                                            // --------------------------
 
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>Maths</td>
-                                                    <td>8/9/2020</td>
-                                                    <td>Title</td>
-                                                    <td>Details...........</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>Maths</td>
-                                                    <td>8/9/2020</td>
-                                                    <td>Title</td>
-                                                    <td>Details...........</td>
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>5th</td>
-                                                    <td>Maths</td>
-                                                    <td>8/9/2020</td>
-                                                    <td>Title</td>
-                                                    <td>Details...........</td>
-                                                </tr>
-                                            </tbody>
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_course_planning` WHERE `ad_course_planning`.`course_planning_id` = '.$_REQUEST['deleteid'];
+
+                                            insert_query($sql);
+                                            // echo "done deleting";
+                                                }
+                                            // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                            $sql = 'SELECT `course_planning_id`"ID", `class`"Class", `subject`"Subject", `date`"Date", `title`"Title", `details`"Details" FROM `ad_course_planning`';
+                                            display_query($sql);
+
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
@@ -172,33 +133,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;">Course planning</h4>
-                                    <?php
-
-                                        //echo "test";
-                                        if(isset($_REQUEST['submit'])){
-                                            //print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ad_course_planning` (`course_planning_id`, `user_id`, `user_date`, `class`, `subject`, `date`, `title`, `details`) VALUES (NULL,\'';
-                                            $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class'].'\', \''.$_REQUEST['subject'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['title'].'\', \''.$_REQUEST['details'].'\')';
-                                            // echo $sql;
-                                            insert_query($sql);
-                                        }
-                                    ?>
-
                                     <form action="Admin-mod-course-planning.php" method="post">
 
                                         <div class="form-group">
@@ -234,9 +169,9 @@
                                             ><?php if(isset($_REQUEST['details'])) echo $_REQUEST['details']?></textarea>
                                         </div>
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light" name="submit">
-                                                Submit
-                                            </button>
+                                            <?php 
+                                            code_submit();
+                                            ?>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                 Cancel
                                             </button>
@@ -286,6 +221,41 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+
+        <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
 
 </body>
 </html>

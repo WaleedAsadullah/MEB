@@ -11,6 +11,14 @@
 
           <title>The Brainic School</title>
 
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
@@ -86,25 +94,42 @@
                             <!-- input form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px">Student attendance sheet</h4>
 
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead>
+                                            <?php
+
+                                            //echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            //print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ad_std_attendance`(`std_attendance_id`, `user_id`, `user_date`, `name`, `gr_no`, `status`, `class`, `date`)VALUES (NULL, \'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['grnum'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['date_td'].'\')';
+                                            //echo $sql;
+                                            insert_query($sql);
+                                            }
+
+                                            ///edit code
+                                       
+                                            check_edit("ad_std_attendance","std_attendance_id");
+
+                                            edit_display("ad_std_attendance","std_attendance_id");
+                                     
+                                            //end of edit code -shift view below delete
+
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_std_attendance` WHERE `ad_std_attendance`.`std_attendance_id` = '.$_REQUEST['deleteid'];
+
+                                                insert_query($sql);
+                                                // echo "done deleting";
+                                                }
+                                           // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                            $sql = 'SELECT `std_attendance_id`"ID", `name`"Name", `gr_no`"Gr No.", `status`"Status", `class`"Class", `date`"Date" FROM `ad_std_attendance` ';
+                                            display_query_attendance($sql);
+
+                                            ?>
+                                            <!-- <thead>
                                                 <tr>
                                                     <th></th>
                                                     <th></th>
@@ -135,7 +160,7 @@
                                                     </th>
                                                     <th>
                                                         <label for="saDate">Date</label>
-                                                        <input id="zaAddressOfGuardian" type="date"  class="form-control" data-parsley-id="8">
+                                                        <input type="date" class="form-control" ">
                                                     </th>
                                                 </tr>
                                             <tr>
@@ -261,7 +286,7 @@
                                                     <td>26/04/2016</td>
                                                 </tr>
 
-                                            </tbody>
+                                            </tbody> -->
                                         </table>
                                     </div>
                                 </div>
@@ -285,32 +310,7 @@
                             <div class="col-lg-12">
                                 <div class="card-box">
                                     <?php
-
-//echo "test";
-if(isset($_REQUEST['submit'])){
-//print_r($_REQUEST);
-$sql = 'INSERT INTO `ad_std_attendance` (`std_attendance_id`, `user_id`, `user_date`, `gr_no`, `status`, `date`) VALUES (NULL, \'';
-$sql .= get_curr_user();
-$sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['grnum'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['date_td'].'\')';
-//echo $sql;
-insert_query($sql);
-}
-?>
-                                    <div >
-                                        <div>
-                                        <div class="dropdown pull-right">
-                                            <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-
+                                    ?>
                                         <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Student attendance </h4>
                                         <br>
 
@@ -318,11 +318,11 @@ insert_query($sql);
 
                                             <div class="form-group">
                                                 <label for="zaStudentsName">Student's Name </label>
-                                                <input type="text"  parsley-trigger="change" name="zaStudentsName" required="" value="<?php if (isset($_REQUEST['zaStudentsName'])) echo $_REQUEST['zaStudentsName'];  ?>" placeholder="Enter student's name" class="form-control" id="zaStudentsName" data-parsley-id="4">
+                                                <input type="text" name="name" required="" value="<?php if (isset($_REQUEST['name'])) echo $_REQUEST['name'];  ?>" placeholder="Enter student's name" class="form-control" id="zaStudentsName">
                                             </div>
                                             <div class="form-group">
                                                 <label for="zaClass">Class </label>
-                                                <select type="text" name="Class" parsley-trigger="change" required="" placeholder="Eligible or not" class="form-control" id="zaEligible">
+                                                <select type="text" name="class" parsley-trigger="change" required="" placeholder="Eligible or not" class="form-control" id="zaEligible">
                                                     <option <?php if (isset($_REQUEST['Class']) && $_REQUEST['Class']== "montessori" ) echo "selected";  ?> value="montessori">Montessori</option>
                                                     <option <?php if (isset($_REQUEST['Class']) && $_REQUEST['Class']== "KG 1" ) echo "selected";  ?> value="KG 1">KG 1</option>
                                                     <option <?php if (isset($_REQUEST['Class']) && $_REQUEST['Class']== "KG 2" ) echo "selected";  ?> value="KG 2">KG 2</option>
@@ -357,9 +357,9 @@ insert_query($sql);
                                                 <input type="date"  name="date_td" value="<?php if (isset($_REQUEST['date_td'])) echo $_REQUEST['date_td']; else echo (date("Y-m-d")); ?>" parsley-trigger="change" required="" placeholder="Enter GR#" class="form-control" >
                                             </div>
                                             <div class="form-group text-right m-b-0">
-                                                <button class="btn btn-primary waves-effect waves-light" name="submit" type="submit">
-                                                    Submit
-                                                </button>
+                                                <?php 
+                                                code_submit();
+                                                ?>
                                                 <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                     Cancel
                                                 </button>
@@ -409,6 +409,40 @@ insert_query($sql);
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+        <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable3').dataTable();
+                $('#datatable3-keytable').DataTable( { keys: true } );
+                $('#datatable3-responsive').DataTable();
+                $('#datatable3-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable3-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
 
 </body>
 </html>

@@ -11,8 +11,12 @@
 
           <title>The Brainic School</title>
 
-        <!--Morris Chart CSS -->
-        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -69,105 +73,45 @@
                             <!-- form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> School leaving certificate </h4>
                                     <br>
                                     
 
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
-                                            <thead>
-                                            <tr>
-                                                <th>SNo.</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Serial no.</th>
-                                                <th>General register no.</th>
-                                                <th>Name of the pupil in full</th>
-                                                <th>Race and caste with surname</th>
-                                                <th>Place of birth</th>
-                                                <th>Date of birth(in figures)</th>
-                                                <th>Date of birth(in words)</th>
-                                                <th>last school attended</th>
-                                                <th>Date of Admission</th>
-                                                <th>Progress in studies</th>
-                                                <th>Conduct</th>
-                                                <th>date of leaving school</th>
-                                                <th>Class in which studying</th>
-                                                <th>and since when</th>
-                                                <th>Reason of leaving school</th>
-                                                <th>Remarks</th>
-                                                <th>Date</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="addFrmPrint">
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
+                                            // ----------------
 
-                                                </tr>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>651</td>
-                                                    <td>8976</td>
-                                                    <td>Fazal khan</td>
-                                                    <td>Khan</td>
-                                                    <td>Karachi</td>
-                                                    <td>12/25/1998</td>
-                                                    <td>december twelve nineteen ninety-eight</td>
-                                                    <td>the smart school</td>
-                                                    <td>6/8/2015</td>
-                                                    <td>normal</td>
-                                                    <td>sir aslam</td>
-                                                    <td>7/6/2020</td>
-                                                    <td>6th</td>
-                                                    <td>2015</td>
-                                                    <td>transport issue</td>
-                                                    <td>thhek hai</td>
-                                                    <td>8/6/2020</td>
+                                            // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            
+                                            $sql = 'INSERT INTO `ad_school_leaving_certificate` (`school_leaving_certificate_id`, `user_id`, `user_date`, `name`, `surname`, `place_birth`, `date_of_birth`, `birth_word`, `last_school`, `date_of_admission`, `progress`, `conduct`, `leaving_date`, `class_studing`, `since`, `reason`, `remarks`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['surname'].'\', \''.$_REQUEST['place_birth'].'\', \''.$_REQUEST['date_of_birth'].'\', \''.$_REQUEST['birth_word'].'\', \''.$_REQUEST['last_school'].'\', \''.$_REQUEST['date_of_admission'].'\', \''.$_REQUEST['progress'].'\', \''.$_REQUEST['conduct'].'\', \''.$_REQUEST['leaving_date'].'\', \''.$_REQUEST['class_studing'].'\', \''.$_REQUEST['since'].'\', \''.$_REQUEST['reason'].'\', \''.$_REQUEST['remarks'].'\')';
+                                            // echo $sql;
 
-                                                    <th></th>
-                                                </tr>
-                                            </tbody>
+                                            insert_query($sql);
+                                            }
+                                            // ----------------
+
+                                            ///edit code
+                                            check_edit("ad_school_leaving_certificate","school_leaving_certificate_id");
+                                            edit_display("ad_school_leaving_certificate","school_leaving_certificate_id");
+                                            //end of edit code -shift view below delete
+
+                                            // ----------------
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_school_leaving_certificate` WHERE `ad_school_leaving_certificate`.`school_leaving_certificate_id` = '.$_REQUEST['deleteid'];
+
+                                            insert_query($sql);
+                                            // echo "done deleting";
+                                                }
+                                            // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                            $sql = 'SELECT `school_leaving_certificate_id` "ID", `name`"Name", `surname`"Surname", `place_birth`"Place of Birth", `date_of_birth`"Date of Birth", `birth_word` "Date of Birth (in words)", `last_school`"Last school attended", `date_of_admission`"Date of Admission", `progress`"Progress in studies", `conduct`"Conduct", `leaving_date`"Date of leaving school", `class_studing`"Class in which studying", `since`"and since when", `reason`"Reason of leaving school", `remarks`"Remarks" FROM `ad_school_leaving_certificate`';
+                                            display_query($sql);
+
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
@@ -185,36 +129,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> School leaving certificate Form </h4>
-                                    <?php
-
-
-                                        // echo "test";
-                                        if(isset($_REQUEST['submit'])){
-                                            // print_r($_REQUEST);
-                                            
-                                            $sql = 'INSERT INTO `ad_school_leaving_certificate` (`school_leaving_certificate_id`, `user_id`, `user_date`, `name`, `surname`, `place_birth`, `date_of_birth`, `birth_word`, `last_school`, `date_of_admission`, `progress`, `conduct`, `leaving_date`, `class_studing`, `since`, `reason`, `remarks`) VALUES (NULL,\'';
-                                            $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['surname'].'\', \''.$_REQUEST['place_birth'].'\', \''.$_REQUEST['date_of_birth'].'\', \''.$_REQUEST['birth_word'].'\', \''.$_REQUEST['last_school'].'\', \''.$_REQUEST['date_of_admission'].'\', \''.$_REQUEST['progress'].'\', \''.$_REQUEST['conduct'].'\', \''.$_REQUEST['leaving_date'].'\', \''.$_REQUEST['class_studing'].'\', \''.$_REQUEST['since'].'\', \''.$_REQUEST['reason'].'\', \''.$_REQUEST['remarks'].'\')';
-                                            // echo $sql;
-
-                                        insert_query($sql);
-                                    }
-
-                                    ?>
 
                                     <form action="Admin-mod-school-leaving-certificate.php" method="post" >
 
@@ -301,9 +217,9 @@
                                         </div>
 
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light" type="submit"  name="submit">
-                                                Submit
-                                            </button>
+                                            <?php 
+                                            code_submit();
+                                            ?>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                 Cancel
                                             </button>
@@ -353,6 +269,41 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+        <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
+   
     
         
     </body>

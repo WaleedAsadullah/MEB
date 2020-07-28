@@ -39,7 +39,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Students-mod-header.php")
+                            include_once("Students-mod-header.php");
+                            include_once("db_functions.php");
                     ?>
 
                     <!-- header -->
@@ -48,7 +49,7 @@
 
                     <!--- Sidemenu -->
                     <?php 
-                            include_once("Students-mod-sidemenu.php")
+                            include_once("Students-mod-sidemenu.php");
                     ?>
 
                     <!-- Sidebar -->
@@ -62,6 +63,11 @@
                             <div class="col-sm-12">
                                 <h3>Home Work</h3>
                                 <div class="timeline">
+
+                                    <?php
+                                    $sql = 'SELECT `th_home_work_id`, `user_id`, `user_date`, `class`, `subject`, `date`, `work` FROM `th_home_work`';
+                                    display_homework($sql)
+                                    ?>
                                     <article class="timeline-item alt">
                                         <div class="text-right">
 

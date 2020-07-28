@@ -61,6 +61,7 @@
                         <span><a class="click" href="Accounts-mod-profit-and-loss.php">Account</a></span>
                         <span><a class="click" href="Parents-mod-child-progress-reports.php">Parent</a></span>
                         <span><a class="click" href="Students-mod-video-lecture.php">Student</a></span>
+                        <span><a class="click" href="teacher-mod-video-leacture.php">Teacher</a></span>
                     </div>
 
 

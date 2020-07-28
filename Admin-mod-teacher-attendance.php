@@ -78,25 +78,45 @@
                             <!-- input form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px">Teacher attendance sheet</h4>
 
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead>
+                                            <?php
+                                            // -------------------------
+                                            //echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            //print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `ad_teacher_attendance`(`teacher_attendance_id`, `user_id`, `user_date`, `name`, `id_num`, `status`, `date`) VALUES (NULL, \'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['date_td'].'\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                                }
+                                            // -----------------------
+                                                ///edit code
+                                       
+                                            check_edit("ad_teacher_attendance","teacher_attendance_id");
+                                            edit_display("ad_teacher_attendance","teacher_attendance_id");
+                                     
+                                            //end of edit code -shift view below delete
+
+
+                                            // -----------------------
+
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_teacher_attendance` WHERE `ad_teacher_attendance`.`teacher_attendance_id` = '.$_REQUEST['deleteid'];
+
+                                            insert_query($sql);
+                                                    // echo "done deleting";
+                                                }
+                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                                $sql = 'SELECT `teacher_attendance_id`"ID",`name`"Name", `id_num`"Gr No.", `status` Status, `date`"Date" FROM `ad_teacher_attendance` ';
+                                                display_query_attendance_teacher($sql);
+
+                                            // -------------------------
+                                            ?>
+                                            <!-- <thead>
                                                 <tr>
                                                     <th></th>
                                                     <th></th>
@@ -226,7 +246,7 @@
                                                     <td>26/04/2016</td>
                                                 </tr>
 
-                                            </tbody>
+                                            </tbody> -->
                                         </table>
                                     </div>
                                 </div>
@@ -247,29 +267,16 @@
                                 <div class="card-box">
                                     <div >
                                         <div>
-                                        <div class="dropdown pull-right">
-                                            <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-
                                         <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Teacher attendance </h4>
                                             <?php
 
                                                 //echo "test";
                                                 if(isset($_REQUEST['submit'])){
                                                     //print_r($_REQUEST);
-                                                    $sql = 'INSERT INTO `ad_teacher_attendance` (`teacher_attendance_id`, `user_id`, `user_date`, `id_num`, `status`, `date`) VALUES (NULL, \'';
+                                                    $sql = 'INSERT INTO `ad_teacher_attendance`(`teacher_attendance_id`, `user_id`, `user_date`, `name`, `id_num`, `status`, `date`) VALUES (NULL, \'';
                                                     $sql .= get_curr_user();
-                                                    $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['date_td'].'\')';
-                                                    echo $sql;
+                                                    $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['date_td'].'\')';
+                                                    // echo $sql;
                                                     insert_query($sql);
                                                 }
                                             ?>
@@ -277,7 +284,7 @@
 
                                             <div class="form-group">
                                                 <label for="zaStudentsName">Teacher's Name </label>
-                                                <input type="text" name="teachername" parsley-trigger="change" required="" placeholder="Enter student's name" class="form-control" id="zaStudentsName" data-parsley-id="4"  value="<?php if (isset($_REQUEST['teachername'])) echo $_REQUEST['teachername'];  ?>" >
+                                                <input type="text" name="name" required="" placeholder="Enter teacher's name" class="form-control" id="zaStudentsName" value="<?php if (isset($_REQUEST['name'])) echo $_REQUEST['name'];  ?>" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="id_num">ID #</label>
@@ -286,11 +293,11 @@
                                             <div class="form-group">
                                                 <label for="status">Status</label>
                                                 <select type="text" name="status" parsley-trigger="change" required  class="form-control" id="zaEligible">
-                                                    <option value="present" <?php if (isset($_REQUEST['status']) && $_REQUEST['status']== "present" ) echo "selected";  ?>>Present</option>
+                                                    <option value="Present" <?php if (isset($_REQUEST['status']) && $_REQUEST['status']== "Present" ) echo "selected";  ?>>Present</option>
                                                     <option value="Absent" <?php if (isset($_REQUEST['status']) && $_REQUEST['status']== "Absent" ) echo "selected";  ?>>Absent</option>
                                                     <option value="Late"  <?php if (isset($_REQUEST['status']) && $_REQUEST['status']== "Late" ) echo "selected";  ?>>Late</option>
                                                     <option value="Excused"  <?php if (isset($_REQUEST['status']) && $_REQUEST['status']== "Excused" ) echo "selected";  ?>>Excused</option>
-                                                    <option value=" Alerts on Absence" <?php if (isset($_REQUEST['status']) && $_REQUEST['status']== "Alerts_on_Absence" ) echo "selected";  ?>>  Alerts on Absence</option>
+                                                    <option value="Alerts on Absences" <?php if (isset($_REQUEST['status']) && $_REQUEST['status']== "Alerts on Absences" ) echo "selected";  ?>>Alerts on Absences</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">

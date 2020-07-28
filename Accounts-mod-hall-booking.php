@@ -14,6 +14,13 @@
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -75,145 +82,24 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Hall booking </h4>
                                     <br>
 
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>S.No</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Name</th>
-                                                <th>Address</th>
-                                                <th>Phone</th>
-                                                <th>Date of booking</th>
-                                                <th>Rent amount</th>
-                                                <th>Advance paid</th>
-                                                <th>Location</th>
-                                                <th>Date of the event</th>
-                                                <th>Number of guests</th>
-                                                <th>Waiters are required?</th>
-                                                <th>If female waiters are required?</th>
-                                                <th>Advance that can given</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    
+                                        <table id="datatable2" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
 
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>Mr.Fasial Rasheed</td>
-                                                    <td>Gulsahn-e-Iqbal</td>
-                                                    <td>0324-7896543</td>
-                                                    <td>7/16/2020</td>
-                                                    <td>7,000</td>
-                                                    <td>2,200</td>
-                                                    <td>xyz location</td>
-                                                    <td>8/14/2020</td>
-                                                    <td>50</td>
-                                                    <td>yes</td>
-                                                    <td>no</td>
-                                                    <td>yes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>Mr.Fasial Rasheed</td>
-                                                    <td>Gulsahn-e-Iqbal</td>
-                                                    <td>0324-7896543</td>
-                                                    <td>7/16/2020</td>
-                                                    <td>7,000</td>
-                                                    <td>2,200</td>
-                                                    <td>xyz location</td>
-                                                    <td>8/14/2020</td>
-                                                    <td>50</td>
-                                                    <td>yes</td>
-                                                    <td>no</td>
-                                                    <td>yes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>Mr.Fasial Rasheed</td>
-                                                    <td>Gulsahn-e-Iqbal</td>
-                                                    <td>0324-7896543</td>
-                                                    <td>7/16/2020</td>
-                                                    <td>7,000</td>
-                                                    <td>2,200</td>
-                                                    <td>xyz location</td>
-                                                    <td>8/14/2020</td>
-                                                    <td>50</td>
-                                                    <td>yes</td>
-                                                    <td>no</td>
-                                                    <td>yes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-local-printshop" onclick="myPrint('addFrmPrint')"></i></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>Mr.Fasial Rasheed</td>
-                                                    <td>Gulsahn-e-Iqbal</td>
-                                                    <td>0324-7896543</td>
-                                                    <td>7/16/2020</td>
-                                                    <td>7,000</td>
-                                                    <td>2,200</td>
-                                                    <td>xyz location</td>
-                                                    <td>8/14/2020</td>
-                                                    <td>50</td>
-                                                    <td>yes</td>
-                                                    <td>no</td>
-                                                    <td>yes</td>
-                                                </tr>
-                                                
-                                            </tbody>
+                                                if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_fee_card` WHERE `ac_fee_card`.`fee_card_id` = '.$_REQUEST['deleteid'];
+
+                                                    insert_query($sql);
+                                                    // echo "done deleting";
+                                                    }
+                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                                $sql = 'SELECT `hall_booking`"ID", `name`"Name", `address`"Address", `phone`"Phone",`date_booking`"Date of booking", `rent`"Rent", `advance`"Advance", `location`"Location", `date_event`"Date of event", `guest`"Number of guest", `waiter`"Waiter are required ?", `female_waiter`"If female waiter required ?", `is_adv_given`"Advance that can given" FROM `ac_hall_booking';
+                                                display_query($sql);
+
+                                            ?>
                                         </table>
                                     </div>
                                 </div>
@@ -230,19 +116,6 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Hall booking form </h4>
                                     <br>
 
@@ -392,6 +265,50 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+           <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
 
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable2').dataTable();
+                $('#datatable2-keytable').DataTable( { keys: true } );
+                $('#datatable2-responsive').DataTable();
+                $('#datatable2-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatabl2e-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
 </body>
 </html>

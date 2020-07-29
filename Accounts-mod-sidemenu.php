@@ -35,7 +35,7 @@
 
                             
                              <li>
-                                <a href="Accounts-mod-receivable-and-payables-reporting.php" class="waves-effect"><i class="zmdi zmdi-collection-item"></i> <span> Receivable and Payables reporting
+                                <a href="Accounts-mod-receivable-and-payables-reporting.php" class="waves-effect"><i class="zmdi zmdi-collection-item"></i> <span> Receivable and Payables Reporting
                                  </span> </a>
                             </li>
 
@@ -44,7 +44,7 @@
                             </li>
 
                             <li>
-                                <a href="Accounts-mod-payoll-calculation.php" class="waves-effect"><i class="fa fa-calculator"></i> <span> Payroll calculation </span> </a>
+                                <a href="Accounts-mod-payoll-calculation.php" class="waves-effect"><i class="fa fa-calculator"></i> <span> Payroll Calculation </span> </a>
                             </li>
 
 
@@ -54,22 +54,29 @@
                             </li>
 
                             <li>
-                                <a href="Accounts-mod-zakat-form.php" class="waves-effect"><i class="fa fa-pagelines"></i> <span> Zakat form</span> </a>
+                                <a href="Accounts-mod-zakat-form.php" class="waves-effect"><i class="fa fa-pagelines"></i> <span> Zakat Form</span> </a>
+                            </li>
+                            <li>
+                                <a href="Accounts-mod-fee-collecting.php" class="waves-effect"><i class="fa fa-vcard-o"></i> <span> Fee Collecting</span> </a>
+                            </li>
+                            <li>
+                                <a href="Accounts-mod-fee-card.php" class="waves-effect"><i class="dripicons-document"></i> <span> Fee Card</span> </a>
                             </li>
 
                             <li>
-                                <a href="Accounts-mod-fee-modulet.php" class="waves-effect"><i class="fa fa-vcard-o"></i> <span> Fee module</span> </a>
+                                <a href="Accounts-mod-fee-discount.php" class="waves-effect"><i class="dripicons-to-do"></i> <span> Sibling Discount on Fee</span> </a>
+                            </li>
+                            
+
+                            <li>
+                                <a href="Accounts-mod-miscellaneous-querry-reporting.php" class="waves-effect"><i class="fa fa-database"></i> <span> Miscellaneous Querry Reporting </span> </a>
                             </li>
 
                             <li>
-                                <a href="Accounts-mod-miscellaneous-querry-reporting.php" class="waves-effect"><i class="fa fa-database"></i> <span> Miscellaneous Querry reporting </span> </a>
-                            </li>
-
-                            <li>
-                                <a href="Accounts-mod-annual-appraisal-for-bonus-and-increment.php" class="waves-effect"><i class="fa fa-calendar-check-o"></i> <span> Annual Appraisal for bonus and increment </span> </a>
+                                <a href="Accounts-mod-annual-appraisal-for-bonus-and-increment.php" class="waves-effect"><i class="fa fa-calendar-check-o"></i> <span> Annual Appraisal for Bonus and Increment </span> </a>
                             </li>
                             <li>
-                                <a href="Accounts-mod-hall-booking.php" class="waves-effect"><i class="zmdi zmdi-assignment"></i> <span> Hall booking </span> </a>
+                                <a href="Accounts-mod-hall-booking.php" class="waves-effect"><i class="zmdi zmdi-assignment"></i> <span> Hall Booking </span> </a>
                             </li>
 
 

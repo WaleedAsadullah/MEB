@@ -105,7 +105,7 @@
                                             //print_r($_REQUEST);
                                             $sql = 'INSERT INTO `ad_std_attendance`(`std_attendance_id`, `user_id`, `user_date`, `name`, `gr_no`, `status`, `class`, `date`)VALUES (NULL, \'';
                                             $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['grnum'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['date_td'].'\')';
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['gr_no'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['date'].'\')';
                                             //echo $sql;
                                             insert_query($sql);
                                             }
@@ -340,7 +340,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="userName">GR #</label>
-                                                <input type="text" name="grnum" parsley-trigger="change" required="" value="<?php if (isset($_REQUEST['grnum'])) echo $_REQUEST['grnum'];  ?>"placeholder="Enter GR#" class="form-control" >
+                                                <input type="text" name="gr_no" parsley-trigger="change" required="" value="<?php if (isset($_REQUEST['gr_no'])) echo $_REQUEST['gr_no'];  ?>"placeholder="Enter GR#" class="form-control" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="userName">Status</label>
@@ -353,8 +353,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="date_td">Date</label>
-                                                <input type="date"  name="date_td" value="<?php if (isset($_REQUEST['date_td'])) echo $_REQUEST['date_td']; else echo (date("Y-m-d")); ?>" parsley-trigger="change" required="" placeholder="Enter GR#" class="form-control" >
+                                                <label for="date">Date</label>
+                                                <input type="date"  name="date" value="<?php if (isset($_REQUEST['date'])) echo $_REQUEST['date']; else echo (date("Y-m-d")); ?>" parsley-trigger="change" required="" placeholder="Enter GR#" class="form-control" >
                                             </div>
                                             <div class="form-group text-right m-b-0">
                                                 <?php 

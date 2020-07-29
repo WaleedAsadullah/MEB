@@ -81,16 +81,36 @@
                                     <div class="table-responsive">
                                         <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
                                             <?php
+                                            // --------------
 
-                                                if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `th_video_lecture` WHERE `th_video_lecture`.`th_video_lecture_id` = '.$_REQUEST['deleteid'];
+                                             // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `th_video_lecture`(`th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`, `title`, `link`, `comment`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class'].'\', \''.$_REQUEST['subject'].'\', \''.$_REQUEST['title'].'\', \''.$_REQUEST['link'].'\', \''.$_REQUEST['comment'].'\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                            }
 
-                                                    insert_query($sql);
-                                                    // echo "done deleting";
-                                                    }
-                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+                                            // --------------
 
-                                                $sql = 'SELECT `th_video_lecture_id`, `class`"Class", `subject`"Subject", `title`"Title", `link`"Links", `comment`"Comments" FROM `th_video_lecture`';
-                                                display_query($sql);
+                                            ///edit code
+                                            check_edit("th_video_lecture","th_video_lecture_id");
+                                            edit_display("th_video_lecture","th_video_lecture_id");
+                                            //end of edit code -shift view below delete
+
+                                            // --------------
+
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `th_video_lecture` WHERE `th_video_lecture`.`th_video_lecture_id` = '.$_REQUEST['deleteid'];
+
+                                            insert_query($sql);
+                                            // echo "done deleting";
+                                                }
+                                            // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                            $sql = 'SELECT `th_video_lecture_id` "ID", `class`"Class", `subject`"Subject", `title`"Title", `link`"Links", `comment`"Comments" FROM `th_video_lecture`';
+                                            display_query($sql);
 
                                             ?>
                                         </table>
@@ -111,64 +131,56 @@
                                 <div class="card-box">
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Video lecture upload </h4>
                                     <br>
-
-                                    <?php
-
-                                            // echo "test";
-                                            if(isset($_REQUEST['submit'])){
-                                                // print_r($_REQUEST);
-                                                $sql = 'INSERT INTO `th_video_lecture`(`th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`, `title`, `link`, `comment`) VALUES (NULL,\'';
-                                                $sql .= get_curr_user();
-                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class'].'\', \''.$_REQUEST['subject'].'\', \''.$_REQUEST['title'].'\', \''.$_REQUEST['link'].'\', \''.$_REQUEST['comment'].'\')';
-                                                // echo $sql;
-                                                insert_query($sql);
-                                            }
-                                        ?>
-
-                                        <form action="teacher-mod-video-leacture.php" method="post">
+                                    <form action="teacher-mod-video-leacture.php" method="post">
 
 
-                                            <div class="form-group">
-                                                <label for="hbName">Class</label>
-                                                <input type="text" name="class" required="" placeholder="Enter class" class="form-control" id="hbName" value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
-                                            </div>
-                                        
-                                   
-                                            <div class="form-group">
-                                                <label>Subject</label>
-                                                <input type="text" name="subject" required="" placeholder="Enter address" class="form-control" value="<?php if(isset($_REQUEST['subject'])) echo $_REQUEST['subject']?>">
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="hbName">Class</label>
+                                            <input type="text" name="class" required="" placeholder="Enter class" class="form-control" id="hbName" value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
+                                        </div>
+                                    
+                               
+                                        <div class="form-group">
+                                            <label>Subject</label>
+                                            <input type="text" name="subject" required="" placeholder="Enter address" class="form-control" value="<?php if(isset($_REQUEST['subject'])) echo $_REQUEST['subject']?>">
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label for="">Title</label>
-                                                <input type="text" name="title" required="" placeholder="Enter phone" class="form-control" value="<?php if(isset($_REQUEST['title'])) echo $_REQUEST['title']?>">
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="">Title</label>
+                                            <input type="text" name="title" required="" placeholder="Enter phone" class="form-control" value="<?php if(isset($_REQUEST['title'])) echo $_REQUEST['title']?>">
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label for="hbDateOfBooking">Link</label>
-                                                <input type="text" name="link" required="" placeholder="Enter link" class="form-control" value="<?php if(isset($_REQUEST['link'])) echo $_REQUEST['link']?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="hbDateOfBooking">Comments</label>
-                                                <input type="text" name="comment"  placeholder="Enter comments........" class="form-control" value="<?php if(isset($_REQUEST['comment'])) echo $_REQUEST['comment']?>">
-                                            </div>
-                                            <div class="form-group text-right m-b-0">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
-                                                    Submit
-                                                </button>
-                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="hbDateOfBooking">Link</label>
+                                            <input type="text" name="link" required="" placeholder="Enter link" class="form-control" value="<?php if(isset($_REQUEST['link'])) echo $_REQUEST['link']?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="hbDateOfBooking">Comments</label>
+                                            <input type="text" name="comment"  placeholder="Enter comments........" class="form-control" value="<?php if(isset($_REQUEST['comment'])) echo $_REQUEST['comment']?>">
+                                        </div>
+                                        <div class="form-group text-right m-b-0">
+                                            <?php 
+                                            code_submit3();
+                                            ?>
+                                            <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>                
-    </div>
+            </div>
+
+                <!-- footer -->
+                <?php 
+                    include_once("footer.php")
+                ?>                
+        </div>
+
+
       <script>
             var resizefunc = [];
         </script>

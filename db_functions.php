@@ -270,8 +270,7 @@ for($j=0;$j<count($row_data);$j++){
   
     echo '<tr>
               <td>'.$i.'</td>
-              <td style="text-align:center;"><a style="color:rgb(16,196,105);" href="" ><i class="zmdi zmdi-edit"></i></a></td>
-              <td style="text-align:center;"><a style="color:rgb(255,87,90);" href="'.$_SERVER['PHP_SELF'].'?deleteid='.$row[$id_column].'"><i class="fa fa-trash-o"></i></a></td>
+              <td style="text-align:center;"><a style="color:rgb(16,196,105);" href="'.$_SERVER['PHP_SELF'].'?editid='.$row[$id_column].'"><i class="zmdi zmdi-edit"></i></a></td>              <td style="text-align:center;"><a style="color:rgb(255,87,90);" href="'.$_SERVER['PHP_SELF'].'?deleteid='.$row[$id_column].'"><i class="fa fa-trash-o"></i></a></td>
               <td style="text-align:center;"><a style="color:rgb(120,108,150);" href="" ><i  class="zmdi zmdi-local-printshop"></i></a></td>
               <td style="text-align:center;"><a style="color:rgb(30,108,180);" href="" ><i class="zmdi zmdi-copy"></i></a></td>';
 
@@ -305,6 +304,22 @@ echo '<input type="hidden"  name="editid"   value="'.$_REQUEST['editid'].'">';
 echo ' <button class="btn btn-primary waves-effect waves-light" type="submit" ';
     echo "name=\"edit\">Edit";}
 else {echo ' <button class="btn btn-primary waves-effect waves-light" type="submit" '; echo "name=\"submit\">Submit";}
+
+}
+
+// 
+// button submit to edit
+function code_submit3()
+{
+
+if(isset($_REQUEST['editid']) && is_numeric($_REQUEST['editid'])){ 
+
+echo '<input type="hidden"  name="editid"   value="'.$_REQUEST['editid'].'">';
+
+
+echo ' <button class="btn btn-primary waves-effect waves-light" type="submit" ';
+    echo "name=\"edit\">Edit";}
+else {echo ' <button class="btn btn-primary waves-effect waves-light" type="submit" '; echo "name=\"submit3\">Submit";}
 
 }
 
@@ -429,7 +444,7 @@ for($j=0;$j<count($row_data);$j++){
   
     echo '<tr>
               <td>'.$i.'</td>
-              <td style="text-align:center;"><a style="color:rgb(16,196,105);" href="" ><i class="zmdi zmdi-edit"></i></a></td>
+              <td style="text-align:center;"><a style="color:rgb(16,196,105);" href="'.$_SERVER['PHP_SELF'].'?editid='.$row[$id_column].'"><i class="zmdi zmdi-edit"></i></a></td>
               <td style="text-align:center;"><a style="color:rgb(255,87,90);" href="'.$_SERVER['PHP_SELF'].'?deleteid='.$row[$id_column].'"><i class="fa fa-trash-o"></i></a></td>
               <td style="text-align:center;"><a style="color:rgb(120,108,150);" href="" ><i  class="zmdi zmdi-local-printshop"></i></a></td>
               <td style="text-align:center;"><a style="color:rgb(30,108,180);" href="" ><i class="zmdi zmdi-copy"></i></a></td>';

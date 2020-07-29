@@ -89,7 +89,7 @@
                                             //print_r($_REQUEST);
                                             $sql = 'INSERT INTO `ad_teacher_attendance`(`teacher_attendance_id`, `user_id`, `user_date`, `name`, `id_num`, `status`, `date`) VALUES (NULL, \'';
                                             $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['date_td'].'\')';
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['date'].'\')';
                                             // echo $sql;
                                             insert_query($sql);
                                                 }
@@ -255,9 +255,6 @@
                     </div> 
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
              <div class="content-page">
                 <div class="content">
@@ -265,21 +262,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div >
-                                        <div>
                                         <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Teacher attendance </h4>
-                                            <?php
-
-                                                //echo "test";
-                                                if(isset($_REQUEST['submit'])){
-                                                    //print_r($_REQUEST);
-                                                    $sql = 'INSERT INTO `ad_teacher_attendance`(`teacher_attendance_id`, `user_id`, `user_date`, `name`, `id_num`, `status`, `date`) VALUES (NULL, \'';
-                                                    $sql .= get_curr_user();
-                                                    $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['id_num'].'\', \''.$_REQUEST['status'].'\', \''.$_REQUEST['date_td'].'\')';
-                                                    // echo $sql;
-                                                    insert_query($sql);
-                                                }
-                                            ?>
                                         <form action="Admin-mod-teacher-attendance.php" method="post">
 
                                             <div class="form-group">
@@ -288,7 +271,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="id_num">ID #</label>
-                                                <input type="text" name="id_num" parsley-trigger="change" required="" placeholder="Enter ID#" class="form-control" value="<?php if(isset($_REQUEST['id_num'])) echo $_REQUEST['id_num']; ?>" >
+                                                <input type="text" name="id_num" required="" placeholder="Enter ID#" class="form-control" value="<?php if(isset($_REQUEST['id_num'])) echo $_REQUEST['id_num']; ?>" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="status">Status</label>
@@ -302,13 +285,13 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="data_td">Date</label>
-                                                <input type="date"  name="date_td" value="<?php if (isset($_REQUEST['date_td'])) echo $_REQUEST['date_td']; else echo (date("Y-m-d")); ?>" parsley-trigger="change" required="" placeholder="Enter GR#" class="form-control" >
+                                                <input type="date"  name="date" value="<?php if (isset($_REQUEST['date'])) echo $_REQUEST['date']; else echo (date("Y-m-d")); ?>" required class="form-control" >
                                             </div>
 
                                             <div class="form-group text-right m-b-0">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
-                                                    Submit
-                                                </button>
+                                                <?php 
+                                                code_submit();
+                                                ?>
                                                 <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                     Cancel
                                                 </button>
@@ -321,7 +304,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+
     </div>
       <script>
             var resizefunc = [];

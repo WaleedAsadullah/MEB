@@ -60,248 +60,6 @@
 
                     <!-- Sidebar -->
 
-            <div class="content-page">
-                <div class="content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card-box">
-                                     <div class="m-t-5 m-b-5" style="text-align: center" >
-                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Add</button></a>
-                                        <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- input form -->
-
-
-                            <!-- input form -->
-                                <div class="col-lg-12">
-                                    <div class="card-box">
-
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Table</h4>
-
-                                    <div class="table-responsive">
-                                        <!-- tablesaw table m-b-0 tablesaw-columntoggle table-bordered -->
-                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
-                                            <?php
-
-                                                if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_fee_module` WHERE `ac_fee_module`.`fee_id` = '.$_REQUEST['deleteid'];
-
-                                                    insert_query($sql);
-                                                    // echo "done deleting";
-                                                    }
-                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
-
-                                                $sql = 'SELECT `fee_id`"ID", `category` "Category", `name`"name", `class`"Class", `gr_num`"Gr No.", `fees_month`"Fees for the Month", `admission_fee`"Admission Fee", `exam`"Exams and Other Activities", `fine`"Fine", `mics`"Mics", `total`"Total", `date`"Date", `cashier`"Cashier" FROM `ac_fee_module`';
-                                                display_query($sql);
-
-                                            ?>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                            
-                    </div>
-                </div>
-            </dir>
-        </div>
-
-
-
-
-
-             <div class="content-page">
-                <div class="content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card-box">
-                                    <div >
-                                        <div>
-
-                                        <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fee Form </h4>
-                                        <br>
-                                        <?php
-
-                                            // echo "test";
-                                            if(isset($_REQUEST['submit'])){
-                                                // print_r($_REQUEST);
-                                                $sql = 'INSERT INTO `ac_fee_module` (`fee_id`, `user_id`, `user_date`, `category`, `s_no`,`name`,`class`, `gr_num`, `fees_month`, `admission_fee`, `exam`, `fine`, `mics`, `total`, `date`, `cashier`) VALUES (NULL,\'';
-                                                $sql .= get_curr_user();
-                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['category'].'\', \''.$_REQUEST['s_no'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['fees_month'].'\', \''.$_REQUEST['admission_fee'].'\', \''.$_REQUEST['exam'].'\', \''.$_REQUEST['fine'].'\', \''.$_REQUEST['mics'].'\', \''.$_REQUEST['total'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['cashier'].'\')';
-                                                // echo $sql;
-                                                insert_query($sql);
-                                            }
-                                        ?>
-
-                                        <form action="Accounts-mod-fee-modulet.php" method="post">
-                                            <div class="row">
-                                                <div class="col-lg-9"></div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label for="feCategory">Category</label>
-                                                        <select type="text" name="category" required="" placeholder="category" class="form-control" id="feCategory">
-                                                            <option value="montessori" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "montessori" ) echo "selected";  ?> >Montessori</option>
-                                                            <option value="girl" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "girl" ) echo "selected";  ?> >Girl</option>
-                                                            <option value="boy" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "boy" ) echo "selected";  ?> >Boy</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feSno">S No.</label>
-                                                        <input type="text" name="s_no" required="" class="form-control" id="feSno"
-                                                         value="<?php if(isset($_REQUEST['s_no'])) echo $_REQUEST['s_no']?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feRollNo">Roll No. </label>
-                                                        <input type="text" name="gr_num" required="" placeholder="Enter roll no." class="form-control" id="feRollNo"  value="<?php if(isset($_REQUEST['gr_num'])) echo $_REQUEST['gr_num']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feNameOfStudent">Name of Student</label>
-                                                        <input id="feNameOfStudent" name="name" type="text" placeholder="Enter name of student" required="" class="form-control"  value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">  
-                                                    <div class="form-group">
-                                                        <label for="feClass">Class</label>
-                                                        <input id="feClass" name="class" type="text" placeholder="Enter class" required="" class="form-control"  value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <br>
-
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label>Fees for the Month</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4"></div>
-                                                <div class="col-lg-4">  
-                                                    <div class="form-group">
-                                                        <input  type="number" name="fees_month" placeholder="Enter amount" required="" class="form-control"  value="<?php if(isset($_REQUEST['fees_month'])) echo $_REQUEST['fees_month']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label>Admission Fee</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4"></div>
-                                                <div class="col-lg-4">  
-                                                    <div class="form-group">
-                                                        <input  type="number" name="admission_fee" placeholder="Enter amount" class="form-control" value="<?php if(isset($_REQUEST['admission_fee'])) echo $_REQUEST['admission_fee']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label>Exams and Other Activities</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4"></div>
-                                                <div class="col-lg-4">  
-                                                    <div class="form-group">
-                                                        <input  type="number" name="exam" placeholder="Enter amount"  class="form-control"  value="<?php if(isset($_REQUEST['exam'])) echo $_REQUEST['exam']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label>Fine</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4"></div>
-                                                <div class="col-lg-4">  
-                                                    <div class="form-group">
-                                                        <input  type="number" name="fine" placeholder="Enter amount"  class="form-control"  value="<?php if(isset($_REQUEST['fine'])) echo $_REQUEST['fine']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label>Mics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4"></div>
-                                                <div class="col-lg-4">  
-                                                    <div class="form-group">
-                                                        <input  type="number" name="mics" placeholder="Enter amount"  class="form-control"  value="<?php if(isset($_REQUEST['mics'])) echo $_REQUEST['mics']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label><h3>Total</h3></label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4"></div>
-                                                <div class="col-lg-4">  
-                                                    <div class="form-group">
-                                                        <input  type="number" name="total" placeholder="Total amount" required="" class="form-control"  value="<?php if(isset($_REQUEST['total'])) echo $_REQUEST['total']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feNameOfStudent">Date</label>
-                                                        <input id="feNameOfStudent" name="date" type="date" placeholder="Enter name of student" required="" class="form-control" value="<?php if (isset($_REQUEST['date'])) echo $_REQUEST['date']; else echo (date("Y-m-d")); ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">  
-                                                    <div class="form-group">
-                                                        <label for="feClass">Cashier</label>
-                                                        <input id="feClass" name="cashier" type="text" placeholder="Enter class" required="" class="form-control"  value="<?php if (isset($_REQUEST['cashier'])) echo $_REQUEST['cashier'] ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group text-right m-b-0 m-t-10">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
-                                                    Submit
-                                                </button>
-                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                                                    Cancel
-                                                </button>
-                                            </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
     <!-- table discounted fee -->
             <div class="content-page">
                 <div class="content">
@@ -322,22 +80,7 @@
                             <!-- input form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;"> Brother/Sister Discount ON Fee Table </h4>
-
                                     <div class="table-responsive">
                                         <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                             <thead>
@@ -540,34 +283,18 @@
                             </div>
                         </div>
                     </div>
-                            
-                    </div>
                 </div>
-            </dir>
-        </div>
+            </div>
     <!-- table discounted fee end -->
 
 
-                <!-- table -->
+    <!-- table -->
              <div class="content-page">
                 <div class="content">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px;"> Brother/Sister Discount ON Fee </h4>
                                     <hr>
 
@@ -585,7 +312,7 @@
                                         ?>
 
 
-                                    <form action="Accounts-mod-fee-modulet.php" method="post">
+                                    <form action="Accounts-mod-fee-discount.php" method="post">
 
                                         <div class="row">
                                             <div class="col-lg-2"><h4 class="header-title" style="text-align: center; font-size: 50px; padding: 10px; font-weight: 300 ; margin-top: 70px"> 1 </h4></div>
@@ -837,175 +564,14 @@
                                                 Cancel
                                             </button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div><!-- end col -->
                         </div>
                     </div>
-
-                    </div>
-                </div>
-            <!-- table end -->
-
-
-
-            <!-- fee card -->
-
-            <div class="content-page">
-                <div class="content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card-box">
-                                     <div class="m-t-5 m-b-5" style="text-align: center" >
-                                         <a  href="admin-mod-student-addmission-form.php" > <button type="button" class="btn btn-primary btn w-md waves-effect waves-light"  >+ Addmission</button></a>
-                                        <a> <button type="button" class="btn btn-info btn w-md waves-effect waves-light" > Export </button></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- input form -->
-
-
-                            <!-- input form -->
-                                <div class="col-lg-12">
-                                    <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Card Table</h4>
-
-                                    <div class="table-responsive">
-                                        <table id="datatable2" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
-                                            <?php
-
-                                                if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_fee_card` WHERE `ac_fee_card`.`fee_card_id` = '.$_REQUEST['deleteid'];
-
-                                                    insert_query($sql);
-                                                    // echo "done deleting";
-                                                    }
-                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
-
-                                                $sql = 'SELECT `fee_card_id`"ID", `from_year`"From year", `till_year`"Till year", `name`"Student\'s Name", `father_name`"Father\'s Name", `class`"Class", `section`"Section", `address`"Address", `phone`"Phone", `cell`"Cell" FROM `ac_fee_card';
-                                                display_query($sql);
-
-                                            ?>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                          
-                    </div>
-                </div>
-            </dir>
-        </div>
-
-
-             <div class="content-page">
-                <div class="content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card-box">
-                                    <div>
-                                        <div>
-
-                                        <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fee card Form </h4>
-                                        <br>
-                                        <?php
-
-                                            // echo "test";
-                                            if(isset($_REQUEST['submit3'])){
-                                                // print_r($_REQUEST);
-                                                $sql3 = 'INSERT INTO `ac_fee_card` (`fee_card_id`, `user_id`, `user_date`, `from_year`, `till_year`, `name`, `father_name`, `class`, `section`, `address`, `phone`, `cell`) VALUES (NULL,\'';
-                                                $sql3 .= get_curr_user();
-                                                $sql3 .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['from_year'].'\', \''.$_REQUEST['till_year'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['father_name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['section'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['phone'].'\', \''.$_REQUEST['cell'].'\')';
-                                                // echo $sql;
-                                                insert_query($sql3);
-                                            }
-                                        ?>
-
-                                        <form action="Accounts-mod-fee-modulet.php" method="post">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feSno">From year </label>
-                                                        <input type="number" name="from_year" required="" placeholder="Enter start year" class="form-control" id="feSno" value="<?php if(isset($_REQUEST['from_year'])) echo $_REQUEST['from_year']?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feRollNo">Till year </label>
-                                                        <input type="number" name="till_year" required="" placeholder="Enter till valid year" class="form-control" id="feRollNo" value="<?php if(isset($_REQUEST['till_year'])) echo $_REQUEST['till_year']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feNameOfStudent">Student's Name</label>
-                                                        <input id="feNameOfStudent" name="name" type="text" placeholder="Enter name of student" required="" class="form-control"  value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">  
-                                                    <div class="form-group">
-                                                        <label for="feClass">Father's Name</label>
-                                                        <input id="feClass" name="father_name" type="text" placeholder="Enter name of father" class="form-control" value="<?php if(isset($_REQUEST['father_name'])) echo $_REQUEST['father_name']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feSno">Class </label>
-                                                        <input type="text" name="class" required="" placeholder="Enter class" class="form-control" id="feSno" value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feRollNo">Section</label>
-                                                        <input type="text" name="section" placeholder="Enter section" class="form-control"   value="<?php if(isset($_REQUEST['section'])) echo $_REQUEST['section']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="feClass">Address</label>
-                                                <input id="feClass" type="text" name="address" placeholder="Enter address" class="form-control"  value="<?php if(isset($_REQUEST['address'])) echo $_REQUEST['address']?>">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="feNameOfStudent">Phone No.</label>
-                                                        <input id="feNameOfStudent" name="phone" type="tel" placeholder="Enter phone number"  class="form-control" value="<?php if(isset($_REQUEST['phone'])) echo $_REQUEST['phone']?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">  
-                                                    <div class="form-group">
-                                                        <label for="feClass">Cell</label>
-                                                        <input id="feClass" name="cell" type="tel" placeholder="Enter cell number" class="form-control" value="<?php if(isset($_REQUEST['cell'])) echo $_REQUEST['cell']?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group text-right m-b-0 m-t-10">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit3">
-                                                    Submit
-                                                </button>
-                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                                                    Cancel
-                                                </button>
-                                            </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- table end -->
     
                 <!-- footer -->
                 <?php 

@@ -132,12 +132,7 @@
                             <div class="col-lg-12">
                                 <div class="card-box">
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Teacher Records </h4>
-
-                                        <?php
-
-                                            
-                                        ?>
-
+                                    
                                         <form action="Admin-mod-teacher-records.php" method="post">
 
 

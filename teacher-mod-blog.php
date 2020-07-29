@@ -45,7 +45,7 @@
                     <!--- header -->
                     <?php 
                             include_once("Students-mod-header.php");
-                            include_once("db_functions.php")
+                            include_once("db_functions.php");
                     ?>
 
                     <!-- header -->
@@ -82,6 +82,27 @@
                                         <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
                                             <?php
 
+                                            // ------------------
+
+                                            // echo "test";
+                                            if(isset($_REQUEST['submit'])){
+                                            // print_r($_REQUEST);
+                                            $sql = 'INSERT INTO `th_blog`(`th_blog_id`, `user_id`, `user_date`, `title`, `img_link`, `description`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['title'].'\', \''.$_REQUEST['img_link'].'\', \''.$_REQUEST['description'].'\')';
+                                            // echo $sql;
+                                            insert_query($sql);
+                                                }
+
+                                            // --------------------
+
+                                            ///edit code
+                                            check_edit("th_blog","th_blog_id");
+                                            edit_display("th_blog","th_blog_id");
+                                            //end of edit code -shift view below delete
+
+                                            // --------------------------
+
                                                 if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `th_blog` WHERE `th_blog`.`th_blog_id` = '.$_REQUEST['deleteid'];
 
                                                     insert_query($sql);
@@ -111,57 +132,45 @@
                                 <div class="card-box">
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px">Blog upload</h4>
                                     <br>
+                                    <form action="teacher-mod-blog.php" method="post">
+                                        <div class="form-group">
+                                            <label for="hbName">Title</label>
+                                            <input type="text" name="title" required="" placeholder="Enter name" class="form-control" id="hbName" value="<?php if(isset($_REQUEST['title'])) echo $_REQUEST['title']?>">
+                                        </div>
+                                    
+                               
+                                        <div class="form-group">
+                                            <label for="hbAddress">Image link</label>
+                                            <input type="text" name="img_link" required="" placeholder="Enter address" class="form-control" id="prName" value="<?php if(isset($_REQUEST['img_link'])) echo $_REQUEST['img_link']?>">
+                                        </div>
 
-                                    <?php
+                                        <div class="form-group">
+                                            <label for="hbPhone">Description</label>
+                                            <input type="tel" name="description" required="" placeholder="Enter phone" class="form-control" id="prRegular" value="<?php if(isset($_REQUEST['description'])) echo $_REQUEST['description']?>">
+                                        </div>
 
-                                            // echo "test";
-                                            if(isset($_REQUEST['submit'])){
-                                                // print_r($_REQUEST);
-                                                $sql = 'INSERT INTO `th_blog`(`th_blog_id`, `user_id`, `user_date`, `title`, `img_link`, `description`) VALUES (NULL,\'';
-                                                $sql .= get_curr_user();
-                                                $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['title'].'\', \''.$_REQUEST['img_link'].'\', \''.$_REQUEST['description'].'\')';
-                                                // echo $sql;
-                                                insert_query($sql);
-                                            }
-                                        ?>
+                                       
 
-                                        <form action="teacher-mod-blog.php" method="post">
-
-
-                                            <div class="form-group">
-                                                <label for="hbName">Title</label>
-                                                <input type="text" name="title" required="" placeholder="Enter name" class="form-control" id="hbName" value="<?php if(isset($_REQUEST['title'])) echo $_REQUEST['title']?>">
-                                            </div>
-                                        
-                                   
-                                            <div class="form-group">
-                                                <label for="hbAddress">Image link</label>
-                                                <input type="text" name="img_link" required="" placeholder="Enter address" class="form-control" id="prName" value="<?php if(isset($_REQUEST['img_link'])) echo $_REQUEST['img_link']?>">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="hbPhone">Description</label>
-                                                <input type="tel" name="description" required="" placeholder="Enter phone" class="form-control" id="prRegular" value="<?php if(isset($_REQUEST['description'])) echo $_REQUEST['description']?>">
-                                            </div>
-
-                                           
-
-                                            <div class="form-group text-right m-b-0">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">
-                                                    Submit
-                                                </button>
-                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        <div class="form-group text-right m-b-0">
+                                            <?php 
+                                            code_submit();
+                                            ?>
+                                            <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>
+
+                <!-- footer -->
+                <?php 
+                    include_once("footer.php")
+                ?>                 
     </div>
       <script>
             var resizefunc = [];

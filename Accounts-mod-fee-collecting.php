@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
@@ -19,7 +20,6 @@
         <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -59,6 +59,7 @@
                     ?>
 
                     <!-- Sidebar -->
+
             <div class="content-page">
                 <div class="content">
                     <div class="container">
@@ -78,42 +79,41 @@
                             <!-- input form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Concession Table</h4>
+
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Table</h4>
 
                                     <div class="table-responsive">
                                         <!-- tablesaw table m-b-0 tablesaw-columntoggle table-bordered -->
                                         <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
                                             <?php
-
-                                            // ----------------------
+                                            // -------------------
 
                                             // echo "test";
                                             if(isset($_REQUEST['submit'])){
                                             // print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ac_zakat_form` ( `zakat_form_id`, `user_id`, `user_date`, `name`, `class`, `gr_num`, `father_name`, `grand_father`, `surname`, `community_name`,  `grandian_cnic`, `contact`, `grandian_occupation`, `grandian_salary`, `eligible`, `relationship`, `address`, `free_ship`, `dependents`) VALUES (NULL,\'';
+                                            $sql = 'INSERT INTO `ac_fee_module` (`fee_id`, `user_id`, `user_date`, `category`, `s_no`,`name`,`class`, `gr_num`, `fees_month`, `admission_fee`, `exam`, `fine`, `mics`, `total`, `date`, `cashier`) VALUES (NULL,\'';
                                             $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['father_name'].'\', \''.$_REQUEST['grand_father'].'\', \''.$_REQUEST['surname'].'\', \''.$_REQUEST['community_name'].'\', \''.$_REQUEST['grandian_cnic'].'\', \''.$_REQUEST['contact'].'\', \''.$_REQUEST['grandian_occupation'].'\', \''.$_REQUEST['grandian_salary'].'\', \''.$_REQUEST['eligible'].'\', \''.$_REQUEST['relationship'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['free_ship'].'\', \''.$_REQUEST['dependents'].'\')';
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['category'].'\', \''.$_REQUEST['s_no'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['fees_month'].'\', \''.$_REQUEST['admission_fee'].'\', \''.$_REQUEST['exam'].'\', \''.$_REQUEST['fine'].'\', \''.$_REQUEST['mics'].'\', \''.$_REQUEST['total'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['cashier'].'\')';
                                                 // echo $sql;
                                             insert_query($sql);
                                                 }
-
-                                            // ---------------------
+                                            //----------------------
 
                                             ///edit code
-                                            check_edit("ac_zakat_form","zakat_form_id");
-                                            edit_display("ac_zakat_form","zakat_form_id");
+                                            check_edit("ac_fee_module","fee_id");
+                                            edit_display("ac_fee_module","fee_id");
                                             //end of edit code -shift view below delete
 
                                             // ---------------------
 
-                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_zakat_form` WHERE `ac_zakat_form`.`zakat_form_id` = '.$_REQUEST['deleteid'];
+                                            if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ac_fee_module` WHERE `ac_fee_module`.`fee_id` = '.$_REQUEST['deleteid'];
 
                                             insert_query($sql);
-                                                    // echo "done deleting";
+                                            // echo "done deleting";
                                                 }
-                                               // $sql = "SELECT * FROM `ac_annual_appraisal`";
+                                            // $sql = "SELECT * FROM `ac_annual_appraisal`";
 
-                                            $sql = 'SELECT `zakat_form_id`, `name` "Student\'s Name", `class`"Class", `gr_num` "Gr No.", `father_name`"Father\'s Name", `grand_father`"Grand Father\'s Name", `surname`"Surname", `community_name`"Community Name", `grandian_cnic`"Grandian CNIC", `contact`"Contact / Phone Number", `grandian_occupation`"Grandian\'s Occupation", `grandian_salary`"Monthly Income", `eligible`"Is the Student Eligible For Zakat ?", `relationship`"Gradian\'s Name and Relationship", `address`"Residential Address of Guardian", `free_ship`"Previously granted free ship ?", `dependents`"Number of Dependents" FROM `ac_zakat_form` ';
+                                            $sql = 'SELECT `fee_id`"ID", `category` "Category", `name`"name", `class`"Class", `gr_num`"Gr No.", `fees_month`"Fees for the Month", `admission_fee`"Admission Fee", `exam`"Exams and Other Activities", `fine`"Fine", `mics`"Mics", `total`"Total", `date`"Date", `cashier`"Cashier" FROM `ac_fee_module`';
                                             display_query($sql);
 
                                             ?>
@@ -123,9 +123,11 @@
                             </div>
                         </div>
                     </div>
+                            
+                    </div>
                 </div>
-            </div>>
-        
+            </dir>
+        </div>
 
 
 
@@ -137,25 +139,34 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fees Concession Form </h4>
-                                    <form action="Accounts-mod-zakat-form.php" method="post">
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Fee Form </h4>
+                                    <br>
+                                    <form action="Accounts-mod-fee-collecting.php" method="post">
+                                        <div class="row">
+                                            <div class="col-lg-9"></div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="feCategory">Category</label>
+                                                    <select type="text" name="category" required="" placeholder="category" class="form-control" id="feCategory">
+                                                        <option value="montessori" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "montessori" ) echo "selected";  ?> >Montessori</option>
+                                                        <option value="girl" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "girl" ) echo "selected";  ?> >Girl</option>
+                                                        <option value="boy" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "boy" ) echo "selected";  ?> >Boy</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="zaStudentsName">Student's Name </label>
-                                                    <input type="text" name="name" placeholder="Enter student's name" class="form-control" id="zaStudentsName" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
+                                                    <label for="feSno">S No.</label>
+                                                    <input type="text" name="s_no" required="" class="form-control" id="feSno"
+                                                     value="<?php if(isset($_REQUEST['s_no'])) echo $_REQUEST['s_no']?>">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="zaClass">Class </label>
-                                                    <input type="text" name="class" required="" placeholder="Enter your class" class="form-control" id="emailAddress" value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="form-group">
-                                                    <label for="userName">GR #</label>
-                                                    <input type="text" name="gr_num" required="" placeholder="Enter GR#" class="form-control" value="<?php if(isset($_REQUEST['gr_num'])) echo $_REQUEST['gr_num']?>">
+                                                    <label for="feRollNo">Roll No. </label>
+                                                    <input type="text" name="gr_num" required="" placeholder="Enter roll no." class="form-control" id="feRollNo"  value="<?php if(isset($_REQUEST['gr_num'])) echo $_REQUEST['gr_num']?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -163,14 +174,97 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="zaFathersName">Father's Name</label>
-                                                    <input id="zaFathersName" name="father_name" type="text" placeholder="Enter father's name" required="" class="form-control" value="<?php if(isset($_REQUEST['father_name'])) echo $_REQUEST['father_name']?>">
+                                                    <label for="feNameOfStudent">Name of Student</label>
+                                                    <input id="feNameOfStudent" name="name" type="text" placeholder="Enter name of student" required="" class="form-control"  value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">  
                                                 <div class="form-group">
-                                                    <label for="zaGrandFathersName">Grand Father's Name</label>
-                                                    <input id="zaGrandFathersName" name="grand_father" type="text" placeholder="Enter grand father's name" class="form-control" value="<?php if(isset($_REQUEST['grand_father'])) echo $_REQUEST['grand_father']?>">
+                                                    <label for="feClass">Class</label>
+                                                    <input id="feClass" name="class" type="text" placeholder="Enter class" required="" class="form-control"  value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Fees for the Month</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-4">  
+                                                <div class="form-group">
+                                                    <input  type="number" name="fees_month" placeholder="Enter amount" required="" class="form-control"  value="<?php if(isset($_REQUEST['fees_month'])) echo $_REQUEST['fees_month']?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Admission Fee</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-4">  
+                                                <div class="form-group">
+                                                    <input  type="number" name="admission_fee" placeholder="Enter amount" class="form-control" value="<?php if(isset($_REQUEST['admission_fee'])) echo $_REQUEST['admission_fee']?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Exams and Other Activities</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-4">  
+                                                <div class="form-group">
+                                                    <input  type="number" name="exam" placeholder="Enter amount"  class="form-control"  value="<?php if(isset($_REQUEST['exam'])) echo $_REQUEST['exam']?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Fine</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-4">  
+                                                <div class="form-group">
+                                                    <input  type="number" name="fine" placeholder="Enter amount"  class="form-control"  value="<?php if(isset($_REQUEST['fine'])) echo $_REQUEST['fine']?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Mics</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-4">  
+                                                <div class="form-group">
+                                                    <input  type="number" name="mics" placeholder="Enter amount"  class="form-control"  value="<?php if(isset($_REQUEST['mics'])) echo $_REQUEST['mics']?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label><h3>Total</h3></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-4">  
+                                                <div class="form-group">
+                                                    <input  type="number" name="total" placeholder="Total amount" required="" class="form-control"  value="<?php if(isset($_REQUEST['total'])) echo $_REQUEST['total']?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -178,90 +272,19 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="zaSurname">Surname</label>
-                                                    <input id="zaSurname" name="surname" type="text" placeholder="Enter surname"  class="form-control" data-parsley-id="8" value="<?php if(isset($_REQUEST['surname'])) echo $_REQUEST['surname']?>">
+                                                    <label for="feNameOfStudent">Date</label>
+                                                    <input id="feNameOfStudent" name="date" type="date" placeholder="Enter name of student" required="" class="form-control" value="<?php if (isset($_REQUEST['date'])) echo $_REQUEST['date']; else echo (date("Y-m-d")); ?>">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6">  
                                                 <div class="form-group">
-                                                    <label for="zaCommunityName">Community Name</label>
-                                                    <input id="zaCommunityName" name="community_name" type="text" placeholder="Enter grand father's name" class="form-control" value="<?php if(isset($_REQUEST['community_name'])) echo $_REQUEST['community_name']?>">
+                                                    <label for="feClass">Cashier</label>
+                                                    <input id="feClass" name="cashier" type="text" placeholder="Enter class" required="" class="form-control"  value="<?php if (isset($_REQUEST['cashier'])) echo $_REQUEST['cashier'] ?>">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaGrandiansCnic">Grandian's CNIC</label>
-                                                    <input id="zaGrandiansCnic" name="grandian_cnic" type="text" placeholder="Enter grandian CNIC" required="" class="form-control" value="<?php if(isset($_REQUEST['grandian_cnic'])) echo $_REQUEST['grandian_cnic']?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaContactPhoneNumber">Contact / Phone Number</label>
-                                                    <input id="zaContactPhoneNumber" name="contact" type="tel" placeholder="Enter contact number" required="" class="form-control" value="<?php if(isset($_REQUEST['contact'])) echo $_REQUEST['contact']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaGrandiansCnic">Grandian's Occupation</label>
-                                                    <input id="zaGrandiansOccupation" name="grandian_occupation" type="text" placeholder="Enter grandian's occupation" required="" class="form-control" value="<?php if(isset($_REQUEST['grandian_occupation'])) echo $_REQUEST['grandian_occupation']?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaMonthlyIncome">Monthly Income</label>
-                                                    <input id="zaMonthlyIncome" name="grandian_salary" type="number" placeholder="Enter monthly income" required="" class="form-control" value="<?php if(isset($_REQUEST['grandian_salary'])) echo $_REQUEST['grandian_salary']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaEligible">Is the Student Eligible For Zakat ?</label>
-                                                    <select type="text" name="eligible" required="" placeholder="Eligible or not" class="form-control" id="zaEligible">
-                                                        <option value="yes" <?php if(isset($_REQUEST['eligible']) && $_REQUEST['eligible'] == 'yes') echo "selected" ?>>Yes</option>
-                                                        <option value="no" <?php if (isset($_REQUEST['eligible']) && $_REQUEST['eligible']== "no" ) echo "selected";  ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaGradiansNameAndRelationship">Gradian's Name and Relationship</label>
-                                                    <input id="zaGradiansNameAndRelationship" name="relationship"  type="text" placeholder="Enter grandian's name and relationship" required="" class="form-control" value="<?php if(isset($_REQUEST['relationship'])) echo $_REQUEST['relationship']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="zaAddressOfGuardian">Residential Address of Guardian</label>
-                                            <input id="zaAddressOfGuardian" name="address" type="text" placeholder="Enter residential address of guardian" class="form-control" value="<?php if(isset($_REQUEST['address'])) echo $_REQUEST['address']?>">
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaPreviously">Previously granted free ship ?</label>
-                                                    <select type="text" name="free_ship" parsley-trigger="change" required="" placeholder="Eligible or not" class="form-control" id="zaPreviously">
-                                                        <option value="yes" <?php if (isset($_REQUEST['free_ship']) && $_REQUEST['free_ship']== "yes" ) echo "selected";  ?> >Yes</option>
-                                                        <option value="no" <?php if (isset($_REQUEST['free_ship']) && $_REQUEST['free_ship']== "no" ) echo "selected";  ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="zaNumberOfDependents">Number of Dependents </label>
-                                                    <input id="zaNumberOfDependents" name="dependents" type="number" placeholder="Enter Monthly Income" class="form-control" value="<?php if(isset($_REQUEST['dependents'])) echo $_REQUEST['dependents']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group text-right m-b-0">
+                                        <div class="form-group text-right m-b-0 m-t-10">
                                             <?php 
                                             code_submit();
                                             ?>
@@ -276,13 +299,14 @@
                     </div>
                 </div>
             </div>
-            
 
+
+
+    
                 <!-- footer -->
                 <?php 
                     include_once("footer.php")
                 ?>
-                   
                                
     </div>
         <script>
@@ -309,7 +333,7 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
-                <!-- Datatables-->
+           <!-- Datatables-->
         <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
         <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
@@ -343,48 +367,19 @@
             TableManageButtons.init();
 
         </script>
-
-        <script type="text/javascript">
-            $(window).load(function(){
-                var $container = $('.portfolioContainer');
-                $container.isotope({
-                    filter: '*',
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear',
-                        queue: false
-                    }
-                });
-
-                $('.portfolioFilter a').click(function(){
-                    $('.portfolioFilter .current').removeClass('current');
-                    $(this).addClass('current');
-
-                    var selector = $(this).attr('data-filter');
-                    $container.isotope({
-                        filter: selector,
-                        animationOptions: {
-                            duration: 750,
-                            easing: 'linear',
-                            queue: false
-                        }
-                    });
-                    return false;
-                });
-            });
+                <script type="text/javascript">
             $(document).ready(function() {
-                $('.image-popup').magnificPopup({
-                    type: 'image',
-                    closeOnContentClick: true,
-                    mainClass: 'mfp-fade',
-                    gallery: {
-                        enabled: true,
-                        navigateByImgClick: true,
-                        preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-                    }
-                });
-            });
+                $('#datatable2').dataTable();
+                $('#datatable2-keytable').DataTable( { keys: true } );
+                $('#datatable2-responsive').DataTable();
+                $('#datatable2-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatabl2e-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
         </script>
+
+
 
 </body>
 </html>

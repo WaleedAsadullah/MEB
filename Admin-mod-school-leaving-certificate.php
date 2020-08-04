@@ -1,5 +1,8 @@
+<?php
+include_once('session_end.php');
+?>
 <!DOCTYPE html>
-<htm>
+<html>
 <head>
 
         <meta charset="utf-8">

@@ -1,3 +1,6 @@
+<?php
+include_once('session_end.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,14 +68,12 @@
                                 <div class="timeline">
 
                                     <?php
-                                    $sql = 'SELECT `th_home_work_id`, `user_id`, `user_date`, `class`, `subject`, `date`, `work` FROM `th_home_work`';
+                                    $sql = 'SELECT `th_home_work_id`"ID",  `class` "Class", `subject`"Subject", `date`"Date", `work`"Work" FROM `th_home_work`';
                                     display_homework($sql)
                                     ?>
-                                    <article class="timeline-item alt">
+                                    <!-- <article class="timeline-item alt">
                                         <div class="text-right">
-
                                             <div class="time-show first">
-
                                                 <a href="#" class="btn btn-custom w-lg">Today</a>
                                             </div>
                                         </div>
@@ -231,7 +232,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </article>
+                                    </article> -->
 
                                 </div>
                             </div>

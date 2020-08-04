@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,18 +43,87 @@
                 padding-right: 8px;
 
             }
-        </style>
+        </style> 
         
     </head>
-    <body>
+    <body> 
+        <?php
+        include_once('db_functions.php');
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "schoolmeb";
+
+    
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if(isset($_REQUEST['submit'])){
+            $email = $_REQUEST['email'];
+            $password = $_REQUEST['pass'];
+        $email_search = "SELECT * FROM ad_add_user where e_mail = '$email' ";
+        $query = mysqli_query($conn,$email_search);
+
+        $emai_count = mysqli_num_rows($query);
+
+        if($emai_count){
+            $email_pass = mysqli_fetch_assoc($query);
+            $db_pass =  $email_pass['pass']; 
+            $_SESSION['name'] = $email_pass['name'];
+            $db_account = $email_pass['account'];
+            $pass_decode = password_verify($password, $db_pass);
+
+            if($pass_decode){
+                if($db_account == 'Student'){
+                ?>
+                <script>
+                    location.replace('Students-mod-video-lecture.php');
+                </script>
+                <?php
+                }elseif($db_account == 'Parent'){
+                ?>
+                <script>
+                    location.replace('Parents-mod-child-progress-reports.php');
+                </script>
+                <?php
+                }elseif($db_account == 'Account'){
+                ?>
+                <script>
+                    location.replace('Accounts-mod-profit-and-loss.php');
+                </script>
+                <?php
+                }elseif($db_account == 'Teacher'){
+                ?>
+                <script>
+                    location.replace('teacher-mod-video-leacture.php');
+                </script>
+                <?php
+                }else{
+                ?>
+                <script>
+                    location.replace('Admin-mod-dashboard.php');
+                </script>
+                <?php
+                }
+            }else{
+            echo '<script>
+            alert("Password is incorrect")
+            </script>';
+            }
+        }
+    }
+    ?>
 
         <div class="account-pages"></div>
-        <a href="#">abc</a>
+        <a href="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></a>
         <div class="clearfix"></div>
         <div class="wrapper-page">
             <div class="text-center">
                 <div><img src="assets/images/favicon2.png"></div>
-                <a href="index.php" class="logo"><span>The Branic<span>School</span></span></a>
+                <a href="index.php" class="logo"><span>The Branic<span> School</span></span></a>
                 <!-- <h5 class="text-muted m-t-0 font-600">Responsive Admin Dashboard</h5> -->
             </div>
         	<div class="m-t-40 card-box">
@@ -67,17 +140,17 @@
 
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal m-t-20" action="index.php">
+                    <form class="form-horizontal m-t-20" action="index.php" method="post">
 
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" placeholder="Username">
+                                <input class="form-control" name="email" type="text" required="" placeholder="Username">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" required="" placeholder="Password">
+                                <input class="form-control" name="pass" type="password" required="" placeholder="Password">
                             </div>
                         </div>
 
@@ -95,7 +168,7 @@
 
                         <div class="form-group text-center m-t-30">
                             <div class="col-xs-12">
-                                <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">Log In</button>
+                                <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" name="submit" type="submit">Log In</button>
                             </div>
                         </div>
 

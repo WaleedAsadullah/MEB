@@ -7,7 +7,7 @@
                             <img src="assets/images/users/logo.jpg" alt="The Brainic School" title="The Brainic School" class="img-circle img-thumbnail img-responsive">
                             <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
                         </div>
-                        <h5><a href="#"> Admin </a> </h5>
+                        <h5><a href="#"> <?php echo $_SESSION['name']; ?> </a> </h5>
                         <ul class="list-inline">
                             <li>
                                 <a href="#">
@@ -16,7 +16,7 @@
                             </li>
 
                             <li>
-                                <a href="#" class="text-custom">
+                                <a href="logout.php" class="text-custom">
                                     <i class="zmdi zmdi-power"></i>
                                 </a>
                             </li>

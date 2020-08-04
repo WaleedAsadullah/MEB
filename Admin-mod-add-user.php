@@ -1,3 +1,6 @@
+<?php
+include_once('session_end.php');
+?>
 <!DOCTYPE html>
 <htm>
 <head>
@@ -13,6 +16,12 @@
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+                <!-- DataTables -->
+        <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -69,52 +78,68 @@
                             <!-- form -->
                                 <div class="col-lg-12">
                                     <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> User </h4>
+                                    <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> UserS </h4>
 
                                     <div class="table-responsive">
-                                        <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
-                                            <thead>
-                                            <tr>
-                                                <th>SNo.</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>User name</th>
-                                                <th>E-mail</th>
-                                                <th>Class</th>
-                                                <th>GR#</th>
-                                                <th>Account</th>
-                                                <th>Password</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="addFrmPrint">
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                    <th><input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></th>
-                                                <tr >
-                                                    <td>1</td>
-                                                    <td><i class="zmdi zmdi-edit"></i></td>
-                                                    <td><i class="zmdi zmdi-delete" onclick="deleteTable('addFrmPrint')"></i></td>
-                                                    <td ><a href="print-leaving-certificate.php" class="zmdi zmdi-local-printshop"></a></td>
-                                                    <td><i class="zmdi zmdi-copy"></i></td>
-                                                    <td>waleed asad</td>
-                                                    <td>waleedasad27@gmail.com</td>
-                                                    <td>7th</td>
-                                                    <td>00987</td>
-                                                    <td>Student</td>
-                                                    <td>hu865j74</td>
-                                                </tr>
-                                            </tbody>
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                            <?php
+
+                                    if (isset($_POST['submit'])){
+                                        $user = mysqli_real_escape_string(connect_db(), $_POST['name']);
+                                        $e_mail = mysqli_real_escape_string(connect_db(), $_POST['e_mail']);
+                                        $class = mysqli_real_escape_string(connect_db(), $_POST['class']);
+                                        $account = mysqli_real_escape_string(connect_db(), $_POST['account']);
+                                        $pass = mysqli_real_escape_string(connect_db(), $_POST['pass']);
+                                         $cpass = mysqli_real_escape_string(connect_db(), $_POST['cpass']);
+
+                                        $pas = password_hash($pass, PASSWORD_BCRYPT);
+                                        $cpas = password_hash($cpass, PASSWORD_BCRYPT);
+
+                                        $e_mailquary = " select * from ad_add_user where e_mail='$e_mail'";
+                                        $query = mysqli_query(connect_db(),$e_mailquary);
+                                        $e_mailcount = mysqli_num_rows($query);
+                                        if($e_mailcount>0){
+                                            echo    '<script>
+                                                        alert("E-mail is already Exists");
+                                                    </script>';
+                                        }else{
+                                            if( $pass ==  $cpass){
+                                            $sql = 'INSERT INTO `ad_add_user`(`add_user_id`, `user_id`, `user_date`, `name`, `e_mail`, `class`, `gr_no`, `account`, `pass`, `cpass`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['e_mail'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['gr_no'].'\', \''.$_REQUEST['account'].'\', \''.$pas.'\', \''.$cpas.'\')';
+                                                $iquery = insert_query($sql);
+                                                    echo '<script>
+                                                    alert("Account created")
+                                                    </script>';
+                                                
+                                            }else{
+                                                   echo ' <script>
+                                                    alert("Password are not same");
+                                                    </script>';
+                                                }
+                                        }
+                                    }
+
+
+                                    ///edit code
+                                    check_edit("ad_add_user","add_user_id");
+                                    edit_display("ad_add_user","add_user_id");
+                                    //end of edit code -shift view below delete
+
+                                    // --------------
+
+                                    if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_add_user` WHERE `ad_add_user`.`add_user_id` = '.$_REQUEST['deleteid'];
+
+                                    insert_query($sql);
+                                    // echo "done deleting";
+                                        }
+                                    // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                    $sql = 'SELECT `add_user_id`"ID", `user_id`, `user_date`"Date", `name`"Name", `e_mail`"E-mail", `class`"Class", `gr_no`"Gr No.", `account`"Type", `pass`"Password" FROM `ad_add_user`';
+                                    display_query($sql);
+
+
+                                    ?>
                                         </table>
                                     </div>
                                 </div>
@@ -134,66 +159,53 @@
                             <div class="col-lg-6">
                                 <div class="card-box">
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px; font-weight: 300"> Add user</h4>
-                                    <?php
 
-                                    if (isset($_POST['submit'])){
-                                        $user = mysqli_real_escape_string(connect_db(), $_POST['name']);
-                                        $e_mail = mysqli_real_escape_string(connect_db(), $_POST['e_mail']);
-                                        $class = mysqli_real_escape_string(connect_db(), $_POST['class']);
-                                        $account = mysqli_real_escape_string(connect_db(), $_POST['account']);
-                                        $pass = mysqli_real_escape_string(connect_db(), $_POST['pass']);
-                                         $cpass = mysqli_real_escape_string(connect_db(), $_POST['cpass']);
-
-                                        $pas = password_hash($pass, PASSWORD_BCRYPT);
-                                        $cpas = password_hash($cpass, PASSWORD_BCRYPT);
-
-                                        $e_mailquary = " select * from ad_add_user where e_mail='$e_mail'";
-                                        $query = mysqli_query(connect_db(),$e_mailquary);
-                                        $e_mailcount = mysqli_num_rows($query);
-                                        if($e_mailcount>0){
-                                            echo 'already';
-                                        }else{
-                                            if( $pass ==  $pass){
-                                                $insetquery = $sql = 'INSERT INTO `ad_course_planning` (`course_planning_id`, `user_id`, `user_date`, `class`, `subject`, `date`, `title`, `details`) VALUES (NULL,\'';
-                                            $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class'].'\', \''.$_REQUEST['subject'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['title'].'\', \''.$_REQUEST['details'].'\')';
-                                                $iquery = insert_query($sql);
-                                            }else{
-                                                echo 'not same';
-                                            }
-                                        }
-                                    }
-                                    ?>
 
                                     <form action="Admin-mod-add-user.php" method="post" >
 
                                         <div class="form-group">
                                             <label for="lcName">User Name</label>
-                                            <input type="text" name="name" parsley-trigger="change" required
-                                                   placeholder="Enter user name" class="form-control" id="lcnName">
+                                            <input type="text" name="name"required
+                                                   placeholder="Enter user name" class="form-control" id="lcnName"value="<?php if(isset($_REQUEST['name'])) echo$_REQUEST['name'] ?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="father'sname">E-mail</label>
                                             <input type="email" required name="e_mail" 
-                                                   placeholder="Enter e-mail" class="form-control" id="adfathersname">
+                                                   placeholder="Enter e-mail" class="form-control" id="adfathersname" value="<?php if(isset($_REQUEST['e_mail'])) echo$_REQUEST['e_mail'] ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label for="lcPlaceOfBirth">Class</label>
-                                            <input id="lcPlaceOfBirth" name="class" type="text" placeholder="Enter class" required
-                                                   class="form-control">
+                                            <label for="class">Class</label>
+                                            <select type="text" name="class" required=""class="form-control" >
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "montessori" ) echo "selected";  ?> value="montessori">Montessori</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "KG 1" ) echo "selected";  ?> value="KG 1">KG 1</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "KG 2" ) echo "selected";  ?> value="KG 2">KG 2</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "1" ) echo "selected";  ?> value="1">1</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "2" ) echo "selected";  ?> value="2">2</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "3" ) echo "selected";  ?> value="3">3</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "4" ) echo "selected";  ?> value="4">4</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "5" ) echo "selected";  ?> value="5">5</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "6" ) echo "selected";  ?> value="6">6</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "7" ) echo "selected";  ?> value="7">7</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "8" ) echo "selected";  ?> value="8">8</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "9" ) echo "selected";  ?> value="9">9</option>
+                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "10" ) echo "selected";  ?> value="10">Matric</option>
+                                                </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="lcDateOfBirthF">GR#</label>
-                                            <input data-parsley-equalto="#pass1" type="number" required
-                                                   placeholder="Enter GR number" class="form-control" id="lcDateOfBirthF">
+                                            <label for="lcDateOfBirthF">Gr No.</label>
+                                            <input type="text" required name="gr_no" 
+                                                   placeholder="Enter GR number" class="form-control" id="lcDateOfBirthF" value="<?php if(isset($_REQUEST['gr_no'])) echo$_REQUEST['gr_no'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Account</label>
                                             <select name="account" class="form-control">
-                                                <option value="Student">Student</option>
-                                                <option value="Parent">Parent</option>
+                                                <option  <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Student" ) echo "selected";  ?> value="Student">Student</option>
+                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Parent" ) echo "selected";  ?> value="Parent">Parent</option>
+                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Teacher" ) echo "selected";  ?> value="Teacher">Teacher</option>
+                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Account" ) echo "selected";  ?> value="Account">Account</option>
+                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Admin" ) echo "selected";  ?> value="Admin">Admin</option>
                                             </select>
                                             
                                         </div>
@@ -201,23 +213,23 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcDateOfBirthW">Password</label>
-                                                    <input type="password" required name="pass" 
-                                                           placeholder="Enter password" class="form-control" id="lcDateOfBirthW">
+                                                    <input type="password" required name="pass" minlength="8" 
+                                                           placeholder="Enter password" class="form-control" id="lcDateOfBirthW" >
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="lcLastSchool">Confirm password</label>
-                                                    <input  type="password" required name="cpass" 
-                                                                   placeholder="Confirm password " class="form-control" id="lcLastSchool">
+                                                    <input  type="password" required name="cpass" minlength="8"
+                                                                   placeholder="Confirm password " class="form-control" id="lcLastSchool" >
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light"  type="submit" name="submit">
-                                                Submit
-                                            </button>
+                                            <?php 
+                                            code_submit();
+                                            ?>
                                             <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                 Cancel
                                             </button>
@@ -268,7 +280,42 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
-    
+        
+                <!-- Datatables-->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
+
         
     </body>
 </html>

@@ -1,3 +1,6 @@
+<?php
+include_once('session_end.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,20 +64,8 @@
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                                <div>
+                            <div class="col-lg-12" >
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
 
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> Time table </h4>
                                     <br>

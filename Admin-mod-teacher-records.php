@@ -1,3 +1,6 @@
+<?php
+include_once('session_end.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>

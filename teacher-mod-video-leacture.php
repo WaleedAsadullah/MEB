@@ -1,3 +1,6 @@
+<?php
+include_once('session_end.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,7 +87,7 @@
                                             // --------------
 
                                              // echo "test";
-                                            if(isset($_REQUEST['submit'])){
+                                            if(isset($_REQUEST['submit3'])){
                                             // print_r($_REQUEST);
                                             $sql = 'INSERT INTO `th_video_lecture`(`th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`, `title`, `link`, `comment`) VALUES (NULL,\'';
                                             $sql .= get_curr_user();
@@ -214,7 +217,7 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
-        <script>
+<!--         <script>
             $("#sci").click(function(){
             $("#scinone").toggleClass("ol1n");
             })
@@ -224,7 +227,7 @@
             $("#eng").click(function(){
             $("#engnone").toggleClass("ol1n");
             })
-        </script>
+        </script> -->
            <!-- Datatables-->
         <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>

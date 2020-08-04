@@ -7,7 +7,7 @@
                             <img src="assets/images/users/logo.jpg" alt="The Brainic School" title="The Brainic School" class="img-circle img-thumbnail img-responsive">
                             <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
                         </div>
-                        <h5><a href="#"> Parents </a> </h5>
+                        <h5><a href="#"> <?php echo $_SESSION['name']; ?></a> </h5>
                         <ul class="list-inline">
                             <li>
                                 <a href="#">
@@ -16,7 +16,7 @@
                             </li>
 
                             <li>
-                                <a href="#" class="text-custom">
+                                <a href="logout.php" class="text-custom">
                                     <i class="zmdi zmdi-power"></i>
                                 </a>
                             </li>
@@ -29,12 +29,14 @@
                         <ul>
                             <li class="text-muted menu-title">Navigation</li>
 
-                            <li class="active">
-                                <a href="Parents-mod-fees-reports.php" class="waves-effect "><i class="zmdi zmdi-reader"></i> <span>  Fee reports </span> </a>
-                            </li>
+                            
 
                             <li>
-                                <a href="Parents-mod-child-progress-reports.php" class="waves-effect"><i class="zmdi zmdi-chart"></i> <span> Child progress report </span> </a>
+                                <a href="Parents-mod-child-progress-reports.php" class="waves-effect"><i class="zmdi zmdi-chart"></i> <span> Child Progress Report </span> </a>
+                            </li>
+
+                            <li class="active">
+                                <a href="Parents-mod-fees-reports.php" class="waves-effect "><i class="zmdi zmdi-reader"></i> <span>  Fee Reports </span> </a>
                             </li>
 
                              <li>
@@ -43,7 +45,7 @@
                             </li>
 
                             <li>
-                                <a href="Parents-mod-family-feature.php" class="waves-effect"><i class="fa fa-wpforms"></i> <span> Family feature </span> </a>
+                                <a href="Parents-mod-family-feature.php" class="waves-effect"><i class="fa fa-wpforms"></i> <span> Family Feature </span> </a>
                             </li>
 
 

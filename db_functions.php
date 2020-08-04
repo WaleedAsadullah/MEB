@@ -467,29 +467,102 @@ if($label=='Present'){ $x = 'label label-success';} elseif($label=='Absent'){ $x
 
 }
 
+// ------------------------
 
 function display_homework($sql){
   $conn = connect_db();
-  $result = $conn->query($sql);
+  $result = mysqli_query($conn ,$sql);
 
-  if ($result->num_rows > 0) {
-// output data of each row
   get_current_form();
-     $i = 0;                                     
-  while($row = $result->fetch_assoc()) {
-    if($i==0)
-    {
-      $row_data = array_keys($row);
-$id_column = "";
-for($j=0;$j<count($row_data);$j++){
 
-  if($j==0) $id_column = $row_data[$j];
+  $i = 0;
 
-    echo  "<th>".$row_data[$j]."</th>"; }
-    }
+  while($row = mysqli_fetch_assoc($result)) {
+
+
+
+    $items[] = $row;
   }
-}
-}
+
+  $items = array_reverse($items ,true);
+
+  foreach($items as $item){
+
+    $i++;
+// ------------
+
+    if($i%2 == 0 ){
+      $positon = 'timeline-item alt';
+    }else{
+      $positon = 'timeline-item';
+    }
+
+// -------------
+
+    if($i%2 == 0 ){
+      $positon_arrow = 'arrow-alt';
+    }else{
+      $positon_arrow = 'arrow';
+    }
+
+// ---------------
+    if($i%6 == 0 ){
+      $text = 'primary';
+    }elseif($i%5 == 0 ){
+      $text = 'warning';
+    }elseif($i%4 == 0 ){
+      $text = 'info';
+    }elseif($i%3 == 0 ){
+      $text = 'danger';
+    }elseif($i%2 == 0 ){
+      $text = 'success';
+    }else{
+      $text = 'purple';
+    }
+
+      echo  ' 
+            <article class="'.$positon.'">
+              <div class="timeline-desk">
+                <div class="panel">
+                    <div class="panel-body">
+                      <span class="'.$positon_arrow.'"></span>
+                      <span class="timeline-icon bg-'.$text.'"><i class="zmdi zmdi-circle"></i></span>
+                      <h4 class="text-'.$text.'">'.$item['Subject'].'</h4>
+                      <p class="timeline-date text-muted"><small>'.$item['Date'].'</small></p>
+                      <p>'.$item['Work'].'  </p>
+                    </div>
+                  </div>
+              </div>
+            </article>';
+      }
+  }
+
+// ------------------
+
+function display_video($sql){
+  $conn = connect_db();
+  $result = mysqli_query($conn ,$sql);
+  $row = mysqli_fetch_assoc($result);
+  while($row = mysqli_fetch_assoc($result)) {
+    $items[] = $row['Subject'] ;
+    }
+  $unique_sub = array_unique($items);
+  $unique_sub_index = array_values($unique_sub);
+  for($i=0;$i<count($unique_sub_index);$i++){
+    echo '<ul class="ul1">
+            <li class="li1" id="maths">'.$unique_sub_index[$i].'</li>
+            <ul class="ol1" id="scinone">';
+            echo '<p>'.print_r ($row).'</p>';
+            
+    echo    '</ul>
+          </ul> ';
+
+      
+
+      }
+    }
+
+
 
 
 ?>

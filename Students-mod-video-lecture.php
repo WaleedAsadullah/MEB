@@ -1,3 +1,6 @@
+<?php
+include_once('session_end.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +84,8 @@
 
                     <!--- header -->
                     <?php 
-                            include_once("Students-mod-header.php")
+                            include_once("Students-mod-header.php");
+                            include_once("db_functions.php")
                     ?>
 
                     <!-- header -->
@@ -104,7 +108,13 @@
                             <div class="col-lg-3">
                                 <div class="card-box" style="padding: 20px 0px;">
                                     <h4 class="header-title m-t-0 m-b-30" style="padding-left: 20px">Lectures</h4>
+                                    <?php
+                                        $sql = 'SELECT `th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`"Subject", `title`"Title", `link`, `comment` FROM `th_video_lecture` WHERE 1';
+                                        display_video($sql);
+
+                                        ?>
                                     <ul class="ul1">
+
                                         <li class="li1" id="sci">Science</li>
                                         <ul class="ol1" id="scinone">
                                             <li class="li2">1. Chapter # 1</li>

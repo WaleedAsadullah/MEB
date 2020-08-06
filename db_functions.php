@@ -542,7 +542,15 @@ function display_homework($sql){
 function display_video($sql){
   $conn = connect_db();
   $result = mysqli_query($conn ,$sql);
-  $row = mysqli_fetch_assoc($result);
+  $result2 = mysqli_query($conn ,$sql);
+  $result3 = mysqli_query($conn ,$sql);
+  $row3 = mysqli_fetch_assoc($result3);
+  $row= mysqli_fetch_assoc($result);
+  $row_data = array_keys($row);
+  while($row2 = mysqli_fetch_assoc($result2)) {
+    $check[] = $row2['title'];
+  }
+
   while($row = mysqli_fetch_assoc($result)) {
     $items[] = $row['Subject'] ;
     }
@@ -550,9 +558,28 @@ function display_video($sql){
   $unique_sub_index = array_values($unique_sub);
   for($i=0;$i<count($unique_sub_index);$i++){
     echo '<ul class="ul1">
-            <li class="li1" id="maths">'.$unique_sub_index[$i].'</li>
-            <ul class="ol1" id="scinone">';
-            echo '<p>'.print_r ($row).'</p>';
+            <li class="li1" id="'.clean(str_replace(" ","",$unique_sub_index[$i])).'">'.$unique_sub_index[$i].'</li>
+            <ul class="ol1n" id="'.'change'.''.clean(str_replace(" ","",$unique_sub_index[$i])).'">';
+    echo '<script src="assets/js/jquery.min.js"></script>
+          <script>
+          $(document).ready(function(){
+            $("#'.clean(str_replace(" ","",$unique_sub_index[$i])).'").click(function(){
+            $("#'.'change'.''.clean(str_replace(" ","",$unique_sub_index[$i])).'").toggleClass("ol1");
+          });
+            });
+          </script>';
+            $sql2 = 'SELECT `title`, `link` FROM `th_video_lecture` WHERE `subject` LIKE \''.$unique_sub_index[$i].'\'';
+            $result_title = mysqli_query($conn,$sql2);
+            $m = 0;
+            while($row_title = mysqli_fetch_assoc($result_title)) {
+              $m++;
+              // $items_title[] = $row_titile;
+              // foreach($items_title as $item_title){
+                echo '<li id="'.$m.''.clean(str_replace(" ","",$row_title['title'])).'" class="li2" value = "'.$row_title['link'].'" >'.$m.'. ' .$row_title['title'].'</li>';
+                
+              // }
+              
+            }
             
     echo    '</ul>
           </ul> ';
@@ -560,7 +587,60 @@ function display_video($sql){
       
 
       }
+
+
     }
+
+function clean($string) {
+   $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
+
+function video_link(){
+
+
+
+  $sql = 'SELECT `th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`"Subject", `title`, `link`, `comment` FROM `th_video_lecture`';
+  $conn = connect_db();
+  $result = mysqli_query($conn ,$sql);
+  $result2 = mysqli_query($conn ,$sql);
+  $result3 = mysqli_query($conn ,$sql);
+  $row3 = mysqli_fetch_assoc($result3);
+  $row= mysqli_fetch_assoc($result);
+  $row_data = array_keys($row);
+  while($row2 = mysqli_fetch_assoc($result2)) {
+    $check[] = $row2['title'];
+  }
+
+  while($row = mysqli_fetch_assoc($result)) {
+    $items[] = $row['Subject'] ;
+    }
+  $unique_sub = array_unique($items);
+  $unique_sub_index = array_values($unique_sub);
+
+
+
+  for($i=0;$i<count($unique_sub_index);$i++){
+    $sql2 = 'SELECT `title`, `link` FROM `th_video_lecture` WHERE `subject` LIKE \''.$unique_sub_index[$i].'\'';
+    $result_title = mysqli_query($conn,$sql2);
+    $m = 0;
+    while($row_title = mysqli_fetch_assoc($result_title)) {
+    $m++;
+
+    $link = $row_title['link'];
+    $link = explode("watch?v=",$link); 
+    $link = 'https://www.youtube.com/embed/'.$link[1];
+    echo '$("#'.$m.''.clean(str_replace(" ","",$row_title['title'])).'").click(function(){
+          $("iframe").attr("src","'.$link.'");
+          });';
+
+
+
+
+    }
+  }
+}
 
 
 

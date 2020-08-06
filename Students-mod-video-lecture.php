@@ -61,7 +61,7 @@ include_once('session_end.php');
                 text-decoration: none;
                 border-bottom: 1px solid #98a6ad;
             }
-            .ol1{
+            .ol1n{
                 display: block;
                 margin-top: 10px;
                 text-decoration: none;
@@ -72,7 +72,7 @@ include_once('session_end.php');
                 border-bottom: 0.5px solid #98a6ad;
                 cursor: pointer;
             }
-            .ol1n{
+            .ol1{
                 display: none;
             }
 
@@ -109,50 +109,14 @@ include_once('session_end.php');
                                 <div class="card-box" style="padding: 20px 0px;">
                                     <h4 class="header-title m-t-0 m-b-30" style="padding-left: 20px">Lectures</h4>
                                     <?php
-                                        $sql = 'SELECT `th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`"Subject", `title`"Title", `link`, `comment` FROM `th_video_lecture` WHERE 1';
+                                        $sql = 'SELECT `th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`"Subject", `title`, `link`, `comment` FROM `th_video_lecture`';
                                         display_video($sql);
 
                                         ?>
-                                    <ul class="ul1">
-
-                                        <li class="li1" id="sci">Science</li>
-                                        <ul class="ol1" id="scinone">
-                                            <li class="li2">1. Chapter # 1</li>
-                                            <li class="li2">2. Chapter # 2</li>
-                                            <li class="li2">3. Chapter # 3</li>
-                                            <li class="li2">4. Chapter # 4</li>
-                                            <li class="li2">5. Chapter # 5</li>
-                                            <li class="li2">6. Chapter # 6</li>
-                                        </ul>
-                                    </ul>
-                                    <ul class="ul1">
-                                        <li class="li1" id="maths">Maths</li>
-                                        <ul class="ol1" id="mathsnone">
-                                            <li class="li2">1. Chapter # 1</li>
-                                            <li class="li2">2. Chapter # 2</li>
-                                            <li class="li2">3. Chapter # 3</li>
-                                            <li class="li2">4. Chapter # 4</li>
-                                            <li class="li2">5. Chapter # 5</li>
-                                            <li class="li2">6. Chapter # 6</li>
-                                        </ul>
-                                    </ul>
-                                    <ul class="ul1">
-                                        <li class="li1" id="eng">English</li>
-                                        <ul class="ol1" id="engnone">
-                                            <li class="li2">1. Chapter # 1</li>
-                                            <li class="li2">2. Chapter # 2</li>
-                                            <li class="li2">3. Chapter # 3</li>
-                                            <li class="li2">4. Chapter # 4</li>
-                                            <li class="li2">5. Chapter # 5</li>
-                                            <li class="li2">6. Chapter # 6</li>
-                                        </ul>
-                                    </ul>
                                 </div>
                             </div>
                             <div class="col-lg-9">
-                                <div>
-                                    <video controls></video>
-                                </div>
+                                <iframe width="100%" height="573" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -198,15 +162,22 @@ include_once('session_end.php');
         <script src="assets/js/jquery.app.js"></script>
 
         <script>
-            $("#sci").click(function(){
-            $("#scinone").toggleClass("ol1n");
-            })
-            $("#maths").click(function(){
-            $("#mathsnone").toggleClass("ol1n");
-            })
-            $("#eng").click(function(){
-            $("#engnone").toggleClass("ol1n");
-            })
+            // $("#sci").click(function(){
+            // $("#scinone").toggleClass("ol1n");
+            // })
+            // $("#maths").click(function(){
+            // $("#mathsnone").toggleClass("ol1n");
+            // })
+            // $("#eng").click(function(){
+            // $("#engnone").toggleClass("ol1n");
+            // })
+            $(document).ready(function(){
+
+            <?php
+            video_link()
+            ?>
+
+            });
         </script>
 
 </body>

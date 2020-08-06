@@ -58,80 +58,35 @@ include_once('session_end.php');
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                            <div>
-                                <div class="col-lg-12">
-                                    <div >
-                                <div class="card-box">
-                                    <br>
+                            <div class="col-lg-12">
+                                <br>
+                                <div class="bg-picture card-box">
+                                    
+                                    <div class="profile-info-name">
+                                        <img src="assets/images/profile.jpg"
+                                         class="img-thumbnail" alt="profile-image">
 
-                                    <h4 class="header-title m-t-0 m-b-30" style="text-align: center; font-size: 22px"> Student's Form</h4>
-                                    <br>
+                                        <div class="profile-info-detail">
+                                            <h3 class="m-t-0 m-b-0">Alexandra Clarkson</h3>
+                                            <p class="text-muted m-b-20"><i>Web Designer</i></p>
+                                            <div class="text-left">
+                                            <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15"> <?php echo $_SESSION['name']; ?> </span></p>
+                                            <p class="text-muted font-13"><strong>Gr No. :</strong> <span class="m-l-15"> <?php echo $_SESSION['gr_no']; ?> </span></p>
 
-                                    <form action="#" data-parsley-validate="" novalidate="">
+                                            <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15">(123) 123 1234</span></p>
 
-                                        <div class="form-group">
-                                            <label for="userName">Student's Name *</label>
-                                            <input type="text" name="nick" parsley-trigger="change" required="" placeholder="Enter your name" class="form-control" id="userName" data-parsley-id="4">
+                                            <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15">coderthemes@gmail.com</span></p>
+
+                                            <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15">USA</span></p>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label for="emailAddress">Class *</label>
-                                            <input type="text" name="number" parsley-trigger="change" required="" placeholder="Enter your class" class="form-control" id="emailAddress" data-parsley-id="6">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="userName">Subject *</label>
-                                            <input type="text" name="nick" parsley-trigger="change" required="" placeholder="Enter Subject" class="form-control" >
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="pass1">Roll Number *</label>
-                                            <input id="pass1" type="password" placeholder="Roll number" required="" class="form-control" data-parsley-id="8">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="pass1">Dropdown1 *</label>
-                                            <select type="text" name="nick" parsley-trigger="change" required="" placeholder="Enter Subject" class="form-control">
-                                                            <option value="1">menu 1</option>
-                                                            <option value="2">menu 2</option>
-                                                            <option value="3">menu 3</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="pass1">Dropdown2 *</label>
-                                            <select type="text" name="nick" parsley-trigger="change" required="" placeholder="Enter Subject" class="form-control">
-                                                            <option value="1">menu 1</option>
-                                                            <option value="2">menu 2</option>
-                                                            <option value="3">menu 3</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="passWord2">Feedback *</label>
-                                            <div >
-                                                <textarea class="form-control" rows="5" placeholder="feedback area ....."></textarea>
-                                            </div>
-                                        </div>
-                                       
-                                        <div class="form-group text-right m-b-0">
-                                            <button class="btn btn-primary waves-effect waves-light" type="submit">
-                                                Submit
-                                            </button>
-                                            <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                                                Cancel
-                                            </button>
-                                        </div>
-
-                                    </form>
+                                    <div class="clearfix"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
     
 
                                

@@ -48,7 +48,7 @@ include_once('session_end.php');
                     <!--- header -->
                     <?php 
                             include_once("Students-mod-header.php");
-                            include_once("db_functions.php")
+                            include_once("db_functions.php");
                     ?>
 
                     <!-- header -->
@@ -57,7 +57,7 @@ include_once('session_end.php');
 
                     <!--- Sidemenu -->
                     <?php 
-                            include_once("teacher-mod-sidemenu.php")
+                            include_once("teacher-mod-sidemenu.php");
                     ?>
 
                     <!-- Sidebar -->
@@ -128,78 +128,36 @@ include_once('session_end.php');
                                             }
                                         ?>
 
-                                        <form action="Accounts-mod-hall-booking.php" method="post">
+                                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
 
                                             <div class="form-group">
-                                                <label for="hbName">Name</label>
-                                                <input type="text" name="name" required="" placeholder="Enter name" class="form-control" id="hbName" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
+                                                <label>Name</label>
+                                                <input type="text" name="name" required="" placeholder="Enter name" class="form-control" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
                                             </div>
                                         
                                    
                                             <div class="form-group">
-                                                <label for="hbAddress">Address</label>
-                                                <input type="text" name="address" required="" placeholder="Enter address" class="form-control" id="prName" value="<?php if(isset($_REQUEST['address'])) echo $_REQUEST['address']?>">
+                                                <label>Gr No.</label>
+                                                <input type="text" name="gr_no" required="" placeholder="Enter address" class="form-control" value="<?php if(isset($_REQUEST['gr_no'])) echo $_REQUEST['gr_no']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="hbPhone">Phone</label>
-                                                <input type="tel" name="phone" required="" placeholder="Enter phone" class="form-control" id="prRegular" value="<?php if(isset($_REQUEST['phone'])) echo $_REQUEST['phone']?>">
+                                                <label for="hbPhone">Subject</label>
+                                                <input type="tel" name="subject" required="" placeholder="Enter phone" class="form-control" id="prRegular" value="<?php if(isset($_REQUEST['subject'])) echo $_REQUEST['subject']?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="hbDateOfBooking">Date of booking</label>
-                                                <input type="date" name="date_booking" required=""  class="form-control" id="prVacation" value="<?php if (isset($_REQUEST['date_booking'])) echo $_REQUEST['date_booking']; else echo (date("Y-m-d")); ?>">
+                                                <label for="hbDateOfBooking">Marks Obtained</label>
+                                                <input type="date" name="marks_obtained" required=""  class="form-control" id="prVacation" value="<?php if (isset($_REQUEST['marks_obtained'])) echo $_REQUEST['marks_obtained']; else echo (date("Y-m-d")); ?>">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="hbRentAmount">Rent amount</label>
-                                                <input type="number" name="rent" required="" placeholder="Enter rent amount" class="form-control" id="hbRentAmount"value="<?php if(isset($_REQUEST['rent'])) echo $_REQUEST['rent']?>">
+                                                <label for="hbRentAmount">Total Marks</label>
+                                                <input type="number" name="total_marks" required="" placeholder="Enter rent amount" class="form-control" id="hbRentAmount"value="<?php if(isset($_REQUEST['total_marks'])) echo $_REQUEST['total_marks']?>">
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="hbAdvance">Advance paid</label>
-                                                <input type="number" name="advance"required="" placeholder="Enter advance paid" class="form-control" id="hbAdvance" value="<?php if(isset($_REQUEST['advance'])) echo $_REQUEST['advance']?>">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="hbLocation">Location</label>
-                                                <input type="text" name="location" required="" placeholder="Enter location" class="form-control" id="hbLocation" value="<?php if(isset($_REQUEST['location'])) echo $_REQUEST['location']?>">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="hbDateOfEvent">Date of event</label>
-                                                <input type="date" name="date_event" required="" placeholder="Enter location" class="form-control" id="hbDateOfEvent" value="<?php if(isset($_REQUEST['date_event'])) echo $_REQUEST['date_event']?>">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="hbNumberOfGuest">Number of guest</label>
-                                                <input type="text" name="guest" required="" placeholder="Enter date of event" class="form-control" id="hbDateOfEvent" value="<?php if(isset($_REQUEST['guest'])) echo $_REQUEST['guest']?>">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="hbWaiter">Waiter are required ?</label>
-                                                <select class="form-control" id="hbWaiter" name="waiter">
-                                                    <option value="yes"<?php if(isset($_REQUEST['waiter']) && $_REQUEST['waiter'] == 'yes') echo "selected" ?>>Yes</option>
-                                                    <option value="no" <?php if(isset($_REQUEST['waiter']) && $_REQUEST['waiter'] == 'no') echo "selected" ?> >No</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="hbFemaleWaiter">If female waiter required ?</label>
-                                                <select class="form-control" id="hbFemaleWaiter" name="female_waiter">
-                                                    <option value="yes" <?php if(isset($_REQUEST['female_waiter']) && $_REQUEST['female_waiter'] == 'yes') echo "selected" ?>>Yes</option>
-                                                    <option value="no" <?php if(isset($_REQUEST['female_waiter']) && $_REQUEST['female_waiter'] == 'no') echo "selected" ?> >No</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="hbFemaleWaiter">Advance that can given</label>
-                                                <select class="form-control" id="hbFemaleWaiter" name="is_adv_given">
-                                                    <option value="yes" <?php if(isset($_REQUEST['is_adv_given']) && $_REQUEST['is_adv_given'] == 'yes') echo "selected" ?> >Yes</option>
-                                                    <option value="no" <?php if(isset($_REQUEST['is_adv_given']) && $_REQUEST['is_adv_given'] == 'no') echo "selected" ?> >No</option>
-                                                </select>
-                                            </div>
+                                            
 
                                             <div class="form-group text-right m-b-0">
                                                 <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit">

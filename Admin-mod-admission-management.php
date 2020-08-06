@@ -42,6 +42,19 @@ include_once('session_end.php');
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
+
+        <style>
+            .img1 {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 2;
+                margin-top: 12%;
+                margin-left: 28%;
+
+                }
+        </style>
+
 </head>
 <body class="fixed-left">
     <div id="wrapper" class="enlarged">
@@ -90,14 +103,86 @@ include_once('session_end.php');
                                             <?php
                                             // -------------------------
                                             // echo "test";
+  if(isset($_FILES['profile_picture'])){
+
+print_r($_FILES);
+
+///file upload code
+$target_dir = "uploads/".rand(10,1000000)."_";
+$target_file = $target_dir. basename($_FILES["profile_picture"]["name"]);
+
+// $target_file = trim(basename(stripslashes($target_file)), ".\x00..\x20");
+
+$target_file = str_replace(" ","",$target_file);
+
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+  $check = getimagesize($_FILES["profile_picture"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+}
+
+// Check if file already exists
+if (file_exists($target_file)) {
+  echo "Sorry, file already exists.";
+  $uploadOk = 0;
+}
+
+// Check file size
+if ($_FILES["profile_picture"]["size"] > 2000000) {
+  echo "Sorry, your file is too large.";
+  $uploadOk = 0;
+}
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+  echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+  if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)) {
+    echo "The file ". basename( $_FILES["profile_picture"]["name"]). " has been uploaded.";
+    $uploadedok = true;
+  } else {
+     $uploadedok = false;
+    echo "Sorry, there was an error uploading your file.";
+  }
+}
+$_REQUEST['profile_picture'] = $target_file ;
+}
+
+
+
                                             if(isset($_REQUEST['submit'])){
+
+if( $uploadedok) {
+//////
+    
                                             // print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ad_admission` (`addmission_id`, `user_id`, `user_time`, `class`, `GR_No`, `name_of_student`, `father_name`, `surname`, `guardian_name`, `relationship`, `religion`, `address`, `phone`, `cell_no`, `e_mail`, `ice_no`, `occupation_of_father`, `monthly_income`, `cnic_guradian`, `date_of_birth`, `place_of_birth`, `date_of_birth_words`, `admission_saught`, `admission_granted`, `last_school_class`) VALUES (NULL,\'';
+
+                                            $sql = 'INSERT INTO `ad_admission` (`addmission_id`, `user_id`, `user_time`, `class`, `GR_No`, `name_of_student`, `father_name`, `surname`, `guardian_name`, `relationship`, `religion`, `address`, `phone`, `cell_no`, `e_mail`, `ice_no`, `occupation_of_father`, `monthly_income`, `cnic_guradian`, `date_of_birth`, `place_of_birth`, `date_of_birth_words`, `admission_saught`, `admission_granted`, `last_school_class`,`profile_picture`) VALUES (NULL,\'';
                                             $sql .= get_current_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class']. '\',\''.$_REQUEST['GR_No'].'\', \''.$_REQUEST['name_of_student']. '\', \''.$_REQUEST['father_name']. '\', \''.$_REQUEST['surname']. '\', \''.$_REQUEST['guardian_name']. '\', \''.$_REQUEST['relationship']. '\', \''.$_REQUEST['religion']. '\', \''.$_REQUEST['address']. '\', \''.$_REQUEST['phone']. '\', \''.$_REQUEST['cell_no']. '\', \''.$_REQUEST['e_mail']. '\', \''.$_REQUEST['ice_no']. '\', \''.$_REQUEST['occupation_of_father']. '\', \''.$_REQUEST['monthly_income']. '\', \''.$_REQUEST['cnic_guradian']. '\', \''.$_REQUEST['date_of_birth']. '\', \''.$_REQUEST['place_of_birth']. '\', \''.$_REQUEST['date_of_birth_words']. '\', \''.$_REQUEST['admission_saught']. '\', \''.$_REQUEST['admission_granted']. '\', \''.$_REQUEST['last_school_class']. '\')';
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['class']. '\',\''.$_REQUEST['GR_No'].'\', \''.$_REQUEST['name_of_student']. '\', \''.$_REQUEST['father_name']. '\', \''.$_REQUEST['surname']. '\', \''.$_REQUEST['guardian_name']. '\', \''.$_REQUEST['relationship']. '\', \''.$_REQUEST['religion']. '\', \''.$_REQUEST['address']. '\', \''.$_REQUEST['phone']. '\', \''.$_REQUEST['cell_no']. '\', \''.$_REQUEST['e_mail']. '\', \''.$_REQUEST['ice_no']. '\', \''.$_REQUEST['occupation_of_father']. '\', \''.$_REQUEST['monthly_income']. '\', \''.$_REQUEST['cnic_guradian']. '\', \''.$_REQUEST['date_of_birth']. '\', \''.$_REQUEST['place_of_birth']. '\', \''.$_REQUEST['date_of_birth_words']. '\', \''.$_REQUEST['admission_saught']. '\', \''.$_REQUEST['admission_granted']. '\', \''.$_REQUEST['last_school_class']. '\', \''.$_REQUEST['profile_picture']. '\')';
                                             // echo $sql;
                                             insert_query($sql);
                                         }
+
+                                    }
+                                    else echo "Image filee did not uplaod properly. Try again";
                                             // -------------------------
                                             ///edit code
                                             check_edit("ad_admission","addmission_id");
@@ -144,7 +229,7 @@ include_once('session_end.php');
 
                                         
                                     ?>
-                                    <form action="Admin-mod-admission-management.php" method="post" >
+                                    <form action="Admin-mod-admission-management.php" method="post" enctype="multipart/form-data" >
 
                                         <div class="row ">
                                             <div class="col-md-8" style="padding-top: 6%;">
@@ -170,26 +255,13 @@ include_once('session_end.php');
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div>
-                                                    <!-- <div class="dropdown pull-right">
-                                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                                            <i class="zmdi zmdi-more-vert"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="#">Action</a></li>
-                                                            <li><a href="#">Another action</a></li>
-                                                            <li><a href="#">Something else here</a></li>
-                                                            <li class="divider"></li>
-                                                            <li><a href="#">Separated link</a></li>
-                                                        </ul>
-                                                    </div> -->
-
+                                                <div style="align-content: center;">
                                                     <h4 class="header-title m-t-0 m-b-30">Max File size</h4>
-
-                                                    <input type="file" class="dropify" data-max-file-size="1M" />
-                                                 </div>
-                                             </div>
-                                         </div>
+                                                    <?php if (isset($_REQUEST['profile_picture'])) echo "<img class = 'img1' style = 'height:190px ;' src=".$_REQUEST['profile_picture'].">";  ?>
+                                                    <input id="profile_picture" name="profile_picture" type="file" class="dropify" data-max-file-size="10M"  />
+                                                </div>
+                                            </div>
+                                        </div>
 
 <!--                                         <div class="row">
                                             <div class="col-lg-6">

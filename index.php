@@ -68,6 +68,7 @@ session_start();
             $email_pass = mysqli_fetch_assoc($query);
             $db_pass =  $email_pass['pass']; 
             $_SESSION['name'] = $email_pass['name'];
+            $_SESSION['gr_no'] = $email_pass['gr_no'];
             $db_account = $email_pass['account'];
             $pass_decode = password_verify($password, $db_pass);
 
@@ -108,7 +109,12 @@ session_start();
             alert("Password is incorrect")
             </script>';
             }
-        }
+        }else{
+        echo '<script>
+            alert("E-mail is incorrect")
+            </script>';
+    }
+    
     }
     ?>
 

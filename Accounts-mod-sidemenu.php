@@ -1,8 +1,3 @@
-<?php
-
-session_start();
-
-?>
  <div class="left side-menu">
                 <div class="sidebar-inner slimscrollleft">
 
@@ -34,6 +29,15 @@ session_start();
                         <ul>
                             <li class="text-muted menu-title">Navigation</li>
 
+                            <li>
+                                <a href="Accounts-mod-asset.php" class="waves-effect"><i class="zmdi zmdi-money-box"></i> <span> Asset Liability</span> </a>
+                            </li>
+
+                            <li>
+                                <a href="Accounts-mod-expenses.php" class="waves-effect"><i class="zmdi zmdi-money"></i> <span> Expenses</span> </a>
+                            </li>
+
+
                             <li class="active">
                                 <a href="Accounts-mod-profit-and-loss.php" class="waves-effect"><i class="fa fa-line-chart"></i> <span>  Profit and Loss </span> </a>
                             </li>
@@ -61,9 +65,19 @@ session_start();
                             <li>
                                 <a href="Accounts-mod-zakat-form.php" class="waves-effect"><i class="fa fa-pagelines"></i> <span> Zakat Form</span> </a>
                             </li>
+
+                            <li>
+                                <a href="Accounts-mod-fee-calculate.php" class="waves-effect"><i class="fa fa-calculator"></i> <span>Fee Calculate</span> </a>
+                            </li>
+
                             <li>
                                 <a href="Accounts-mod-fee-collecting.php" class="waves-effect"><i class="fa fa-vcard-o"></i> <span> Fee Collecting</span> </a>
                             </li>
+
+                            <li>
+                                <a href="Accounts-std-fee-collected.php" class="waves-effect"><i class="fa fa-address-book-o"></i> <span>Student Fee Collected</span> </a>
+                            </li>
+
                             <li>
                                 <a href="Accounts-mod-fee-card.php" class="waves-effect"><i class="dripicons-document"></i> <span> Fee Card</span> </a>
                             </li>
@@ -77,6 +91,8 @@ session_start();
                                 <a href="Accounts-mod-miscellaneous-querry-reporting.php" class="waves-effect"><i class="fa fa-database"></i> <span> Miscellaneous Querry Reporting </span> </a>
                             </li>
 
+                            
+
                             <li>
                                 <a href="Accounts-mod-annual-appraisal-for-bonus-and-increment.php" class="waves-effect"><i class="fa fa-calendar-check-o"></i> <span> Annual Appraisal for Bonus and Increment </span> </a>
                             </li>
@@ -84,6 +100,10 @@ session_start();
                                 <a href="Accounts-mod-hall-booking.php" class="waves-effect"><i class="zmdi zmdi-assignment"></i> <span> Hall Booking </span> </a>
                             </li>
 
+                            <li>
+                                <a href="Accounts-mod-employe_loan.php" class="waves-effect"><i class="zmdi zmdi-money-off"></i> <span> Employee Loan </span> </a>
+                            </li>
+                            
 
                         </ul>
                         <div class="clearfix"></div>

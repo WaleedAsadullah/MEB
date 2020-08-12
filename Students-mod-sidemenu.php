@@ -1,10 +1,18 @@
+
  <div class="left side-menu">
                 <div class="sidebar-inner slimscrollleft">
 
                     <!-- User -->
                     <div class="user-box">
                         <div class="user-img">
-                            <img src="assets/images/users/logo.jpg" alt="The Brainic School" title="The Brainic School" class="img-circle img-thumbnail img-responsive">
+                            <?php 
+
+                            $sql = 'SELECT `profile_picture` FROM `ad_admission` WHERE `e_mail` like\''.$_SESSION['e_mail'].'\'';
+                            $result = mysqli_query(connect_db(),$sql);
+                            $row = mysqli_fetch_assoc($result);
+                            $img = $row['profile_picture'];
+                             ?>
+                            <img src="<?php echo $img; ?>" alt="Profile Picture" title="Profile" class="img-circle img-thumbnail img-responsive">
                             <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
                         </div>
                         <h5><a href="#"> <?php echo $_SESSION['name']; ?> </a> </h5>

@@ -9,7 +9,7 @@
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">

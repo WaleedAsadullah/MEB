@@ -11,7 +11,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!-- form Uploads -->
         <link href="assets/plugins/fileuploads/css/dropify.min.css" rel="stylesheet" type="text/css" />
@@ -62,7 +62,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php");
+                            include_once("header.php");
                             include_once("db_functions.php");
                     ?>
 
@@ -200,6 +200,65 @@ if( $uploadedok) {
                                             display_query($sql);
                                             // ------------------------------
                                             ?>
+                                    <?php
+
+                                    if (isset($_POST['submit'])){
+                                        $user = mysqli_real_escape_string(connect_db(), $_POST['name_of_student']);
+                                        $e_mail = mysqli_real_escape_string(connect_db(), $_POST['e_mail']);
+                                        $class = mysqli_real_escape_string(connect_db(), $_POST['class']);
+                                        // $account = mysqli_real_escape_string(connect_db(), $_POST['account']);
+                                        $pass = mysqli_real_escape_string(connect_db(), $_POST['pass']);
+                                         $cpass = mysqli_real_escape_string(connect_db(), $_POST['cpass']);
+
+                                        $pas = password_hash($pass, PASSWORD_BCRYPT);
+                                        $cpas = password_hash($cpass, PASSWORD_BCRYPT);
+
+                                        $e_mailquary = " select * from ad_add_user where e_mail='$e_mail'";
+                                        $query = mysqli_query(connect_db(),$e_mailquary);
+                                        $e_mailcount = mysqli_num_rows($query);
+                                        if($e_mailcount>0){
+                                            echo    '<script>
+                                                        alert("E-mail is already Exists");
+                                                    </script>';
+                                        }else{
+                                            if( $pass ==  $cpass){
+                                                $_account = "'Students'";
+                                            $sql = 'INSERT INTO `ad_add_user`(`add_user_id`, `user_id`, `user_date`, `name`, `e_mail`, `class`, `gr_no`, `account`, `pass`, `cpass`) VALUES (NULL,\'';
+                                            $sql .= get_curr_user();
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name_of_student'].'\', \''.$_REQUEST['e_mail'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['GR_No'].'\', '.$_account.', \''.$pas.'\', \''.$cpas.'\')';
+                                                $iquery = insert_query($sql);
+                                                    echo '<script>
+                                                    alert("Account created")
+                                                    </script>';
+                                                
+                                            }else{
+                                                   echo ' <script>
+                                                    alert("Password are not same");
+                                                    </script>';
+                                                }
+                                        }
+                                    }
+
+
+                                    // ///edit code
+                                    // check_edit("ad_add_user","add_user_id");
+                                    // edit_display("ad_add_user","add_user_id");
+                                    // //end of edit code -shift view below delete
+
+                                    // // --------------
+
+                                    // if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_add_user` WHERE `ad_add_user`.`add_user_id` = '.$_REQUEST['deleteid'];
+
+                                    // insert_query($sql);
+                                    // // echo "done deleting";
+                                    //     }
+                                    // // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                    // $sql = 'SELECT `add_user_id`"ID", `user_id`, `user_date`"Date", `name`"Name", `e_mail`"E-mail", `class`"Class", `gr_no`"Gr No.", `account`"Type", `pass`"Password" FROM `ad_add_user`';
+                                    // display_query($sql);
+
+
+                                    ?>
                                         </table>
                                     </div>
                                 </div>
@@ -209,8 +268,6 @@ if( $uploadedok) {
                             
                     </div>
                 </div>
-            </dir>
-        </div>
         <br>
         <br>
 
@@ -237,10 +294,23 @@ if( $uploadedok) {
                                                     <div class="col-md-12" >
                                                         <div>
                                                             <div class="form-group">
-                                                                <label for="class">Class</label>
-                                                                <input type="text" name="class" required placeholder="Enter class" class="form-control" id="adclass"
-                                                                value="<?php if (isset($_REQUEST['class'])) echo $_REQUEST['class'];  ?>">
-                                                            </div>
+                                                            <label for="class">Class</label>
+                                                            <select type="text" name="class" required=""class="form-control" >
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "montessori" ) echo "selected";  ?> value="montessori">Montessori</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "KG 1" ) echo "selected";  ?> value="KG 1">KG 1</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "KG 2" ) echo "selected";  ?> value="KG 2">KG 2</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "1" ) echo "selected";  ?> value="1">1</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "2" ) echo "selected";  ?> value="2">2</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "3" ) echo "selected";  ?> value="3">3</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "4" ) echo "selected";  ?> value="4">4</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "5" ) echo "selected";  ?> value="5">5</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "6" ) echo "selected";  ?> value="6">6</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "7" ) echo "selected";  ?> value="7">7</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "8" ) echo "selected";  ?> value="8">8</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "9" ) echo "selected";  ?> value="9">9</option>
+                                                                    <option <?php if (isset($_REQUEST['class']) && $_REQUEST['class']== "10" ) echo "selected";  ?> value="10">Matric</option>
+                                                                </select>
+                                                        </div>
                                                         </div>
                                                         <div>
                                                             <div class="form-group">
@@ -258,7 +328,7 @@ if( $uploadedok) {
                                                 <div style="align-content: center;">
                                                     <h4 class="header-title m-t-0 m-b-30">Max File size</h4>
                                                     <?php if (isset($_REQUEST['profile_picture'])) echo "<img class = 'img1' style = 'height:190px ;' src=".$_REQUEST['profile_picture'].">";  ?>
-                                                    <input id="profile_picture" name="profile_picture" type="file" class="dropify" data-max-file-size="10M"  />
+                                                    <input id="profile_picture" name="profile_picture" type="file" class="dropify" data-max-file-size="10M" required="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -328,7 +398,7 @@ if( $uploadedok) {
 
                                         <div class="form-group">
                                             <label for="address">Address</label>
-                                            <input  type="text" name="address" required placeholder="Enter religion" class="form-control" id="adaddress"
+                                            <input  type="text" name="address" required placeholder="Enter address" class="form-control" id="adaddress"
                                             value="<?php if (isset($_REQUEST['religion'])) echo $_REQUEST['religion'];  ?>">
                                         </div>
 
@@ -426,6 +496,24 @@ if( $uploadedok) {
                                             <input type="text" name="last_school_class" required placeholder="Enter occupation" class="form-control" id="adlastclass"
                                             value="<?php if(isset($_REQUEST['last_school_class'])) echo $_REQUEST['last_school_class']?>">
                                         </div>
+                                        <hr>
+                                        <h4 class="header-title m-t-0 m-b-5"> For Portal </h4>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="lcDateOfBirthW">Password</label>
+                                                    <input type="password" required name="pass" minlength="8" 
+                                                           placeholder="Enter password" class="form-control" id="lcDateOfBirthW" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="lcLastSchool">Confirm password</label>
+                                                    <input  type="password" required name="cpass" minlength="8"
+                                                                   placeholder="Confirm password " class="form-control" id="lcLastSchool" >
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group text-right m-b-0">
                                             <?php 
@@ -440,29 +528,16 @@ if( $uploadedok) {
                                 </div>
                             </div><!-- end col -->
                         </div>
-
                     </div>
                 </div>
+            </div>
                 <!-- for office use only -->
-                <div class="">
+            <div class="">
                 <div class="content">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
-
                                     <h4 class="header-title m-t-0 m-b-5" style="text-align: center; font-size: 22px; padding: 10px"> For Office Use Only </h4>
 
                                     <form action="#" >
@@ -626,20 +701,6 @@ if( $uploadedok) {
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
-        <!-- print -->
-            <script>
-            function myPrint(addFrmPrint) {
-                var printdata = document.getElementById(addFrmPrint);
-                newwin = window.open("");
-                newwin.document.write(printdata.outerHTML);
-                newwin.print();
-                newwin.close();
-            }
-            function deleteTable(addFrmPrint){
-                var row = document.getElementById("addFrmPrint");
-                row.deleteRow(0);
-            }
-    </script>
 
 
     <!-- for checking form -->
@@ -662,101 +723,6 @@ if( $uploadedok) {
                     'fileSize': 'The file size is too big (1M max).'
                 }
             });
-        </script>
-        <!-- forrm add in table -->
-        <script>
-            function addmissionFormAdd() {
-                var table = document.getElementById("adadmissiontable"),
-                    newRow = table.insertRow(-1),
-                    cell1 = newRow.insertCell(0),
-                    cell2 = newRow.insertCell(1),
-                    cell3 = newRow.insertCell(2),
-                    cell4 = newRow.insertCell(3),
-                    cell5 = newRow.insertCell(4),
-                    cell6 = newRow.insertCell(5),
-                    cell7 = newRow.insertCell(6),
-                    cell8 = newRow.insertCell(7),
-                    cell9 = newRow.insertCell(8),
-                    cell10 = newRow.insertCell(9),
-                    cell11 = newRow.insertCell(10),
-                    cell12 = newRow.insertCell(11),
-                    cell13 = newRow.insertCell(12),
-                    cell14 = newRow.insertCell(13),
-                    cell15 = newRow.insertCell(14),
-                    cell16 = newRow.insertCell(15),
-                    cell17 = newRow.insertCell(16),
-                    cell18 = newRow.insertCell(17),
-                    cell19 = newRow.insertCell(18),
-                    cell20 = newRow.insertCell(19),
-                    cell21 = newRow.insertCell(20),
-                    cell22 = newRow.insertCell(21),
-                    cell23 = newRow.insertCell(22),
-                    cell24 = newRow.insertCell(23),
-                    cell25 = newRow.insertCell(24),
-                    cell26 = newRow.insertCell(25),
-                    cell27 = newRow.insertCell(26),
-                    adclass =  document.getElementById("adclass").value,
-                    adGRNo = document.getElementById("adG.RNo").value,
-                    adnameofthestudent = document.getElementById("adnameofthestudent").value,
-                    adfathersname = document.getElementById("adfathersname").value,
-                    adsurname = document.getElementById("adsurname").value,
-                    adguardiansname = document.getElementById("adguardiansname").value,
-                    adrelationship = document.getElementById("adrelationship").value,
-                    adreligion = document.getElementById("adreligion").value,
-                    adaddress = document.getElementById("adaddress").value,
-                    adphone = document.getElementById("adphone").value,
-                    adcellno = document.getElementById("adcellno").value,
-                    ademail = document.getElementById("ademail").value,
-                    adice = document.getElementById("adice"),
-                    adoccupation = document.getElementById("adoccupation").value,
-                    adincome = document.getElementById("adincome").value,
-                    adcnic = document.getElementById("adcnic").value,
-                    addateofbirth = document.getElementById("addateofbirth").value,
-                    adplaceofbirth = document.getElementById("adplaceofbirth").value,
-                    addateofbirthwords = document.getElementById("addateofbirthwords").value,
-                    adaddmissionsaught = document.getElementById("adaddmissionsaught").value,
-                    adaddmissiongranted = document.getElementById("adaddmissiongranted").value,
-                    adlastclass = document.getElementById("adlastclass").value;
-
-                    var newElement  = document.createElement("i");
-                    var newElement2  = document.createElement("i");
-                    var newElement3  = document.createElement("i");
-                    var newElement4  = document.createElement("i");
-
-                cell1.innerHTML = 7;
-                cell2.appendChild(newElement).className = "zmdi zmdi-edit";
-                cell3.appendChild(newElement2).className = "zmdi zmdi-delete";
-                cell3.setAttribute("onclick","deleteTable('addFrmPrint')");
-                cell4.appendChild(newElement3).className = "zmdi zmdi-local-printshop";
-                cell5.appendChild(newElement4).className = "zmdi zmdi-copy";
-                cell6.innerHTML = adclass;
-                cell7.innerHTML = adGRNo;
-                cell8.innerHTML = adnameofthestudent;
-                cell9.innerHTML = adfathersname;
-                cell10.innerHTML = adsurname;
-                cell11.innerHTML = adguardiansname;
-                cell12.innerHTML = adrelationship;
-                cell13.innerHTML = adreligion;
-                cell14.innerHTML = adaddress;
-                cell15.innerHTML = adphone;
-                cell16.innerHTML = adcellno;
-                cell17.innerHTML = ademail;
-                cell18.innerHTML = adice;
-                cell19.innerHTML = adoccupation;
-                cell20.innerHTML = adincome;
-                cell21.innerHTML = adcnic;
-                cell22.innerHTML = addateofbirth;
-                cell23.innerHTML = adplaceofbirth;
-                cell24.innerHTML = addateofbirthwords;
-                cell25.innerHTML = adaddmissionsaught;
-                cell26.innerHTML = adaddmissiongranted;
-                cell27.innerHTML = adlastclass;
-                console.log(adclass);
-               
-
-
-
-            };
         </script>
 
 

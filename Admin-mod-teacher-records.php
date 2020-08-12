@@ -12,7 +12,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -48,7 +48,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php");
+                            include_once("header.php");
                             include_once("db_functions.php");
                     ?>
 
@@ -84,18 +84,62 @@ include_once('session_end.php');
                                     <h4 class="header-title m-t-0 m-b-30" style="text-align: center; font-size: 22px; padding: 10px">Teacher Records</h4>
                                     <div class="table-responsive">
                                         <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered " id="adadmissiontable">
-                                            <?php
 
-                                            //-----------------------
-                                            //echo "test";
-                                            if(isset($_REQUEST['submit'])){
-                                            //print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ad_teacher_records` (`Teacher_records_id`, `user_id`, `user_date`, `name`, `cnic`, `position`, `office`, `age`, `start`, `salary`, `phone_number`, `address`, `comment`) VALUES (NULL,\'';
+                                            <?php
+                                            if (isset($_POST['submit'])){
+                                        // $user = mysqli_real_escape_string(connect_db(), $_POST['name']);
+                                        // $e_mail = mysqli_real_escape_string(connect_db(), $_POST['e_mail']);
+                                        // // $class = mysqli_real_escape_string(connect_db(), $_POST['class']);
+                                        // // $account = mysqli_real_escape_string(connect_db(), $_POST['account']);
+                                        // $pass = mysqli_real_escape_string(connect_db(), $_POST['pass']);
+                                        //  $cpass = mysqli_real_escape_string(connect_db(), $_POST['cpass']);
+
+                                        // $pas = password_hash($pass, PASSWORD_BCRYPT);
+                                        // $cpas = password_hash($cpass, PASSWORD_BCRYPT);
+
+                                        // $e_mailquary = " select * from ad_add_user where e_mail='$e_mail'";
+                                        // $query = mysqli_query(connect_db(),$e_mailquary);
+                                        // $e_mailcount = mysqli_num_rows($query);
+                                        // if($e_mailcount>0){
+                                        //     echo    '<script>
+                                        //                 alert("E-mail is already Exists");
+                                        //             </script>';
+                                        // }else{
+                                        //     if( $pass ==  $cpass){
+
+                                        //     $_account = "Teachers";
+                                        //     $_class = "Null";
+                                        //     $sql2 = 'INSERT INTO `ad_add_user`(`add_user_id`, `user_id`, `user_date`, `name`, `e_mail`, `class`, `gr_no`, `account`, `pass`, `cpass`) VALUES (NULL,\'';
+                                        //     $sql2 .= get_curr_user();
+                                        //     $sql2 .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['e_mail'].'\', \''.$_class.'\', \''.$_REQUEST['gr_no'].'\', \''.$_account.'\', \''.$pas.'\', \''.$cpas.'\')';
+                                        //         $iquery = insert_query($sql2);
+                                        //             echo '<script>
+                                        //             alert("Account created")
+                                        //             </script>';
+
+                                            $sql = 'INSERT INTO `ad_teacher_records`(`Teacher_records_id`, `user_id`, `user_date`, `name`, `cnic`, `position`, `office`, `assigned_section`, `assigned_class`, `age`, `start`, `salary`, `phone_number`, `address`, `comment`) VALUES (NULL,\'';
                                             $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['cnic'].'\', \''.$_REQUEST['position'].'\', \''.$_REQUEST['office'].'\', \''.$_REQUEST['age'].'\', \''.$_REQUEST['start'].'\', \''.$_REQUEST['salary'].'\', \''.$_REQUEST['phone_number'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['comment'].'\')';
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['cnic'].'\', \''.$_REQUEST['position'].'\', \''.$_REQUEST['office'].'\', \''.$_REQUEST['assigned_section'].'\', \''.$_REQUEST['assigned_class'].'\', \''.$_REQUEST['age'].'\', \''.$_REQUEST['start'].'\', \''.$_REQUEST['salary'].'\', \''.$_REQUEST['phone_number'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['comment'].'\')';
                                                 // echo $sql;
                                             insert_query($sql);
                                                 }
+                                            // }else{
+                                            //        echo ' <script>
+                                            //         alert("Password are not same");
+                                            //         </script>';
+                                            //     }
+                                        
+                                    
+                                            //-----------------------
+                                            //echo "test";
+                                            // if(isset($_REQUEST['submit'])){
+                                            // //print_r($_REQUEST);
+                                            // $sql = 'INSERT INTO `ad_teacher_records` (`Teacher_records_id`, `user_id`, `user_date`, `name`, `cnic`, `position`, `office`, `age`, `start`, `salary`, `phone_number`, `address`, `comment`) VALUES (NULL,\'';
+                                            // $sql .= get_curr_user();
+                                            // $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['name'].'\', \''.$_REQUEST['cnic'].'\', \''.$_REQUEST['position'].'\', \''.$_REQUEST['office'].'\', \''.$_REQUEST['age'].'\', \''.$_REQUEST['start'].'\', \''.$_REQUEST['salary'].'\', \''.$_REQUEST['phone_number'].'\', \''.$_REQUEST['address'].'\', \''.$_REQUEST['comment'].'\')';
+                                            //     // echo $sql;
+                                            // insert_query($sql);
+                                            //     }
                                             // ------------------------
 
                                             ///edit code
@@ -112,12 +156,36 @@ include_once('session_end.php');
                                                 }
                                                // $sql = "SELECT * FROM `ac_annual_appraisal`";
 
-                                            $sql = 'SELECT  `teacher_records_id` "ID",`name`"Name", `cnic` "CNIC", `position`"Position", `office`"Office", `age`"Age", `start`, `salary`"Salary", `phone_number`"Phone", `address` "Address", `comment` "Comment" FROM `ad_teacher_records`';
+                                            $sql = 'SELECT  `teacher_records_id` "ID",`name`"Name", `cnic` "CNIC", `position`"Position", `office`"Office",`assigned_section`"Assigned Section",`assigned_class`"Assigned Class", `age`"Age", `start`, `salary`"Salary", `phone_number`"Phone", `address` "Address", `comment` "Comment" FROM `ad_teacher_records`';
                                             display_query($sql);
 
                                             // --------------------------
 
                                             ?>
+                                            <?php
+
+                                    
+
+
+                                    // ///edit code
+                                    // check_edit("ad_add_user","add_user_id");
+                                    // edit_display("ad_add_user","add_user_id");
+                                    // //end of edit code -shift view below delete
+
+                                    // // --------------
+
+                                    // if(isset($_REQUEST['deleteid']) && is_numeric($_REQUEST['deleteid'])){ $sql = 'DELETE FROM `ad_add_user` WHERE `ad_add_user`.`add_user_id` = '.$_REQUEST['deleteid'];
+
+                                    // insert_query($sql);
+                                    // // echo "done deleting";
+                                    //     }
+                                    // // $sql = "SELECT * FROM `ac_annual_appraisal`";
+
+                                    // $sql = 'SELECT `add_user_id`"ID", `user_id`, `user_date`"Date", `name`"Name", `e_mail`"E-mail", `class`"Class", `gr_no`"Gr No.", `account`"Type", `pass`"Password" FROM `ad_add_user`';
+                                    // display_query($sql);
+
+
+                                    ?>
                                         </table>
                                     </div>
                                 </div>
@@ -145,7 +213,12 @@ include_once('session_end.php');
                                                 value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
                                             </div>
                                         
-                                   
+                                            <div class="form-group">
+                                                <label for="">Gr No. </label>
+                                                <input type="text" name="gr_no" required="" placeholder="Enter name" class="form-control" 
+                                                value="<?php if(isset($_REQUEST['gr_no'])) echo $_REQUEST['gr_no']?>">
+                                            </div>
+
                                             <div class="form-group">
                                                 <label for="cnic">CNIC </label>
                                                 <input type="number" name="cnic" required="" placeholder="Enter CNIC" class="form-control"
@@ -156,6 +229,11 @@ include_once('session_end.php');
                                                 <label for="phone_number">Phone No. </label>
                                                 <input type="tel" name="phone_number" required="" placeholder="Enter phone number" class="form-control"
                                                 value="<?php if(isset($_REQUEST['phone_number'])) echo $_REQUEST['phone_number']?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">E-mail </label>
+                                                <input type="e-mail" name="e_mail" required="" placeholder="Enter e-mail" class="form-control"
+                                                value="<?php if(isset($_REQUEST['e_mail'])) echo $_REQUEST['e_mail']?>">
                                             </div>
 
                                             <div class="form-group">
@@ -168,6 +246,18 @@ include_once('session_end.php');
                                                 <label for="office">Office</label>
                                                 <input type="text" name="office" placeholder="Enter office" class="form-control" id="prVacation"
                                                 value="<?php if(isset($_REQUEST['office'])) echo $_REQUEST['office']?>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="office">Assigned Section</label>
+                                                <input type="text" name="assigned_section" placeholder="Enter assigned section" class="form-control" id="prVacation"
+                                                value="<?php if(isset($_REQUEST['assigned_section'])) echo $_REQUEST['assigned_section']?>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="office">Assigned Class</label>
+                                                <input type="text" name="assigned_class" placeholder="Enter assigned class" class="form-control" id="prVacation"
+                                                value="<?php if(isset($_REQUEST['assigned_class'])) echo $_REQUEST['assigned_class']?>">
                                             </div>
 
                                             <div class="form-group">
@@ -198,6 +288,24 @@ include_once('session_end.php');
                                                 <label for="comment">Comment</label>
                                                 <input type="text"  name="comment" rows="4" placeholder="comments........." class="form-control" value="<?php if(isset($_REQUEST['comment'])) echo $_REQUEST['comment']?>">
                                             </div>
+                                            <hr>
+                                        <h4 class="header-title m-t-0 m-b-5"> For Portal </h4>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="lcDateOfBirthW">Password</label>
+                                                    <input type="password" required name="pass" minlength="8" 
+                                                           placeholder="Enter password" class="form-control" id="lcDateOfBirthW" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="lcLastSchool">Confirm password</label>
+                                                    <input  type="password" required name="cpass" minlength="8"
+                                                                   placeholder="Confirm password " class="form-control" id="lcLastSchool" >
+                                                </div>
+                                            </div>
+                                        </div>
 
                                             <div class="form-group text-right m-b-0">
                                                 <?php 

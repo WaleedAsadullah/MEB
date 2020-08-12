@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
         <!-- App title -->
-        <title>Account - The Brainic School</title>
+        <?php include_once("title.php") ?>
 
         <!-- App CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

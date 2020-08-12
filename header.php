@@ -2,7 +2,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="index.php" class="logo"><span>The Brainic<span>School</span></span><i class="zmdi zmdi-layers"></i></a>
+                    <a href="index.php" class="logo"><span>M.E.B <span>School</span></span><i class="zmdi zmdi-layers"></i></a>
                 </div>
 
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -17,7 +17,7 @@
                                 </button>
                             </li>
                             <li>
-                                <h4 class="page-title">Login as Student</h4>
+                                <!-- <h4 class="page-title"> <?php ; ?> Portal </h4> -->
                             </li>
                         </ul>
 
@@ -25,7 +25,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <!-- Notification -->
-                                <div class="notification-box">
+                                <!-- <div class="notification-box">
                                     <ul class="list-inline m-b-0">
                                         <li>
                                             <a href="javascript:void(0);" class="right-bar-toggle">
@@ -37,7 +37,7 @@
                                             </div>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                                 <!-- End Notification bar -->
                             </li>
                             <li class="hidden-xs">

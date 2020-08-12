@@ -11,7 +11,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -40,7 +40,8 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Students-mod-header.php")
+                            include_once("header.php");
+                            include_once("db_functions.php")
                     ?>
 
                     <!-- header -->
@@ -88,7 +89,9 @@ include_once('session_end.php');
                 </div>
             </div>
     
-
+            <?php 
+            include_once("footer.php")
+            ?>
                                
     </div>
         <script>
@@ -116,46 +119,5 @@ include_once('session_end.php');
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
-        <script type="text/javascript">
-            $(window).load(function(){
-                var $container = $('.portfolioContainer');
-                $container.isotope({
-                    filter: '*',
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear',
-                        queue: false
-                    }
-                });
-
-                $('.portfolioFilter a').click(function(){
-                    $('.portfolioFilter .current').removeClass('current');
-                    $(this).addClass('current');
-
-                    var selector = $(this).attr('data-filter');
-                    $container.isotope({
-                        filter: selector,
-                        animationOptions: {
-                            duration: 750,
-                            easing: 'linear',
-                            queue: false
-                        }
-                    });
-                    return false;
-                });
-            });
-            $(document).ready(function() {
-                $('.image-popup').magnificPopup({
-                    type: 'image',
-                    closeOnContentClick: true,
-                    mainClass: 'mfp-fade',
-                    gallery: {
-                        enabled: true,
-                        navigateByImgClick: true,
-                        preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-                    }
-                });
-            });
-        </script>
 </body>
 </html>

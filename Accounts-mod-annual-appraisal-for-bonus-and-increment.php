@@ -11,8 +11,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
-
+        <?php include_once("title.php") ?>
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
@@ -47,7 +46,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Accounts-mod-header.php");
+                            include_once("header.php");
                             include_once("db_functions.php")
                     ?>
 
@@ -91,9 +90,9 @@ include_once('session_end.php');
                                         // echo "test";
                                         if(isset($_REQUEST['submit'])){
                                             // print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ac_annual_appraisal` (`increment_form_id`, `user_id`, `user_date`, `gr_number`, `name`, `old_salary` , `salary_increment`, `new_salary` , `aproved_by`, `comment`) VALUES (NULL,\'';
+                                            $sql = 'INSERT INTO `ac_annual_appraisal` (`increment_form_id`, `user_id`, `user_date`, `gr_number`, `name`, `old_salary` , `salary_increment`, `new_salary` , `aproved_by`,`date`, `comment`) VALUES (NULL,\'';
                                             $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['gr_number'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['old_salary'].'\', \''.$_REQUEST['salary_increment'].'\', \''.$_REQUEST['new_salary'].'\', \''.$_REQUEST['aproved_by'].'\', \''.$_REQUEST['comment'].'\')';
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['gr_number'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['old_salary'].'\', \''.$_REQUEST['salary_increment'].'\', \''.$_REQUEST['new_salary'].'\', \''.$_REQUEST['aproved_by'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['comment'].'\')';
                                             // echo $sql;
                                             insert_query($sql);
                                         }
@@ -116,7 +115,7 @@ include_once('session_end.php');
                                                     }
                                                // $sql = "SELECT * FROM `ac_annual_appraisal`";
 
-                                                $sql = 'SELECT `increment_form_id` "ID",`user_date` "Date of increment", `gr_number` "Employee ID",`name` "Name", `salary_increment` "Salary Increment", `new_salary` "New Salary",`aproved_by` "approved by", `comment` "Comments" FROM `ac_annual_appraisal`' ;
+                                                $sql = 'SELECT `increment_form_id` "ID", `gr_number` "Employee ID",`name` "Name", `salary_increment` "Salary Increment", `new_salary` "New Salary",`date` "Date of increment",`aproved_by` "approved by", `comment` "Comments" FROM `ac_annual_appraisal`' ;
                                                 display_query($sql);
 
                                             ?>
@@ -175,7 +174,7 @@ include_once('session_end.php');
                                         </div>
 
                                         <div class="form-group">
-                                            <label >Salary increment</label>
+                                            <label >Salary Increment</label>
                                             <input type="number" name="salary_increment" placeholder="Enter salary increment" required="" class="form-control" value="<?php if(isset($_REQUEST['salary_increment'])) echo $_REQUEST['salary_increment']?>" >
                                         </div>
 
@@ -187,6 +186,11 @@ include_once('session_end.php');
                                         <div class="form-group">
                                             <label >Approved by</label>
                                             <input type="text"  name="aproved_by" placeholder="Enter approved by" required="" class="form-control" value="<?php if(isset($_REQUEST['aproved_by'])) echo $_REQUEST['aproved_by']?>">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label >Date Of Increment</label>
+                                            <input type="date"  name="date" placeholder="Enter approved by" required="" class="form-control" value="<?php if(isset($_REQUEST['date'])) echo $_REQUEST['date']?>">
                                         </div>
 
                                         

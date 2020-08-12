@@ -13,7 +13,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -44,7 +44,8 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Students-mod-header.php")
+                            include_once("header.php");
+                            include_once("db_functions.php")
                     ?>
 
                     <!-- header -->
@@ -72,6 +73,7 @@ include_once('session_end.php');
                                     
                                     <table class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered" id="adadmissiontable">
                                         <thead>
+
                                         <tr>
                                             <th>Subject</th>
                                             <th>Marks</th>
@@ -82,76 +84,11 @@ include_once('session_end.php');
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                       <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Subject 1</td>
-                                            <td>78</td>
-                                            <td>100</td>
-                                            <td>76%</td>
-                                            <td>A</td>
-                                        </tr>
+                                            <?php 
+
+                                            $sql = 'SELECT `report_card_id`, `user_id`, `user_date`, `name`, `gr_no`, `subject`, `marks_obtained`, `total_marks` FROM `th_report_card` WHERE `gr_no` LIKE \''.$_SESSION['gr_no'].'\'' ;
+
+                                             display_report_card($sql) ?>
                                     </tbody>    
                                     </table>
                                 </div>

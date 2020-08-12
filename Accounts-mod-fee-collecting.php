@@ -12,7 +12,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -48,7 +48,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Accounts-mod-header.php");
+                            include_once("header.php");
                             include_once("db_functions.php");
                     ?>
 
@@ -94,9 +94,9 @@ include_once('session_end.php');
                                             // echo "test";
                                             if(isset($_REQUEST['submit'])){
                                             // print_r($_REQUEST);
-                                            $sql = 'INSERT INTO `ac_fee_module` (`fee_id`, `user_id`, `user_date`, `category`, `s_no`,`name`,`class`, `gr_num`, `fees_month`, `admission_fee`, `exam`, `fine`, `mics`, `total`, `date`, `cashier`) VALUES (NULL,\'';
+                                            $sql = 'INSERT INTO  `ac_fee_module`(`fee_id`, `user_id`, `user_date`, `category`, `s_no`, `name`, `class`, `fee_month_name`, `gr_num`, `fees_month`, `admission_fee`, `exam`, `fine`, `mics`, `total`, `date`, `cashier`) VALUES (NULL,\'';
                                             $sql .= get_curr_user();
-                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['category'].'\', \''.$_REQUEST['s_no'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['fees_month'].'\', \''.$_REQUEST['admission_fee'].'\', \''.$_REQUEST['exam'].'\', \''.$_REQUEST['fine'].'\', \''.$_REQUEST['mics'].'\', \''.$_REQUEST['total'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['cashier'].'\')';
+                                            $sql .= '\', CURRENT_TIMESTAMP, \''.$_REQUEST['category'].'\', \''.$_REQUEST['s_no'].'\', \''.$_REQUEST['name'].'\', \''.$_REQUEST['class'].'\', \''.$_REQUEST['fee_month_name'].'\', \''.$_REQUEST['gr_num'].'\', \''.$_REQUEST['fees_month'].'\', \''.$_REQUEST['admission_fee'].'\', \''.$_REQUEST['exam'].'\', \''.$_REQUEST['fine'].'\', \''.$_REQUEST['mics'].'\', \''.$_REQUEST['total'].'\', \''.$_REQUEST['date'].'\', \''.$_REQUEST['cashier'].'\')';
                                                 // echo $sql;
                                             insert_query($sql);
                                                 }
@@ -116,7 +116,7 @@ include_once('session_end.php');
                                                 }
                                             // $sql = "SELECT * FROM `ac_annual_appraisal`";
 
-                                            $sql = 'SELECT `fee_id`"ID", `category` "Category", `name`"name", `class`"Class", `gr_num`"Gr No.", `fees_month`"Fees for the Month", `admission_fee`"Admission Fee", `exam`"Exams and Other Activities", `fine`"Fine", `mics`"Mics", `total`"Total", `date`"Date", `cashier`"Cashier" FROM `ac_fee_module`';
+                                            $sql = 'SELECT `fee_id`"ID", `category` "Category", `name`"name", `class`"Class",`fee_month_name`"Fee for the Month", `gr_num`"Gr No.", `fees_month`"Fees for the Month", `admission_fee`"Admission Fee", `exam`"Exams and Other Activities", `fine`"Fine", `mics`"Mics", `total`"Total", `date`"Date", `cashier`"Cashier" FROM `ac_fee_module`';
                                             display_query($sql);
 
                                             ?>
@@ -150,25 +150,29 @@ include_once('session_end.php');
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label for="feCategory">Category</label>
-                                                    <select type="text" name="category" required="" placeholder="category" class="form-control" id="feCategory">
-                                                        <option value="montessori" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "montessori" ) echo "selected";  ?> >Montessori</option>
-                                                        <option value="girl" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "girl" ) echo "selected";  ?> >Girl</option>
-                                                        <option value="boy" <?php if (isset($_REQUEST['category']) && $_REQUEST['category']== "boy" ) echo "selected";  ?> >Boy</option>
-                                                    </select>
+                                                    <?php 
+                                                    table_to_dropdown("sections","section_id","section_name","category");
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php
+                                        // $sql1 = 'SELECT `class`, `name_of_student` FROM `ad_admission` WHERE `GR_No` LIKE \''..'\'';
+                                        // $arr_result = query_to_array($sql1);
+
+                                        // $sql2 = 'SELECT `student_fee_id`, `user_id`, `user_date`, `admitted_class`, `admission_fee`, `activities_fee`, `tution_fee`, `total`, `gr_no` FROM `ad_student_fee` WHERE `GR_No` LIKE \''..'\'';
+                                        ?>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="feSno">S No.</label>
                                                     <input type="text" name="s_no" required="" class="form-control" id="feSno"
-                                                     value="<?php if(isset($_REQUEST['s_no'])) echo $_REQUEST['s_no']?>">
+                                                     value="<?php if(isset($_REQUEST['s_no'])) echo $_REQUEST['s_no'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="feRollNo">Roll No. </label>
+                                                    <label for="feRollNo">Gr No. </label>
                                                     <input type="text" name="gr_num" required="" placeholder="Enter roll no." class="form-control" id="feRollNo"  value="<?php if(isset($_REQUEST['gr_num'])) echo $_REQUEST['gr_num']?>">
                                                 </div>
                                             </div>
@@ -181,10 +185,16 @@ include_once('session_end.php');
                                                     <input id="feNameOfStudent" name="name" type="text" placeholder="Enter name of student" required="" class="form-control"  value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name']?>">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">  
+                                            <div class="col-lg-3">  
                                                 <div class="form-group">
                                                     <label for="feClass">Class</label>
                                                     <input id="feClass" name="class" type="text" placeholder="Enter class" required="" class="form-control"  value="<?php if(isset($_REQUEST['class'])) echo $_REQUEST['class']?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">  
+                                                <div class="form-group">
+                                                    <label >Fee for the Month</label>
+                                                    <input id="feClass" name="fee_month_name" type="text" placeholder="Enter month" required="" class="form-control"  value="<?php if(isset($_REQUEST['fee_month_name'])) echo $_REQUEST['fee_month_name']?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -194,13 +204,13 @@ include_once('session_end.php');
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label>Fees for the Month</label>
+                                                    <label>Fees of the Month</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-4">  
                                                 <div class="form-group">
-                                                    <input  type="number" name="fees_month" placeholder="Enter amount" required="" class="form-control"  value="<?php if(isset($_REQUEST['fees_month'])) echo $_REQUEST['fees_month']?>">
+                                                    <input  type="text" name="fees_month" placeholder="Enter amount" required="" class="form-control"  value="<?php if(isset($_REQUEST['fees_month'])) echo $_REQUEST['fees_month']?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -296,12 +306,15 @@ include_once('session_end.php');
                                             </button>
                                         </div>
                                     </form>
+                                    <div id="records" ></div>
+                                     <input type="button" id = "getusers" value = "Fetch Records" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
 
 
@@ -315,6 +328,30 @@ include_once('session_end.php');
         <script>
             var resizefunc = [];
         </script>
+        <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+   
+<script type="text/javascript"> 
+    $(document).ready(function(){
+      $("#getusers").on('click', function(){ 
+      $.ajax({ 
+        method: "GET", 
+        
+        url: "getrecords_ajax.php",
+      }).done(function( data ) { 
+        var result= $.parseJSON(data); 
+        var string='<table width="100%"><tr> <th>#</th><th>Name</th> <th>Email</th><tr>';
+ 
+       /* from result create a string of data and append to the div */
+      
+        $.each( result, function( key, value ) { 
+          
+          string += "<tr> <td>"+value['class'] + "</td><td>"+value['name_of_student']+"</td> </tr>"; 
+              }); 
+             string += '</table>'; 
+          $("#records").html(string); 
+    }); 
+}); 
+</script> 
 
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>

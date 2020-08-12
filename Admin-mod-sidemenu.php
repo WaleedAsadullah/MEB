@@ -60,6 +60,9 @@
                             <li>
                                 <a href="Admin-mod-admission-management.php" class="waves-effect"><i class="fa fa-indent"></i> <span> Admission management </span> </a>
                             </li>
+                            <li>
+                                <a href=" Admin-mod-admission-fee-set.php" class="waves-effect"><i class="fa fa-money"></i> <span> Student Fee </span> </a>
+                            </li>
 
                             <li>
                                 <a href="Admin-mod-course-planning.php" class="waves-effect"><i class="fa fa-book"></i> <span> Course planning </span> </a>
@@ -77,6 +80,10 @@
                                 <a href="Admin-mod-school-leaving-certificate.php" class="waves-effect"><i class="zmdi zmdi-assignment-returned"></i> <span> School leaving certificate </span> </a>
                             </li>
 
+                             <li>
+                                <a href="Admin-mod-employee-record.php" class="waves-effect"><i class="zmdi zmdi-view-list"></i> <span> Employee Records </span> </a>
+                            </li>
+
                             <li>
                                 <a href="Admin-mod-add-user.php" class="waves-effect"><i class="zmdi zmdi-account-add"></i> <span> Add User</span> </a>
                             </li>
@@ -87,4 +94,3 @@
         </div>
                     
                     <!-- Sidebar -->
- 

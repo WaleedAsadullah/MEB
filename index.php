@@ -12,7 +12,7 @@ session_start();
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -49,13 +49,9 @@ session_start();
     <body> 
         <?php
         include_once('db_functions.php');
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "schoolmeb";
 
     
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = connect_db();
         if(isset($_REQUEST['submit'])){
             $email = $_REQUEST['email'];
             $password = $_REQUEST['pass'];
@@ -69,38 +65,42 @@ session_start();
             $db_pass =  $email_pass['pass']; 
             $_SESSION['name'] = $email_pass['name'];
             $_SESSION['gr_no'] = $email_pass['gr_no'];
+            $_SESSION['account'] = $email_pass['account'];
+            $_SESSION['add_user_id'] = $email_pass['add_user_id'];
+            $_SESSION['e_mail'] = $email_pass['e_mail'];
+
             $db_account = $email_pass['account'];
             $pass_decode = password_verify($password, $db_pass);
 
             if($pass_decode){
-                if($db_account == 'Student'){
+                if($db_account == 'Students'){
                 ?>
                 <script>
-                    location.replace('Students-mod-video-lecture.php');
+                    location.replace('Students-mod-index.php');
                 </script>
                 <?php
-                }elseif($db_account == 'Parent'){
+                }elseif($db_account == 'Parents'){
                 ?>
                 <script>
-                    location.replace('Parents-mod-child-progress-reports.php');
+                    location.replace('Parents-index.php');
                 </script>
                 <?php
-                }elseif($db_account == 'Account'){
+                }elseif($db_account == 'Accounts'){
                 ?>
                 <script>
-                    location.replace('Accounts-mod-profit-and-loss.php');
+                    location.replace('Accounts-mod-index.php');
                 </script>
                 <?php
                 }elseif($db_account == 'Teacher'){
                 ?>
                 <script>
-                    location.replace('teacher-mod-video-leacture.php');
+                    location.replace('Teacher-mod-index.php');
                 </script>
                 <?php
                 }else{
                 ?>
                 <script>
-                    location.replace('Admin-mod-dashboard.php');
+                    location.replace('Admin-mod-index.php');
                 </script>
                 <?php
                 }
@@ -136,11 +136,12 @@ session_start();
                 <div class="text-center">
                     <h4 class="text-uppercase font-bold m-b-0">Sign In</h4>
                     <div style="margin-top: 8px">
-                        <span><a class="click" href="Admin-mod-student-attendance.php">Admin</a></span>
-                        <span><a class="click" href="Accounts-mod-profit-and-loss.php">Account</a></span>
-                        <span><a class="click" href="Parents-mod-child-progress-reports.php">Parent</a></span>
-                        <span><a class="click" href="Students-mod-video-lecture.php">Student</a></span>
-                        <span><a class="click" href="teacher-mod-video-leacture.php">Teacher</a></span>
+                        <span><a class="click" href="Superadmin-mod-index.php">Super Admin</a></span>
+                        <span><a class="click" href="Admin-mod-index.php">Admin</a></span>
+                        <span><a class="click" href="Accounts-mod-index.php">Account</a></span>
+                        <span><a class="click" href="Parents-mod-index.php">Parent</a></span>
+                        <span><a class="click" href="Students-mod-index.php">Student</a></span>
+                        <span><a class="click" href="Teacher-mod-index.php">Teacher</a></span>
                     </div>
 
 

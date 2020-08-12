@@ -14,7 +14,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <title>The Brainic School</title>
+        <?php include_once("title.php") ?>
 
 
         <!-- App CSS -->
@@ -44,7 +44,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Parents-mod-header.php")
+                            include_once("header.php")
                     ?>
 
                     <!-- header -->

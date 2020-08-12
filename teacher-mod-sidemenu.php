@@ -29,24 +29,28 @@
                 <li class="text-muted menu-title">Navigation</li>
 
                 <li class="active">
-                    <a href="teacher-mod-video-leacture.php" class="waves-effect"><i class="fa fa-video-camera"></i> <span>  Video Lecture </span> </a>
+                    <a href="Teacher-mod-video-leacture.php" class="waves-effect"><i class="fa fa-video-camera"></i> <span>  Video Lecture </span> </a>
                 </li>
 
                 
                  <li>
-                    <a href="teacher-mod-homework.php" class="waves-effect"><i class="fa fa-book"></i> <span> Homework
+                    <a href="Teacher-mod-homework.php" class="waves-effect"><i class="fa fa-book"></i> <span> Homework
                      </span> </a>
                 </li>
 
                 <li>
-                    <a href="teacher-mod-report-card.php" class="waves-effect"><i class="fa fa-vcard"></i> <span> Report Card </span> </a>
+                    <a href="Teacher-mod-report-card.php" class="waves-effect"><i class="fa fa-vcard"></i> <span> Report Card </span> </a>
                 </li>
 
                 <li>
-                    <a href="teacher-mod-blog.php" class="waves-effect"><i class="zmdi zmdi-blogger"></i> <span> Blog </span> </a>
+                    <a href="Teacher-mod-gradebook.php" class="waves-effect"><i class="zmdi zmdi-account-box-mail"></i> <span> Gradebook </span> </a>
+                </li>
+
+                <li>
+                    <a href="Teacher-mod-blog.php" class="waves-effect"><i class="zmdi zmdi-blogger"></i> <span> Blog </span> </a>
                 </li>
                 <li>
-                    <a href="teacher-mod-announcement.php" class="waves-effect"><i class="fa fa-comment"></i> <span> Announcement
+                    <a href="Teacher-mod-announcement.php" class="waves-effect"><i class="fa fa-comment"></i> <span> Announcement
                      </span> </a>
                 </li>
             </ul>

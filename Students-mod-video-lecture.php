@@ -1,10 +1,11 @@
 <?php
 include_once('session_end.php');
+include_once("db_functions.php")
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -78,14 +79,14 @@ include_once('session_end.php');
 
         </style>
 </head>
-<body class="fixed-left">
+<body class="fixed-left" onload="collapse();">
     <div id="wrapper" class="enlarged">
 
 
                     <!--- header -->
                     <?php 
-                            include_once("Students-mod-header.php");
-                            include_once("db_functions.php")
+                            include_once("header.php");
+                            
                     ?>
 
                     <!-- header -->
@@ -101,6 +102,7 @@ include_once('session_end.php');
 
 
         <!-- content -->
+
             <div class="content-page">
                 <div class="content">
                     <div class="container">
@@ -108,11 +110,13 @@ include_once('session_end.php');
                             <div class="col-lg-3">
                                 <div class="card-box" style="padding: 20px 0px;">
                                     <h4 class="header-title m-t-0 m-b-30" style="padding-left: 20px">Lectures</h4>
+                                   <h3> <a href="#" onclick="javascript:collapse();"></a></h3>
                                     <?php
                                         $sql = 'SELECT `th_video_lecture_id`, `user_id`, `user_date`, `class`, `subject`"Subject", `title`, `link`, `comment` FROM `th_video_lecture`';
                                         display_video($sql);
 
                                         ?>
+
                                 </div>
                             </div>
                             <div class="col-lg-9">

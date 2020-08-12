@@ -12,7 +12,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
 
         <!-- DataTables -->
@@ -51,7 +51,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php");
+                            include_once("header.php");
                             include_once("db_functions.php");
                     ?>
 

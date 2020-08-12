@@ -1,5 +1,7 @@
 <?php
 include_once('session_end.php');
+include_once('db_functions.php');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+         <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -47,7 +49,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Students-mod-header.php");
+                            include_once("header.php");
                             include_once("db_functions.php");
                     ?>
 
@@ -82,8 +84,9 @@ include_once('session_end.php');
                                     <br>
 
                                     <div class="table-responsive">
-                                        <table id="datatable2" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
+                                        <table id="datatable" class="tablesaw table m-b-0 tablesaw-columntoggle table-bordered ">
                                             <?php
+                                            // hasaccess(13);
                                             // ------------------------
 
                                             // echo "test";
@@ -215,17 +218,7 @@ include_once('session_end.php');
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
-        <script>
-            $("#sci").click(function(){
-            $("#scinone").toggleClass("ol1n");
-            })
-            $("#maths").click(function(){
-            $("#mathsnone").toggleClass("ol1n");
-            })
-            $("#eng").click(function(){
-            $("#engnone").toggleClass("ol1n");
-            })
-        </script>
+
            <!-- Datatables-->
         <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>

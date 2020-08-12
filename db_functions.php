@@ -567,7 +567,18 @@ function display_video($sql){
             $("#'.'change'.''.clean(str_replace(" ","",$unique_sub_index[$i])).'").toggleClass("ol1");
           });
             });
-          </script>';
+          </script>
+          
+
+';
+$echo_change_class[] =  
+'
+  document.getElementById(\''.'change'.clean(str_replace(" ","",$unique_sub_index[$i])).'\').className = \'ol1\';
+
+ ';
+
+
+
             $sql2 = 'SELECT `title`, `link` FROM `th_video_lecture` WHERE `subject` LIKE \''.$unique_sub_index[$i].'\'';
             $result_title = mysqli_query($conn,$sql2);
             $m = 0;
@@ -587,9 +598,37 @@ function display_video($sql){
       
 
       }
+      echo '<script>
+           function collapse() {';
+ for($i=0;$i<count($unique_sub_index);$i++){
+echo $echo_change_class[$i];
+ }
+echo '};
+</script>
+    ';
+}
+
+function hasaccess(){
+  $id = $_SESSION['add_user_id'];
+
+  if(isset($id)){
+    $sql = 'SELECT * FROM `ad_add_user` WHERE `add_user_id` = '.$id;
+    $data = query_to_array($sql);
+
+    if(isset($data[0]))
+      $form_arr = explode("-",str_replace("school/","",get_current_form()));
+
+      if(lcfirst($form_arr[0]) == "/".ucfirst($data[0]['account']) || "Admin" == $data[0]['account'] ) {
+        // echo "Has access to ".$form_arr[0]." as ".$data[0]['account'];
+        echo '<br>';}else{
+          // echo "does not have access to ".$form_arr[0]." as ".$data[0]['account'];
+          echo '<script>
+                  location.replace(\''.$data[0]['account'].'-mod-index.php\');
+                </script>';}
+  }
+}
 
 
-    }
 
 function clean($string) {
    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
@@ -643,6 +682,59 @@ function video_link(){
 }
 
 
+
+function display_report_card($sql){
+  $conn = connect_db();
+  $result = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    $pre = ($row['marks_obtained']/$row['total_marks'])*100 .'%';
+
+  switch ($pre) {
+    case $pre>=80:
+      $grad = "A+";
+      break;
+    case $pre<=79.99 && $pre>=70:
+      $grad = "A";
+      break;
+    case $pre<=69.99 && $pre>=60:
+      $grad = "B";
+      break;
+      case $pre<=59.99 && $pre>=50:
+      $grad = "C";
+      break;
+      case $pre<=49.99 && $pre>=40:
+      $grad = "D";
+      break;
+    default:
+      $grad = "Fail";
+  }
+    echo '<tr>
+            <th>'.$row['subject'].'</th>
+            <td>'.$row['marks_obtained'].'</td>
+            <td>'.$row['total_marks'].'</td>
+            <td>'.$pre.'</td>
+            <td>'.$grad.'</td>
+        </tr>';
+  }
+
+  
+}
+
+function table_to_dropdown($table,$col_id,$col_name,$name){
+$sql = 'SELECT `'.$col_id.'`, `'.$col_name.'` FROM `'.$table.'`';
+
+$arr_result = query_to_array($sql);
+
+
+  echo '<select type="text" name="'.$name.'" required="" placeholder="category" class="form-control" id="feCategory">';
+  for($i=0;$i<count($arr_result);$i++){
+            echo "<option value=\"".$arr_result[$i][$col_id]."\"" ;
+             if (isset($_REQUEST[$name]) && $_REQUEST[$name]== $arr_result[$i][$col_name] ) echo "selected";  
+            echo ">".$arr_result[$i][$col_name]."</option>";
+          }
+           
+       echo " </select>";
+}
 
 
 ?>

@@ -12,7 +12,7 @@ include_once('session_end.php');
 
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
-          <title>The Brainic School</title>
+          <?php include_once("title.php") ?>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -47,7 +47,7 @@ include_once('session_end.php');
 
                     <!--- header -->
                     <?php 
-                            include_once("Admin-mod-header.php");
+                            include_once("header.php");
                             include_once("db_functions.php")
                     ?>
 
@@ -201,10 +201,10 @@ include_once('session_end.php');
                                         <div class="form-group">
                                             <label>Account</label>
                                             <select name="account" class="form-control">
-                                                <option  <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Student" ) echo "selected";  ?> value="Student">Student</option>
-                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Parent" ) echo "selected";  ?> value="Parent">Parent</option>
+                                                <option  <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Students" ) echo "selected";  ?> value="Students">Student</option>
+                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Parents" ) echo "selected";  ?> value="Parents">Parent</option>
                                                 <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Teacher" ) echo "selected";  ?> value="Teacher">Teacher</option>
-                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Account" ) echo "selected";  ?> value="Account">Account</option>
+                                                <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Accounts" ) echo "selected";  ?> value="Accounts">Account</option>
                                                 <option <?php if (isset($_REQUEST['account']) && $_REQUEST['account']== "Admin" ) echo "selected";  ?> value="Admin">Admin</option>
                                             </select>
                                             
